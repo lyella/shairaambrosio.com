@@ -1,0 +1,66 @@
+@use "styles/_mixins";
+
+.tile {
+  position: relative;
+  grid-column: span 2;
+  flex-flow: column wrap;
+  gap: 2rem;
+  box-shadow: 7px 7px 0 0 var(--black-100);
+  border: var(--border);
+  border-radius: 2rem;
+  background-color: var(--pink-100);
+  padding: 1rem;
+  height: 100%;
+  color: black;
+  @include mixins.flex(space-between, flex-start);
+
+  @include mixins.mediaquery("xs") {
+    padding: 2.5rem;
+  }
+
+  .avatar {
+    display: none;
+    position: absolute;
+    top: -33%;
+    right: -10%;
+    width: 160px;
+
+    @include mixins.mediaquery("xs") {
+      display: block;
+    }
+
+    @include mixins.mediaquery("lg") {
+      right: -15%;
+    }
+
+    @include mixins.mediaquery("xl") {
+      top: -27%;
+      right: -13%;
+      width: 170px;
+    }
+  }
+
+  .title {
+    color: black;
+    font-size: 2.4rem;
+
+    @include mixins.mediaquery("lg-max") {
+      font-size: 1.6rem;
+    }
+  }
+
+  .message {
+    font-size: 1.8rem;
+    @include mixins.mediaquery("lg-max") {
+      font-size: 1.6rem;
+    }
+  }
+
+  .mail {
+    font-size: 2rem !important;
+
+    @include mixins.mediaquery("lg-max") {
+      font-size: 1rem !important;
+    }
+  }
+}

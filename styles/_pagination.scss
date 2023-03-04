@@ -1,0 +1,61 @@
+/* styles for the pagination component */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  padding: 0;
+}
+
+.pagination ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.pagination li {
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 1.6rem;
+  list-style: none;
+}
+
+.pagination li:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.active {
+  border: 2px solid var(--black-100);
+  background-color: var(--blue-100);
+  color: white;
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: #f22;
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  border: 0.5rem dotted #fff;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top .icon {
+  font-size: 2.5rem;
+}

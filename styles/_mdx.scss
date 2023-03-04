@@ -1,0 +1,50 @@
+@use "styles/_mixins";
+
+.content {
+  margin-bottom: 5rem;
+  width: 100%;
+  p,
+  #introduction,
+  blockquote,
+  ul,
+  ol {
+    margin-bottom: 1.6rem;
+    font-size: 1.6rem;
+    line-height: 1.9;
+
+    @include mixins.mediaquery("sm") {
+      margin-bottom: 3rem;
+    }
+
+    @include mixins.mediaquery("lg") {
+      font-size: 1.7rem;
+    }
+
+    @include mixins.mediaquery("xl") {
+      font-size: 1.8rem;
+    }
+  }
+
+  @include mixins.mediaquery("lg") {
+    margin-bottom: 12rem;
+  }
+
+  strong,
+  li {
+    font-size: 1.6rem;
+
+    @include mixins.mediaquery("lg") {
+      font-size: 1.7rem;
+    }
+
+    @include mixins.mediaquery("xl") {
+      font-size: 1.8rem;
+    }
+  }
+
+  blockquote > p {
+    opacity: 0.4;
+    border-left: 3px solid var(--gray-300);
+    padding-left: 2.5rem;
+  }
+}

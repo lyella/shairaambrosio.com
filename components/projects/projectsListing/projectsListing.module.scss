@@ -1,0 +1,57 @@
+@use "styles/_mixins";
+@use "styles/_pagination";
+
+.projects {
+  width: 100%;
+  @include mixins.flex(center, flex-start);
+  flex-wrap: wrap;
+  gap: 3.5rem;
+
+  @include mixins.mediaquery("m") {
+    gap: 5rem;
+  }
+
+  .empty {
+    width: 100%;
+    @include mixins.flex;
+    margin-top: 2rem;
+
+    .avatar {
+      width: 30rem;
+
+      @include mixins.mediaquery("lg") {
+        width: 35rem;
+      }
+
+      @include mixins.mediaquery("xl") {
+        width: 40rem;
+      }
+    }
+  }
+
+  .loading {
+    position: relative;
+    padding: 4rem 0;
+    width: 100%;
+
+    & > div {
+      --color: var(--blue-100);
+    }
+  }
+
+  .list {
+    flex-wrap: wrap;
+    gap: 5rem 4rem;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    list-style-type: none;
+    @include mixins.flex(center, flex-start);
+
+    .hit {
+      flex: 0 1 46rem;
+      @include mixins.flex(flex-start, flex-start);
+      flex-flow: column wrap;
+    }
+  }
+}

@@ -1,0 +1,59 @@
+@use "styles/_mixins";
+
+.project {
+  display: block;
+  position: relative;
+  grid-row: span 2;
+  box-shadow: 7px 7px 0 0 var(--black-100);
+  border: var(--border);
+  border-radius: 2rem;
+  background-color: var(--red-100);
+  overflow: hidden;
+
+  &:hover {
+    .arrow {
+      transition: all 140ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      margin-bottom: 5px;
+      box-shadow: 3px 3px 0 0 var(--black-100);
+    }
+  }
+
+  .mockup {
+    position: relative;
+    top: 50%;
+    width: 90%;
+
+    &.right {
+      left: 68%;
+      transform-origin: 0% 100%;
+    }
+
+    &.left {
+      left: -62%;
+      transform-origin: 100% 100%;
+    }
+  }
+
+  img {
+    border-radius: 1.5rem;
+  }
+
+  .arrow {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    border: 2px solid var(--black-100);
+    border-radius: 50%;
+    background-color: var(--white-100);
+    padding: 1rem;
+    @include mixins.flex;
+
+    svg {
+      width: 9px;
+
+      path {
+        stroke: var(--black-100);
+      }
+    }
+  }
+}

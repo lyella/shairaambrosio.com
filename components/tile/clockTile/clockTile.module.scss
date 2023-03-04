@@ -1,0 +1,135 @@
+@use "styles/_mixins";
+
+.tile {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 7px 7px 0 0 var(--black-100);
+  border: var(--border);
+  border-radius: 2rem;
+  background-color: var(--violet-100);
+  padding: 2rem;
+  width: 100%;
+  height: 300px;
+  color: black;
+
+  @include mixins.mediaquery("lg-max") {
+    grid-column: span 1;
+    padding: 0.5rem;
+    height: auto;
+  }
+}
+
+.analogClock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all ease 0.2s;
+  margin-top: 2rem;
+  border: 2px solid var(--black-100);
+  border-radius: 50%;
+  background-image: url("https://imvpn22.github.io/analog-clock/clock.png");
+  background-position: center center;
+  background-size: cover;
+  background-color: var(--white-100);
+  width: 150px;
+  height: 150px;
+
+  &::before {
+    position: absolute;
+    z-index: 1000;
+    transition: all ease 0.2s;
+    border: 2px solid var(--main-bg-color);
+    border-radius: 50%;
+    background-color: var(--main-text-color);
+    width: 0.75rem;
+    height: 0.75rem;
+    content: "";
+  }
+
+  @include mixins.mediaquery("lg-max") {
+    margin-top: 0.5rem;
+    width: 10em;
+    height: 10em;
+  }
+}
+
+.hourHand,
+.minuteHand,
+.secondHand {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.hourHand {
+  height: 7rem;
+
+  &::before {
+    position: absolute;
+    border-radius: 6px;
+    background-color: gray;
+    width: 5px;
+    height: 50%;
+    content: "";
+    @include mixins.mediaquery("lg-max") {
+      width: 4px;
+    }
+  }
+
+  @include mixins.mediaquery("lg-max") {
+    height: 5rem;
+  }
+}
+
+.minuteHand {
+  height: 12rem;
+
+  &::before {
+    border-radius: 4px;
+    background-color: gray;
+    width: 4px;
+    height: 50%;
+    content: "";
+    @include mixins.mediaquery("lg-max") {
+      width: 3px;
+    }
+  }
+
+  @include mixins.mediaquery("lg-max") {
+    height: 7.5rem;
+  }
+}
+
+.secondHand {
+  height: 13rem;
+
+  &::before {
+    border-radius: 2px;
+    background-color: #f00;
+    width: 2px;
+    height: 60%;
+    content: "";
+  }
+
+  @include mixins.mediaquery("lg-max") {
+    width: 8.5rem;
+    height: 8.5rem;
+  }
+}
+
+// DATE
+
+.date {
+  font-size: 2.2rem;
+
+  @include mixins.mediaquery("lg-max") {
+    font-size: 1.6rem;
+  }
+}
+
+.dateTitle {
+  font-size: 1.6rem;
+}

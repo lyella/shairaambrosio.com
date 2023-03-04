@@ -1,0 +1,95 @@
+@use "styles/_mixins";
+@use "styles/_pagination";
+
+.posts {
+  width: 100%;
+  @include mixins.flex(center, flex-start);
+  flex-wrap: wrap;
+  gap: 3.5rem;
+
+  @include mixins.mediaquery("m") {
+    gap: 5rem;
+  }
+
+  .empty {
+    width: 100%;
+    @include mixins.flex;
+    margin-top: 2rem;
+
+    .avatar {
+      width: 30rem;
+
+      @include mixins.mediaquery("lg") {
+        width: 35rem;
+      }
+
+      @include mixins.mediaquery("xl") {
+        width: 40rem;
+      }
+    }
+  }
+
+  .main {
+    position: relative;
+    width: 100%;
+
+    @include mixins.mediaquery("m") {
+      max-width: 100%;
+    }
+
+    .wrapper {
+      grid-area: posts;
+      @include mixins.flex(flex-start);
+      flex-flow: column wrap;
+      gap: 3.5rem;
+
+      @include mixins.mediaquery("m") {
+        gap: 5rem;
+      }
+
+      .loading {
+        position: relative;
+        padding: 4rem 0;
+
+        & > div {
+          --color: var(--blue-100);
+        }
+      }
+
+      .searchedCategory {
+        margin-bottom: -1rem;
+        padding-left: 2.5rem;
+        width: 100%;
+        color: var(--red-100);
+        font-size: 2.7rem;
+        text-align: left;
+
+        @include mixins.mediaquery("lg") {
+          margin-bottom: -2rem;
+          padding-left: 2.7rem;
+          font-size: 2.95rem;
+        }
+
+        @include mixins.mediaquery("xl") {
+          font-size: 3.3rem;
+        }
+      }
+
+      .list {
+        flex-wrap: wrap;
+        gap: 5rem 4rem;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        list-style-type: none;
+        @include mixins.flex(center, flex-start);
+
+        .hit {
+          flex: 0 1 46rem;
+          @include mixins.flex(flex-start, flex-start);
+          flex-flow: column wrap;
+        }
+      }
+    }
+  }
+}

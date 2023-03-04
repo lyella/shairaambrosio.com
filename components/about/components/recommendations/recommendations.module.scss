@@ -1,0 +1,113 @@
+@use "styles/_mixins";
+
+.recommendations {
+  width: 100%;
+
+  .title {
+    margin-bottom: 2rem;
+    font-size: 2.6rem;
+
+    @include mixins.mediaquery("sm") {
+      font-size: 2.8rem;
+    }
+
+    @include mixins.mediaquery("xl") {
+      font-size: 3.2rem;
+    }
+  }
+
+  .description {
+    color: black;
+    font-size: 1.6rem;
+
+    @include mixins.mediaquery("lg") {
+      font-size: 1.7rem;
+    }
+
+    @include mixins.mediaquery("xl") {
+      font-size: 1.8rem;
+    }
+  }
+
+  .list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+    margin: 0;
+    padding: 0;
+    padding-top: 3rem;
+    list-style-type: none;
+
+    @include mixins.mediaquery("xs") {
+      grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+    }
+
+    @include mixins.mediaquery("lg") {
+      grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+      gap: 5rem;
+    }
+
+    .recommendation {
+      @include mixins.flex(flex-start, flex-start);
+      position: relative;
+      flex-flow: column wrap;
+      gap: 3rem;
+      box-shadow: 9px 9px 0 0 var(--black-100);
+      border-left: 0.4rem solid var(--blue-100);
+      border-radius: 0 1.2rem 1.2rem 0;
+      background-color: rgba(148, 204, 255, 0.15);
+      padding: 2rem 2.5rem;
+
+      .icon {
+        position: absolute;
+        top: 2rem;
+        right: 2.5rem;
+        z-index: 0;
+        width: 14%;
+
+        svg path {
+          fill: rgba(148, 204, 255, 0.25);
+        }
+      }
+
+      .content,
+      .author {
+        position: relative;
+        z-index: 1;
+      }
+
+      .content {
+        font-size: 1.55rem;
+        line-height: 1.65;
+      }
+
+      .author {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 2rem;
+        font-size: 1.45rem;
+        .avatar {
+          position: relative;
+          border-radius: 50%;
+          width: 5.2rem;
+          height: 5.2rem;
+
+          img {
+            border-radius: 50%;
+          }
+        }
+
+        .info {
+          @include mixins.flex(center, flex-start);
+          flex-flow: column wrap;
+          gap: 0.4rem;
+          color: black;
+
+          .name {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}

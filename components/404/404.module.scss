@@ -1,0 +1,24 @@
+@use "styles/_mixins";
+
+.wrapper {
+  @include mixins.flex;
+  flex-flow: column wrap;
+
+  .description {
+    padding: 1rem;
+    font-size: 1.7rem;
+    text-align: center;
+
+    @include mixins.mediaquery("lg") {
+      padding: 1.5rem;
+      font-size: 2rem;
+    }
+  }
+
+  .lottie {
+    margin: 5rem auto;
+    width: 100%;
+    max-width: 800px;
+    pointer-events: cursor;
+  }
+}

@@ -1,0 +1,73 @@
+@use "styles/_mixins";
+
+.thumbnail {
+  position: relative;
+  transition: 0.3s ease-in-out;
+  border-radius: 2rem;
+  padding: 2rem;
+  width: 100%;
+  width: 100%;
+  min-height: 230px;
+  color: var(--black-100);
+
+  &:hover {
+    box-shadow: none;
+  }
+
+  .image {
+    margin-bottom: 0.4rem;
+    width: 100%;
+
+    @include mixins.mediaquery("lg") {
+      margin-bottom: 0.7rem;
+    }
+
+    img {
+      border-radius: 2rem;
+    }
+  }
+
+  .content {
+    @include mixins.flex(center, flex-start);
+    flex-flow: column wrap;
+    padding: 1rem;
+
+    .title {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+
+      @include mixins.mediaquery("lg") {
+        font-size: 2.2rem;
+      }
+
+      @include mixins.mediaquery("xl") {
+        font-size: 2.5rem;
+      }
+    }
+
+    .excerpt {
+      margin-bottom: 1.5rem;
+      color: var(--black-100);
+      font-size: 1.4rem;
+
+      @include mixins.mediaquery("lg") {
+        font-size: 1.45rem;
+      }
+    }
+
+    .stack {
+      @include mixins.flex(flex-start);
+      flex-wrap: wrap;
+      gap: 0.8rem 1rem;
+      color: var(--black-100);
+
+      .tech {
+        border: 0.5px solid var(--white-200);
+        border-radius: 2rem;
+        background-color: var(--white-100);
+        padding: 0.4rem 1.4rem;
+        font-size: 1.6rem;
+      }
+    }
+  }
+}

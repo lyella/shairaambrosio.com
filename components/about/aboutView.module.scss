@@ -1,0 +1,89 @@
+@use "styles/_mixins";
+
+.about {
+  @include mixins.flex;
+  flex-flow: column wrap;
+  gap: 10rem;
+  margin-top: 1.5rem;
+  width: 100%;
+  max-width: 50rem;
+
+  @include mixins.mediaquery("lg") {
+    margin-top: 3rem;
+    padding: 0;
+    max-width: 100%;
+  }
+
+  .container {
+    width: 100%;
+    @include mixins.flex(space-between, flex-start);
+    flex-flow: column wrap;
+    gap: 8rem;
+    box-shadow: 0.7rem 0.7rem 0 0 var(--black-100);
+    border: var(--border);
+    border-radius: 2rem;
+
+    &:nth-of-type(1) {
+      background-color: var(--violet-100);
+    }
+
+    &:nth-of-type(2) {
+      background-color: var(--pink-100);
+    }
+
+    @include mixins.mediaquery("lg") {
+      flex-flow: row nowrap;
+    }
+
+    .title {
+      margin-bottom: 2rem;
+      font-size: 2.6rem;
+
+      @include mixins.mediaquery("sm") {
+        font-size: 2.8rem;
+      }
+
+      @include mixins.mediaquery("xl") {
+        font-size: 3.2rem;
+      }
+    }
+
+    .description {
+      color: black;
+      font-size: 1.6rem;
+      line-height: 1.8;
+
+      @include mixins.mediaquery("lg") {
+        font-size: 1.7rem;
+      }
+
+      @include mixins.mediaquery("xl") {
+        font-size: 1.8rem;
+      }
+    }
+  }
+
+  .collaboration {
+    padding: 2.5rem 2.5rem 2rem;
+  }
+
+  .githubGraph {
+    @include mixins.flex;
+    display: none;
+    flex-flow: column wrap;
+
+    @include mixins.mediaquery("lg") {
+      display: flex;
+    }
+    img {
+      border-radius: 2rem;
+    }
+
+    .caption {
+      opacity: 0.6;
+      margin-top: 1.5rem;
+      font-style: italic;
+      font-size: 1.4rem;
+    }
+  }
+}

@@ -1,0 +1,77 @@
+@use "styles/_mixins";
+
+.form {
+  @include mixins.flex;
+  flex-flow: column wrap;
+  gap: 1rem;
+  width: 100%;
+  max-width: 42rem;
+
+  input {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .message {
+    outline: 0 none;
+    border: 2px solid var(--black-100);
+    border-radius: 1.5rem;
+    background-color: var(--gray-400);
+    padding: 1.1rem 2rem;
+    width: 100%;
+    resize: vertical;
+    font-size: 1.4rem;
+
+    &:focus {
+      border-color: var(--gray-300);
+    }
+
+    &.error {
+      border-color: var(--red-100);
+    }
+  }
+
+  .btn {
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    box-shadow: 7px 7px 0 0 var(--black-100);
+    border: 0 none;
+    border-radius: 1.5rem;
+    background-color: var(--blue-100);
+    padding: 1.1rem 2rem;
+    width: 100%;
+    font-size: 1.4rem;
+
+    &:hover {
+      box-shadow: none;
+    }
+
+    .loader {
+      position: relative;
+      padding: 1.14rem 0;
+
+      & > * {
+        --color: var(--black-200);
+        --size: 1rem;
+      }
+    }
+
+    &.rejected {
+      background-color: var(--red-100);
+      color: var(--white-200);
+    }
+
+    &.fullfilled {
+      background-color: var(--green-100);
+      color: var(--white-200);
+    }
+
+    @include mixins.mediaquery("lg") {
+      font-size: 1.5rem;
+    }
+
+    &:disabled {
+      cursor: default;
+    }
+  }
+}

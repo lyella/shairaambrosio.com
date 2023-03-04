@@ -1,0 +1,16 @@
+@use "styles/_mixins";
+
+.wrapper {
+  @include mixins.flex;
+  gap: 10rem;
+  width: 100%;
+
+  .avatar {
+    display: none;
+    min-width: 35rem;
+
+    @include mixins.mediaquery("lg") {
+      display: block;
+    }
+  }
+}

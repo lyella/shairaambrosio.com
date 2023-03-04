@@ -1,0 +1,38 @@
+@use "styles/_mixins";
+
+.hero {
+  width: 100%;
+  @include mixins.flex;
+  flex-flow: column wrap;
+  padding-bottom: 7rem;
+
+  .title {
+    padding-bottom: 0.5rem;
+    font-size: 3rem;
+    text-align: center;
+
+    @include mixins.mediaquery("lg") {
+      font-size: 3.3rem;
+    }
+
+    @include mixins.mediaquery("xl") {
+      font-size: 3.6rem;
+    }
+  }
+
+  .description {
+    max-width: 30rem;
+    color: var(--black-300);
+    font-size: 1.7rem;
+    text-align: center;
+
+    @include mixins.mediaquery("lg") {
+      font-size: 1.8rem;
+    }
+
+    @include mixins.mediaquery("xl") {
+      margin-top: 0.3rem;
+      font-size: 1.9rem;
+    }
+  }
+}

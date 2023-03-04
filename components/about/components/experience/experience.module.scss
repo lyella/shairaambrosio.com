@@ -1,0 +1,92 @@
+@use "styles/_mixins";
+
+.experience {
+  width: min(40rem, 100%);
+  padding: 2.5rem 2.5rem 2rem;
+
+  .title {
+    margin-bottom: 2rem;
+    font-size: 2.6rem;
+
+    @include mixins.mediaquery("sm") {
+      font-size: 2.8rem;
+    }
+
+    @include mixins.mediaquery("xl") {
+      font-size: 3.2rem;
+    }
+  }
+
+  .description {
+    color: black;
+    font-size: 1.6rem;
+
+    @include mixins.mediaquery("sm") {
+      font-size: 1.7rem;
+    }
+
+    @include mixins.mediaquery("xl") {
+      font-size: 1.8rem;
+    }
+  }
+
+  .list {
+    @include mixins.flex(center, flex-start);
+    flex-flow: column wrap;
+    gap: 3rem;
+    margin: 0;
+    padding: 0;
+    padding-top: 3rem;
+    max-width: 47rem;
+    list-style-type: none;
+
+    .position {
+      display: block;
+      position: relative;
+      font-size: 1.5rem;
+      @include mixins.flex(center, flex-start);
+      flex-flow: column wrap;
+      padding-left: 6rem;
+      line-height: 1.75;
+
+      &::before {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        z-index: 1;
+        border: var(--border);
+        border-radius: 50%;
+        background-color: var(--gray-300);
+        width: 1.6rem;
+        height: 1.6rem;
+        content: "";
+      }
+
+      &::after {
+        position: absolute;
+        top: calc(50% + 1.3rem);
+        left: 0.8rem;
+        transform: translateX(-50%);
+        z-index: 0;
+        background-color: var(--gray-300);
+        width: 0.15rem;
+        height: calc(100% + 3rem - 2.6rem);
+        content: "";
+      }
+
+      &:last-child::after {
+        display: none;
+      }
+
+      &:hover::before {
+        background-color: var(--yellow-100);
+      }
+    }
+
+    .company,
+    .date {
+      color: black;
+    }
+  }
+}

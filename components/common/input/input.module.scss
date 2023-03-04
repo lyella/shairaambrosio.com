@@ -1,0 +1,73 @@
+@use "styles/_mixins";
+
+.wrapper {
+  display: block;
+  position: relative;
+  width: 100%;
+
+  .icon {
+    position: absolute;
+    top: 50%;
+    left: 1.6rem;
+    transform: translateY(-50%);
+    opacity: 0.5;
+    width: 1.9rem;
+
+    path {
+      fill: var(--black-100);
+    }
+  }
+
+  .input {
+    outline: 0 none;
+    border: 0 none;
+    border: 2px solid var(--black-100);
+    border-radius: 1.5rem;
+    background-color: var(--gray-400);
+    padding: 1.4rem 2rem 1.4rem;
+    width: 100%;
+    min-width: 28rem;
+    color: inherit;
+    font-size: 1.4rem;
+    line-height: 0;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &.search {
+      padding-left: 4.7rem;
+    }
+
+    &:focus {
+      border-color: var(--gray-300);
+    }
+
+    @include mixins.mediaquery("xs") {
+      min-width: 32rem;
+    }
+
+    &.error {
+      border-color: var(--red-100);
+    }
+  }
+
+  input[type="search"]::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+  input[type="search"]::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  input[type="search"]::-webkit-search-decoration,
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-results-button,
+  input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+  }
+}

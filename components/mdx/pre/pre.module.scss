@@ -1,0 +1,56 @@
+@use "styles/_mixins";
+
+.pre {
+  position: relative;
+  .copy {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    opacity: 0;
+    z-index: 2;
+    transition: opacity 0.2s ease;
+    background-color: var(--syntax-background);
+
+    &.copied {
+      opacity: 1;
+      .btn {
+        opacity: 1;
+        border-color: var(--green-100);
+
+        svg path {
+          fill: var(--green-100);
+          stroke: var(--green-100);
+        }
+      }
+    }
+
+    .btn {
+      opacity: 0.4;
+      transition: opacity 0.2s ease;
+      cursor: pointer;
+      border: 1px solid var(--black-100);
+      border-radius: 5px;
+      background-color: transparent;
+      padding: 1rem;
+      width: 3.7rem;
+      height: 3.7rem;
+      @include mixins.flex;
+
+      svg {
+        width: 100%;
+
+        path {
+          stroke: var(--black-100);
+        }
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  &:hover .copy {
+    opacity: 1;
+  }
+}

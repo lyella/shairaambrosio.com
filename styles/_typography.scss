@@ -1,0 +1,102 @@
+@use "_mixins";
+
+@font-face {
+  font-style: normal;
+  font-weight: 800;
+  src: url("/fonts/MabryPro-Black.woff2") format("woff2");
+  font-family: "Mabry Pro";
+  font-display: swap;
+}
+
+@font-face {
+  font-style: normal;
+  font-weight: bold;
+  src: url("/fonts/MabryPro-Bold.woff2") format("woff2");
+  font-family: "Mabry Pro";
+  font-display: swap;
+}
+
+@font-face {
+  font-style: normal;
+  font-weight: 600;
+  src: url("/fonts/MabryPro-Medium.woff2") format("woff2");
+  font-family: "Mabry Pro";
+  font-display: swap;
+}
+
+@font-face {
+  font-style: normal;
+  font-weight: normal;
+  src: url("/fonts/MabryPro-Regular.woff2") format("woff2");
+  font-family: "Mabry Pro";
+  font-display: swap;
+}
+
+@font-face {
+  font-style: normal;
+  font-weight: 300;
+  src: url("/fonts/MabryPro-Light.woff2") format("woff2");
+  font-family: "Mabry Pro";
+  font-display: swap;
+}
+
+@font-face {
+  font-style: normal;
+  font-weight: normal;
+  src: url("/fonts/LeagueMono-Regular.woff2") format("woff2");
+  font-family: "League Mono";
+  font-display: swap;
+}
+
+@font-face {
+  font-style: normal;
+  font-weight: bold;
+  src: url("/fonts/Montserrat-Bold.ttf") format("truetype");
+  font-family: "Montserrat";
+  font-display: swap;
+}
+
+@font-face {
+  font-style: normal;
+  font-weight: 600;
+  src: url("/fonts/Montserrat-Medium.ttf") format("truetype");
+  font-family: "Montserrat";
+  font-display: swap;
+}
+
+@font-face {
+  font-style: normal;
+  font-weight: normal;
+  src: url("/fonts/Montserrat-Regular.ttf") format("truetype");
+  font-family: "Montserrat";
+  font-display: swap;
+}
+
+body {
+  font-family: "Mabry Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", "Georgia", "Garamond", serif;
+}
+
+html {
+  font-size: 62.5%;
+
+  @include mixins.mediaquery("lg") {
+    font-size: 55%;
+  }
+
+  @include mixins.mediaquery("xl") {
+    font-size: 58%;
+  }
+
+  @include mixins.mediaquery("xxl") {
+    font-size: 62.5%;
+  }
+}

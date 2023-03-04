@@ -1,0 +1,48 @@
+@use "styles/_mixins";
+
+.fact {
+  flex-flow: column wrap;
+  box-shadow: 7px 7px 0 0 var(--black-100);
+  border: var(--border);
+  border-radius: 2rem;
+  padding: 2.5rem 2.5rem 2rem;
+  width: 100%;
+  @include mixins.flex(space-between, flex-start);
+
+  &:nth-child(1) {
+    background-color: var(--yellow-100);
+  }
+
+  &:nth-child(2) {
+    background-color: var(--blue-100);
+  }
+
+  &:nth-child(3) {
+    background-color: var(--orange-100);
+  }
+
+  .icon {
+    margin-bottom: 3rem;
+    width: 4rem;
+
+    svg path {
+      fill: var(--black-100);
+    }
+  }
+
+  .title {
+    padding-bottom: 1.2rem;
+    max-width: 80%;
+    font-size: 2rem;
+    color: black;
+  }
+
+  .description {
+    font-size: 1.4rem;
+    color: black;
+
+    @include mixins.mediaquery("lg") {
+      font-size: 1.5rem;
+    }
+  }
+}

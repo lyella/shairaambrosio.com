@@ -1,0 +1,61 @@
+@use "styles/_mixins";
+
+.author {
+  @include mixins.flex(space-between, flex-start);
+  flex-flow: column wrap;
+  gap: 3rem;
+  border-top: 1px solid var(--gray-300);
+  padding-top: 4.5rem;
+  width: 100%;
+
+  @include mixins.mediaquery("sm") {
+    flex-flow: row nowrap;
+    gap: 6rem;
+    padding: 0 1rem;
+    padding-top: 4.5rem;
+  }
+
+  .avatar {
+    border-radius: 50%;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 15rem;
+    height: 15rem;
+  }
+  .info {
+    flex: 1;
+    .name {
+      margin-bottom: 1rem;
+      font-weight: bold;
+      font-size: 1.7rem;
+      line-height: 1.8;
+
+      @include mixins.mediaquery("lg") {
+        font-size: 1.9rem;
+      }
+    }
+    .description {
+      color: var(--black-300);
+      font-size: 1.55rem;
+      line-height: 1.7;
+
+      @include mixins.mediaquery("lg") {
+        font-size: 1.75rem;
+      }
+    }
+
+    .learnMore {
+      margin-top: 2.9rem;
+      font-size: 1.6rem;
+
+      @include mixins.mediaquery("lg") {
+        font-size: 1.7rem;
+      }
+
+      @include mixins.mediaquery("xl") {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}

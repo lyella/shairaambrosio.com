@@ -1,0 +1,61 @@
+.category {
+  display: block;
+  position: relative;
+  transition: 0.3s ease-in-out;
+  box-shadow: 3px 3px 0 0 var(--black-100);
+  border: var(--border);
+  border-radius: 2rem;
+  padding: 0.5rem 1.5rem;
+  overflow: hidden;
+  color: var(--white-200);
+  font-size: 1.4rem;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.6;
+    z-index: -1;
+    border-radius: 0.7rem;
+    width: 100%;
+    height: 100%;
+    content: "";
+  }
+
+  &:hover {
+    transition: all 140ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: none;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+
+  &.css {
+    background-color: var(--pink-100);
+  }
+
+  &.html {
+    background-color: var(--orange-100);
+  }
+
+  &.design {
+    background-color: var(--blue-100);
+  }
+
+  &.js {
+    background-color: var(--yellow-100);
+  }
+
+  &.other {
+    background-color: var(--red-100);
+  }
+
+  &.life {
+    background-color: var(--violet-100);
+  }
+
+  &.default {
+    background-color: var(--green-200);
+  }
+}
