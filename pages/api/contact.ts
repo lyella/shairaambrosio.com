@@ -24,7 +24,7 @@ export const sendEmail = async ({ email, name, message }: Email) => {
     from: process.env.EMAIL as string,
     name,
     subject: email,
-    text: `Your sender's name: ${name}\n\n${message}`,
+    text: `Sender's name: ${name}\n\n${message}`,
   };
   
 
