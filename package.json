@@ -68,6 +68,7 @@
     "reading-time": "^1.5.0",
     "sharp": "^0.29.3",
     "slugify": "^1.6.4",
+    "vercel": "^28.16.12",
     "yup": "^0.32.11"
   },
   "devDependencies": {
