@@ -12,7 +12,7 @@ export const allPositions: readonly Position[] = [
     position: "Front-end Developer",
     company: "ZZ",
     date: "04.2023 - present",
-    link: " ",
+    link: "https://zigzagoffshoring.com/",
   },
   {
     id: 4,
