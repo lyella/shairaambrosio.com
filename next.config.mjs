@@ -1,9 +1,9 @@
-/** @type {import('next').NextConfig} */
-const withTM = require("next-transpile-modules")(["react-github-btn"]);
-const withPWA = require("next-pwa");
+import withTM from "next-transpile-modules";
+import withPWA from "next-pwa";
 
-module.exports = withPWA(
-  withTM({
+/** @type {import('next').NextConfig} */
+const config = withPWA(
+  withTM(["react-github-btn"])({
     reactStrictMode: true,
     webpack(config) {
       config.module.rules.push({
@@ -24,7 +24,6 @@ module.exports = withPWA(
         },
       ];
     },
-
     async redirects() {
       return [
         {
@@ -42,7 +41,6 @@ module.exports = withPWA(
           destination: "/blog/THE_NEWEST_POST_SLUG_HERE",
           permanent: false,
         },
-
         {
           source: "/twitter",
           destination: `https://twitter.com/${process.env.NEXT_PUBLIC_TWITTER_USERNAME}`,
@@ -71,7 +69,9 @@ module.exports = withPWA(
     },
     compiler: {
       // Enables the styled-components SWC transform
-      styledComponents: true
-    }
-  }),
+      styledComponents: true,
+    },
+  })
 );
+
+export default config;
