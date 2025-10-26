@@ -4,19 +4,19 @@ ARGS=$@
 
 if [[ ${ARGS[*]} =~ 'redirect' ]]; then
   echo "Generating redirect to the newest post..."
-  yarn new-post-redirect
+  yarn new-post-redirect || echo "Warning: redirect generation failed"
   echo "Done generating redirect..."
 fi
 
 if [[ ${ARGS[*]} =~ 'algolia' ]]; then
   echo "Updating Algolia index..."
-  yarn algolia
+  yarn algolia || echo "Warning: Algolia update failed"
   echo "Done updating Algolia index..."
 fi
 
 if [[ ${ARGS[*]} =~ 'feed' ]]; then
   echo "Generating JSON and XML feed..."
-  yarn feed
+  yarn feed || echo "Warning: feed generation failed"
   echo "Done generating feeds..."
 fi
 

@@ -9,7 +9,7 @@
     "build": "./build.sh redirect algolia feed next",
     "start": "next start",
     "tsc": "tsc --noEmit",
-    "ts-node-esm": "node --loader ts-node/esm -r tsconfig-paths/register --experimental-specifier-resolution=node",
+    "ts-node-esm": "node --loader ts-node/esm --experimental-specifier-resolution=node",
     "algolia": "yarn ts-node-esm generateAlgoliaItems.ts",
     "feed": "yarn ts-node-esm generateFeed.ts",
     "new-post-redirect": "yarn ts-node-esm generateNewPostRedirect.ts",

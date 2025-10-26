@@ -10,7 +10,7 @@ import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 
 import { commonRehypePlugins } from "../utils/markdown";
-import type { Project, Post } from "types";
+import type { Project, Post } from "../types";
 
 const MDX_REGEX = /\.mdx$/;
 

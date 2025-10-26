@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 
 import { getAllResources, getResourcesPaths, getResourceBySlug, getResourceParsedContent } from "./resource";
-import type { Post } from "types";
+import type { Post } from "../types";
 
 dayjs.extend(customParseFormat);
 
