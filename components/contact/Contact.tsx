@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
-const Lottie = dynamic(() => import("react-lottie").then((mod) => mod.default), { ssr: false });
+const Lottie = dynamic(() => import("react-lottie"), { ssr: false });
 
 import { ContactForm } from "components/contact/contactForm/ContactForm";
 

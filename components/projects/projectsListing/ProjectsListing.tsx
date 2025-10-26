@@ -5,7 +5,7 @@ import type { HitsProvided } from "react-instantsearch-core";
 import { connectHits, connectStateResults, InstantSearch } from "react-instantsearch-dom";
 import ReactPaginate from "react-paginate";
 
-const Lottie = dynamic(() => import("react-lottie").then((mod) => mod.default), { ssr: false });
+const Lottie = dynamic(() => import("react-lottie"), { ssr: false });
 
 import { LoaderRing } from "components/common/loader/LoaderRing";
 import { SearchBox } from "components/common/searchBox/SearchBox";

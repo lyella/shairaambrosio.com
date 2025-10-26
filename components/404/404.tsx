@@ -5,7 +5,7 @@ import animationData from "../../public/lottie/error-404.json";
 
 import styles from "./404.module.scss";
 
-const Lottie = dynamic(() => import("react-lottie").then((mod) => mod.default), { ssr: false });
+const Lottie = dynamic(() => import("react-lottie"), { ssr: false });
 
 const defaultOptions = {
   loop: true,

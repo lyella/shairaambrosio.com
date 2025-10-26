@@ -6,7 +6,7 @@ import type { HitsProvided } from "react-instantsearch-core";
 import { Configure, connectHits, connectStateResults, InstantSearch } from "react-instantsearch-dom";
 import ReactPaginate from "react-paginate";
 
-const Lottie = dynamic(() => import("react-lottie").then((mod) => mod.default), { ssr: false });
+const Lottie = dynamic(() => import("react-lottie"), { ssr: false });
 
 import { PopularPosts } from "components/blog/popularPosts/PopularPosts";
 import { PostThumbnail } from "components/blog/postsListing/postThumbnail/PostThumbnail";
