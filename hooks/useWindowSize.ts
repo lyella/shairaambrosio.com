@@ -9,19 +9,15 @@ export const useWindowSize = () => {
   });
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setWindowSize({ width: undefined, height: undefined });
-    }
-
     const handleResize = () => {
       setWindowSize({
         width: window.innerWidth,
         height: window.innerHeight,
       });
     };
-    window.addEventListener("resize", handleResize);
-
+    
     handleResize();
+    window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
