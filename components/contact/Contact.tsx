@@ -1,5 +1,7 @@
-import Lottie from "react-lottie";
-import { useState } from "react";
+import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
+
+const Lottie = dynamic(() => import("react-lottie").then((mod) => mod.default), { ssr: false });
 
 import { ContactForm } from "components/contact/contactForm/ContactForm";
 
@@ -26,16 +28,21 @@ const sent = {
 };
 export const Contact = () => {
   const [isSent, setIsSent] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
     <section className={styles.wrapper}>
       <ContactForm handleIsSent={(val: boolean) => setIsSent(val)} />
       <div className={styles.avatar}>
-        {isSent ? (
+        {isMounted && (isSent ? (
           <Lottie options={sent} height={400} />
         ) : (
           <Lottie options={sending} height={500} />
-        )}
+        ))}
       </div>
     </section>
   );

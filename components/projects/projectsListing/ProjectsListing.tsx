@@ -1,9 +1,11 @@
 import algoliasearch from "algoliasearch";
-import { memo, useCallback, useState } from "react";
+import dynamic from "next/dynamic";
+import { memo, useCallback, useEffect, useState } from "react";
 import type { HitsProvided } from "react-instantsearch-core";
 import { connectHits, connectStateResults, InstantSearch } from "react-instantsearch-dom";
-import Lottie from "react-lottie";
 import ReactPaginate from "react-paginate";
+
+const Lottie = dynamic(() => import("react-lottie").then((mod) => mod.default), { ssr: false });
 
 import { LoaderRing } from "components/common/loader/LoaderRing";
 import { SearchBox } from "components/common/searchBox/SearchBox";
@@ -38,11 +40,17 @@ interface CustomHitsProps extends HitsProvided<Project> {
 }
 
 export const CustomHits = connectHits<CustomHitsProps, Project>(({ hits, currentObjectID, blurImageData }) => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   if (!hits.length) {
     return (
       <div className={styles.empty}>
         <div className={styles.avatar}>
-          <Lottie options={searchThinking} height={300} />
+          {isMounted && <Lottie options={searchThinking} height={300} />}
         </div>
       </div>
     );
