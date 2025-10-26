@@ -10,7 +10,7 @@ type ImageProps = {
   readonly height?: string | number;
 };
 
-export const Image = memo<ImageProps>(({ src, alt = "", width = "100%", height }) => {
+const ImageComponent = memo<ImageProps>(({ src, alt = "", width = "100%", height }) => {
   const numericWidth = typeof width === "string" ? parseInt(width, 10) : width;
   const numericHeight = typeof height === "string" ? parseInt(height, 10) : height;
 
@@ -30,4 +30,7 @@ export const Image = memo<ImageProps>(({ src, alt = "", width = "100%", height }
   );
 });
 
-Image.displayName = "Image";
+ImageComponent.displayName = "Image";
+
+export { ImageComponent as Image };
+export default ImageComponent;
