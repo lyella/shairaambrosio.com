@@ -1,8 +1,12 @@
-import Lottie from "react-lottie";
+import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 
 import animationData from "../../../../public/lottie/shai-waving.json";
 
 import styles from "./hero.module.scss";
+
+const Lottie = dynamic(() => import("react-lottie").then((mod) => mod.default), { ssr: false });
+
 const defaultOptions = {
   loop: true,
   autoplay: true,
@@ -13,6 +17,12 @@ const defaultOptions = {
 };
 
 export const Hero = ({ views }: { views: number }) => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   return (
     <section className={styles.hero}>
       <div className={styles.text}>
@@ -35,7 +45,7 @@ export const Hero = ({ views }: { views: number }) => {
       </div>
 
       <div className={styles.image}>
-        <Lottie options={defaultOptions} height={400} />
+        {isMounted && <Lottie options={defaultOptions} height={400} />}
       </div>
     </section>
   );
