@@ -1,140 +1,138 @@
 @media (prefers-color-scheme: light) {
   :root {
-    --bg-100: rgb(247, 241, 243);
-    --red-100: rgb(226, 68, 47);
-    --yellow-100: rgb(255, 203, 70);
-    --pink-100: rgb(252, 204, 214);
-    --gray-100: rgb(236, 232, 235);
-    --gray-200: rgb(236, 232, 235);
-    --gray-300: rgb(181, 184, 185);
-    --gray-400: rgb(252, 252, 252);
-    --gray-500: rgb(236, 232, 235);
-    --green-100: rgb(89, 203, 192);
-    --green-200: rgb(87, 239, 151);
-    --blue-100: rgb(148, 204, 255);
-    --blue-200: rgb(68, 50, 255);
-    --blue-300: rgb(226, 233, 250);
-    --blue-400: rgb(1, 253, 246);
+    --bg-100: rgb(255, 255, 255);
+    --red-100: rgb(255, 71, 87);
+    --yellow-100: rgb(255, 223, 0);
+    --pink-100: rgb(255, 105, 180);
+    --gray-100: rgb(240, 240, 240);
+    --gray-200: rgb(230, 230, 230);
+    --gray-300: rgb(140, 140, 140);
+    --gray-400: rgb(250, 250, 250);
+    --gray-500: rgb(220, 220, 220);
+    --green-100: rgb(0, 255, 159);
+    --green-200: rgb(50, 255, 50);
+    --blue-100: rgb(0, 200, 255);
+    --blue-200: rgb(88, 101, 242);
+    --blue-300: rgb(200, 230, 255);
+    --blue-400: rgb(0, 255, 255);
     --white-100: rgb(255, 255, 255);
     --white-200: rgb(255, 255, 255);
-    --peach-100: rgb(255, 229, 180);
+    --peach-100: rgb(255, 179, 71);
     --black-100: rgb(0, 0, 0);
-    --black-200: rgb(51, 51, 51);
-    --black-300: rgba(0, 0, 0, 0.8);
-    --violet-100: rgb(144, 168, 237);
-    --orange-100: rgb(229, 133, 94);
-    --pink-100: rgb(223, 128, 172);
+    --black-200: rgb(30, 30, 30);
+    --black-300: rgba(0, 0, 0, 0.9);
+    --violet-100: rgb(138, 43, 226);
+    --orange-100: rgb(255, 140, 0);
+    --pink-100: rgb(255, 20, 147);
 
-    --scrollbar-thumb: rgb(145, 145, 145);
-    --scrollbar-thumb-hover: rgb(183, 183, 183);
+    --scrollbar-thumb: rgb(0, 0, 0);
+    --scrollbar-thumb-hover: rgb(88, 101, 242);
     --mdx-heading-color: var(--black-100);
-    --tile-shadow: rgba(0, 0, 0, 0.08) 0px 1px 4px;
-    --border: 2px solid var(--black-100);
+    --tile-shadow: 6px 6px 0px rgba(0, 0, 0, 1);
+    --border: 4px solid var(--black-100);
     --selection-color: rgb(255, 255, 255);
-    --selection-background: rgb(68, 50, 255);
+    --selection-background: rgb(88, 101, 242);
   }
 }
 
 [data-theme="light"] {
-  --bg-100: rgb(242, 240, 236);
-  --red-100: rgb(226, 68, 47);
-  --yellow-100: rgb(255, 203, 70);
-  --pink-100: rgb(252, 204, 214);
-  --gray-100: rgb(236, 232, 235);
-  --gray-200: rgb(236, 232, 235);
-  --gray-300: rgb(181, 184, 185);
-  --gray-400: rgb(252, 252, 252);
-  --gray-500: rgb(236, 232, 235);
-  --green-100: rgb(89, 203, 192);
-  --blue-100: rgb(148, 204, 255);
-  --blue-200: rgb(68, 50, 255);
-  --blue-300: rgb(226, 233, 250);
+  --bg-100: rgb(255, 255, 255);
+  --red-100: rgb(255, 71, 87);
+  --yellow-100: rgb(255, 223, 0);
+  --pink-100: rgb(255, 105, 180);
+  --gray-100: rgb(240, 240, 240);
+  --gray-200: rgb(230, 230, 230);
+  --gray-300: rgb(140, 140, 140);
+  --gray-400: rgb(250, 250, 250);
+  --gray-500: rgb(220, 220, 220);
+  --green-100: rgb(0, 255, 159);
+  --blue-100: rgb(0, 200, 255);
+  --blue-200: rgb(88, 101, 242);
+  --blue-300: rgb(200, 230, 255);
   --white-100: rgb(255, 255, 255);
   --white-200: rgb(255, 255, 255);
-  --peach-100: rgb(255, 229, 180);
+  --peach-100: rgb(255, 179, 71);
   --black-100: rgb(0, 0, 0);
-  --black-200: rgb(51, 51, 51);
-  --black-300: rgba(0, 0, 0, 0.8);
-  --violet-100: rgb(144, 168, 237);
-  --orange-100: rgb(229, 133, 94);
-  --pink-100: rgb(223, 128, 172);
+  --black-200: rgb(30, 30, 30);
+  --black-300: rgba(0, 0, 0, 0.9);
+  --violet-100: rgb(138, 43, 226);
+  --orange-100: rgb(255, 140, 0);
+  --pink-100: rgb(255, 20, 147);
 
-  --scrollbar-thumb: rgb(145, 145, 145);
-  --scrollbar-thumb-hover: rgb(183, 183, 183);
+  --scrollbar-thumb: rgb(0, 0, 0);
+  --scrollbar-thumb-hover: rgb(88, 101, 242);
   --mdx-heading-color: var(--black-100);
-  --tile-shadow: rgba(0, 0, 0, 0.08) 0px 1px 4px;
+  --tile-shadow: 6px 6px 0px rgba(0, 0, 0, 1);
   --selection-color: rgb(255, 255, 255);
-  --selection-background: rgb(68, 50, 255);
+  --selection-background: rgb(88, 101, 242);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --red-100: rgb(226, 68, 47);
-    --yellow-100: rgb(255, 203, 70);
-    --pink-100: rgb(252, 204, 214);
-    --gray-200: rgb(236, 232, 235);
-    --green-100: rgb(89, 203, 192);
-    --blue-100: rgb(148, 204, 255);
-    --blue-200: rgb(131, 121, 238);
-    --blue-300: rgb(226, 233, 250);
+    --red-100: rgb(255, 71, 87);
+    --yellow-100: rgb(255, 223, 0);
+    --pink-100: rgb(255, 105, 180);
+    --gray-200: rgb(40, 40, 40);
+    --green-100: rgb(0, 255, 159);
+    --blue-100: rgb(0, 200, 255);
+    --blue-200: rgb(138, 137, 255);
+    --blue-300: rgb(30, 40, 60);
     --white-200: rgb(255, 255, 255);
-    --black-200: rgb(51, 51, 51);
-    --black-300: rgba(255, 255, 255, 0.8);
-    --violet-100: rgb(144, 168, 237);
-    --orange-100: rgb(229, 133, 94);
-    --pink-100: rgb(223, 128, 172);
-    --mdx-heading-color: var(--black-100);
-    --selection-color: rgb(255, 255, 255);
-    --selection-background: rgb(68, 50, 255);
+    --black-200: rgb(30, 30, 30);
+    --black-300: rgba(255, 255, 255, 0.9);
+    --violet-100: rgb(186, 85, 211);
+    --orange-100: rgb(255, 140, 0);
+    --pink-100: rgb(255, 20, 147);
+    --mdx-heading-color: var(--yellow-100);
+    --selection-color: rgb(0, 0, 0);
+    --selection-background: rgb(0, 255, 159);
 
-    --bg-100: rgb(22, 27, 34);
-    --gray-100: #23262e;
-    --black-100: rgb(240, 246, 252);
+    --bg-100: rgb(18, 18, 18);
+    --gray-100: rgb(30, 30, 30);
+    --black-100: rgb(255, 255, 255);
     --white-100: rgb(18, 18, 18);
-    --peach-100: rgb(255, 229, 180);
-    --gray-400: rgb(35, 36, 45);
-    --gray-300: rgb(51, 52, 58);
-    --gray-500: rgb(51, 52, 58);
-    --mdx-heading-color: var(--red-100);
-    --scrollbar-thumb: rgb(144, 144, 144);
-    --scrollbar-thumb-hover: rgb(101, 101, 101);
+    --peach-100: rgb(255, 179, 71);
+    --gray-400: rgb(25, 25, 25);
+    --gray-300: rgb(60, 60, 60);
+    --gray-500: rgb(40, 40, 40);
+    --scrollbar-thumb: rgb(255, 255, 255);
+    --scrollbar-thumb-hover: rgb(0, 255, 159);
 
-    --tile-shadow: rgba(36, 36, 36, 0.781) 0px 1px 4px;
+    --tile-shadow: 6px 6px 0px rgba(255, 255, 255, 0.3);
   }
 }
 
 [data-theme="dark"] {
-  --red-100: rgb(226, 68, 47);
-  --yellow-100: rgb(255, 203, 70);
-  --pink-100: rgb(252, 204, 214);
-  --gray-200: rgb(236, 232, 235);
-  --green-100: rgb(89, 203, 192);
-  --blue-100: rgb(148, 204, 255);
-  --blue-200: rgb(131, 121, 238);
-  --blue-300: rgb(226, 233, 250);
+  --red-100: rgb(255, 71, 87);
+  --yellow-100: rgb(255, 223, 0);
+  --pink-100: rgb(255, 105, 180);
+  --gray-200: rgb(40, 40, 40);
+  --green-100: rgb(0, 255, 159);
+  --blue-100: rgb(0, 200, 255);
+  --blue-200: rgb(138, 137, 255);
+  --blue-300: rgb(30, 40, 60);
   --white-200: rgb(255, 255, 255);
-  --peach-100: rgb(255, 229, 180);
-  --black-200: rgb(51, 51, 51);
-  --black-300: rgba(255, 255, 255, 0.8);
-  --violet-100: rgb(144, 168, 237);
-  --orange-100: rgb(229, 133, 94);
-  --pink-100: rgb(223, 128, 172);
+  --peach-100: rgb(255, 179, 71);
+  --black-200: rgb(30, 30, 30);
+  --black-300: rgba(255, 255, 255, 0.9);
+  --violet-100: rgb(186, 85, 211);
+  --orange-100: rgb(255, 140, 0);
+  --pink-100: rgb(255, 20, 147);
 
-  --mdx-heading-color: var(--black-100);
-  --selection-color: rgb(255, 255, 255);
-  --selection-background: rgb(131, 121, 238);
-  --bg-100: rgb(22, 27, 34);
-  --gray-100: #23262e;
-  --black-100: rgb(240, 246, 252);
+  --mdx-heading-color: var(--yellow-100);
+  --selection-color: rgb(0, 0, 0);
+  --selection-background: rgb(0, 255, 159);
+  --bg-100: rgb(18, 18, 18);
+  --gray-100: rgb(30, 30, 30);
+  --black-100: rgb(255, 255, 255);
   --white-100: rgb(18, 18, 18);
-  --gray-400: rgb(35, 36, 45);
-  --gray-300: rgb(51, 52, 58);
-  --gray-500: rgb(51, 52, 58);
-  --mdx-heading-color: var(--red-100);
-  --scrollbar-thumb: rgb(144, 144, 144);
-  --scrollbar-thumb-hover: rgb(101, 101, 101);
+  --gray-400: rgb(25, 25, 25);
+  --gray-300: rgb(60, 60, 60);
+  --gray-500: rgb(40, 40, 40);
+  --scrollbar-thumb: rgb(255, 255, 255);
+  --scrollbar-thumb-hover: rgb(0, 255, 159);
 
-  --tile-shadow: rgba(36, 36, 36, 0.781) 0px 1px 4px;
+  --tile-shadow: 6px 6px 0px rgba(255, 255, 255, 0.3);
 }
 
 /* Highlighting code */
