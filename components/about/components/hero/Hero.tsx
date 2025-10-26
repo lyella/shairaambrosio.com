@@ -26,7 +26,7 @@ export const Hero = ({ views }: { views: number }) => {
   return (
     <section className={styles.hero}>
       <div className={styles.text}>
-        <h2 className={styles.title}>Hi, I'm Shaira Ambrosio</h2>
+        <h2 className={styles.title}>Hi, I'm <span className={styles.glow}>Shaira Ambrosio</span></h2>
         <p className={styles.description}>
           <span className={styles.paragraph}>
             I'm a passionate Frontend Developer based in the Philippines. With a unique perspective, I deliver innovative

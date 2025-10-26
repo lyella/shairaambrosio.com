@@ -2,6 +2,7 @@ export type Fact = {
   readonly title: string;
   readonly icon: string;
   readonly description: string;
+  readonly backgroundColor?: string;
 };
 
 export type Position = {

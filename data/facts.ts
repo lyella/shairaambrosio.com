@@ -8,6 +8,7 @@ export const allFacts = [
   {
     title: "Betta fish lover",
     icon: "betta",
+    backgroundColor: "var(--green-100)",
     description:
       " I'm a big fan of betta fish! I've been fascinated by these beautiful creatures ever since I got my first betta, and I've been learning more and more about them ever since. I'm always excited to connect with others who share my love for these amazing fish!",
   },

@@ -13,7 +13,7 @@ export const Fact = memo<FactProps>(({ fact }) => {
   const Icon = dynamic(() => import(`public/svg/${fact.icon}.svg`));
 
   return (
-    <li className={styles.fact}>
+    <li className={styles.fact} style={fact.backgroundColor ? { backgroundColor: fact.backgroundColor } : undefined}>
       <div className={styles.icon}>
         <Icon />
       </div>

@@ -30,6 +30,22 @@
     }
   }
 
+  &:nth-child(1) .icon svg path {
+    fill: #000000;
+    
+    @media (prefers-color-scheme: dark) {
+      fill: #ffffff;
+    }
+  }
+
+  [data-theme="dark"] &:nth-child(1) .icon svg path {
+    fill: #ffffff;
+  }
+  
+  [data-theme="light"] &:nth-child(1) .icon svg path {
+    fill: #000000;
+  }
+
   .title {
     padding-bottom: 1.2rem;
     max-width: 80%;
