@@ -25,3 +25,5 @@ export const Highlight = memo<HighlightProps>(({ variant, title, children }) => 
 });
 
 Highlight.displayName = "Highlight";
+
+export default Highlight;

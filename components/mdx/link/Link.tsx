@@ -30,3 +30,5 @@ export const Link = memo<LinkProps>(({ children, href }) => {
 });
 
 Link.displayName = "Link";
+
+export default Link;

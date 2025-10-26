@@ -21,3 +21,5 @@ export const Sandbox = memo<SandboxProps>(({ id, theme }) => {
 });
 
 Sandbox.displayName = "Sandbox";
+
+export default Sandbox;

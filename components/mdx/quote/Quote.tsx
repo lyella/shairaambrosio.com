@@ -22,3 +22,5 @@ export const Quote = memo<QuoteProps>(({ text, author }) => {
 });
 
 Quote.displayName = "Quote";
+
+export default Quote;

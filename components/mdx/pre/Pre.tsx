@@ -42,3 +42,5 @@ export const Pre = memo<PreProps>(({ children, ...props }) => {
 });
 
 Pre.displayName = "Pre";
+
+export default Pre;
