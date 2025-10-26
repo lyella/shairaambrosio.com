@@ -3,10 +3,10 @@ import fs from "fs";
 import dayjs from "dayjs";
 import { Feed } from "feed";
 
-import type { Author } from "types";
+import type { Author } from "./types/index.js";
 
-import { getPublishedPosts } from "./lib/posts";
-import { SITE_TITLE, DEFAULT_DESCRIPTION } from "./utils/consts";
+import { getPublishedPosts } from "./lib/posts.js";
+import { SITE_TITLE, DEFAULT_DESCRIPTION } from "./utils/consts.js";
 
 function run() {
   const publicUrl = `https://${process.env.NEXT_PUBLIC_HOST ?? process.env.NEXT_PUBLIC_VERCEL_URL}`;

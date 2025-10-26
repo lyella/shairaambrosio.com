@@ -2,8 +2,8 @@ import algoliasearch from "algoliasearch";
 import dayjs from "dayjs";
 import invariant from "invariant";
 
-import { getPublishedPosts, getPostParsedContent } from "./lib/posts";
-import { getAllProjects, getProjectParsedContent } from "./lib/projects";
+import { getPublishedPosts, getPostParsedContent } from "./lib/posts.js";
+import { getAllProjects, getProjectParsedContent } from "./lib/projects.js";
 
 const generateAlgoliaProjects = async () => {
   const projects = getAllProjects();

@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-import { getNewestPosts } from "./lib/posts";
+import { getNewestPosts } from "./lib/posts.js";
 
 function run() {
   const [{ slug }] = getNewestPosts();
