@@ -9,15 +9,15 @@ export const SITE_TITLE = "Shaira Ambrosio";
 export const SITE_TITLE_TEMPLATE = `%s ${SEPARATOR} ${SITE_TITLE}`;
 export const SHORT_DESCRIPTION = "My personal website";
 export const DEFAULT_DESCRIPTION =
-  "Hello, I'm Shaira - a front-end developer, freelancer, blogger, and passionate about new technologies. I hope you enjoy my website!";
+  "Hello, I'm Shaira - a Frontend Developer, freelancer, blogger, and passionate about new technologies. I hope you enjoy my website!";
 
 export const DEFAULT_IMAGE_URL = `/img/banner.png`;
 
 export const SOCIALS = [
   {
-    name: "twitter",
+    name: "x",
     color: "#94ccff",
-    link: `https://twitter.com/${process.env.NEXT_PUBLIC_TWITTER_USERNAME}`,
+    link: `https://x.com/${process.env.NEXT_PUBLIC_x_USERNAME}`,
   },
   {
     name: "linkedin",

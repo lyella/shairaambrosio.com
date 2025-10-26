@@ -26,7 +26,7 @@ const Home: NextPage = ({ projects, posts }: InferGetStaticPropsType<GetStaticPr
         <ClockTile />
         {/* <ThemeTile /> */}
         <ProjectTile project={projects[0]} mockupPosition="right" />
-        <SocialTile social="twitter" />
+        <SocialTile social="x" />
         <LatestPostTile post={posts[0]} />
         <ProjectTile project={projects[1]} mockupPosition="left" />
         <SocialTile social="github" />

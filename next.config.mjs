@@ -42,8 +42,8 @@ const config = withPWA(
           permanent: false,
         },
         {
-          source: "/twitter",
-          destination: `https://twitter.com/${process.env.NEXT_PUBLIC_TWITTER_USERNAME}`,
+          source: "/x",
+          destination: `https://x.com/${process.env.NEXT_PUBLIC_x_USERNAME}`,
           permanent: true,
         },
         {

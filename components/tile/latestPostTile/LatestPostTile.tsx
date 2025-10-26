@@ -12,8 +12,7 @@ type LatestPostTileProps = {
 
 export const LatestPostTile = memo<LatestPostTileProps>(({ post }) => {
   return (
-    <Link href={`/blog/${post.slug}`}>
-      <a className={styles.link}>
+    <Link href={`/blog/${post.slug}`} className={styles.link}>
         <article className={styles.article}>
           <div className={styles.info}>
             <h2 className={styles.title}>{post.title}</h2>
@@ -31,7 +30,6 @@ export const LatestPostTile = memo<LatestPostTileProps>(({ post }) => {
           </div>
           <div className={styles.image} style={{ backgroundImage: `url(${post.image})` }}></div>
         </article>
-      </a>
     </Link>
   );
 });

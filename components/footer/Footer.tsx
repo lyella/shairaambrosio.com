@@ -40,11 +40,9 @@ export const Footer = () => {
       <div className={styles.wrapper}>
         <div className={styles.links}>
           <div className={styles.themeWrap}>
-            <NextLink href="/">
-              <a className={styles.home}>
-                <span className="sr-only">home</span>
-                <Logo />
-              </a>
+            <NextLink href="/" className={styles.home}>
+              <span className="sr-only">home</span>
+              <Logo />
             </NextLink>
             <label className={styles.theme}>
               <ThemeSwitcher />

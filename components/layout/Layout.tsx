@@ -25,22 +25,18 @@ export const Layout = memo<LayoutProps>(({ children }) => {
           {/* <a href="#main" className={styles.skip}>
             skip to content
           </a> */}
-          <Link href="/">
-            <a className={styles.logo}>
-              <span className="sr-only">home</span>
-              <Logo />
-            </a>
+          <Link href="/" className={styles.logo}>
+            <span className="sr-only">home</span>
+            <Logo />
           </Link>
           <Navbar routes={routes} />
           <div className={styles.right}>
             <label className={styles.theme}>
               <ThemeSwitcher />
             </label>
-            <Link href="/contact">
-              <a className={styles.contact}>
-                Contact
-                <PaperPlane />
-              </a>
+            <Link href="/contact" className={styles.contact}>
+              Contact
+              <PaperPlane />
             </Link>
           </div>
         </header>

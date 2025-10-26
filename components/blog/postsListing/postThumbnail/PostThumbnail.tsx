@@ -13,9 +13,9 @@ type PostThumbnailProps = {
 
 export const PostThumbnail = memo<PostThumbnailProps>(({ post }) => {
   return (
-    <Link href={`/blog/${post.slug}`} passHref>
-      <a
-        className={`${styles.post} 
+    <Link
+      href={`/blog/${post.slug}`}
+      className={`${styles.post} 
           ${post.category === "design" ? styles.blueBg : ""} 
           ${post.category === "html" ? styles.orangeBg : ""}
           ${post.category === "other" ? styles.redBg : ""} 
@@ -44,7 +44,6 @@ export const PostThumbnail = memo<PostThumbnailProps>(({ post }) => {
             </div>
           </div>
         </article>
-      </a>
     </Link>
   );
 });

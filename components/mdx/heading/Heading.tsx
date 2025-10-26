@@ -19,12 +19,10 @@ export const Heading = memo<HeadingProps>(({ level: Tag, slug, url }) => {
 
   return (
     <Tag id={id} className={cn(styles.heading, styles[Tag])}>
-      <Link href={`#${id}`} passHref>
-        <a id={id} aria-hidden="true" tabIndex={-1} className={styles.link}>
-          <span className={styles.clip}>
-            <Clip />
-          </span>
-        </a>
+      <Link href={`#${id}`} id={id} aria-hidden="true" tabIndex={-1} className={styles.link}>
+        <span className={styles.clip}>
+          <Clip />
+        </span>
       </Link>
       {slug}
     </Tag>

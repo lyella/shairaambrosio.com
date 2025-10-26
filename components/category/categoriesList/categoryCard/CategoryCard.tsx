@@ -40,8 +40,8 @@ export const CategoryCard = memo<CategoryCardProps>(({ category }) => {
   }
 
   return (
-    <Link href={`/blog?category=${category}`} key={category}>
-      <a className={`${styles.category} ${categoryClass}`}>{categoryObj?.name}</a>
+    <Link href={`/blog?category=${category}`} key={category} className={`${styles.category} ${categoryClass}`}>
+      {categoryObj?.name}
     </Link>
   );
 });

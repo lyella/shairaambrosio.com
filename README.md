@@ -5,7 +5,7 @@
 
 ## An overview of the project.
 
-Hello, and welcome to my personal blog and portfolio website! My name is Shaira, and I am a frontend developer.
+Hello, and welcome to my personal blog and portfolio website! My name is Shaira, and I am a Frontend Developer.
 
 This website was created using Next.js, a popular React framework that allows for server-side rendering and automatic code splitting, resulting in lightning-fast load times and improved SEO.
 

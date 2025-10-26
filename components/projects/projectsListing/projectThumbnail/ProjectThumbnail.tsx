@@ -20,8 +20,8 @@ export const ProjectThumbnail = memo<ProjectThumbnailProps>(({ project, blurData
   };
 
   return (
-    <Link href={`/projects/${project.slug}`} passHref>
-      <motion.a className={styles.thumbnail} whileHover="hover" layout>
+    <motion.div whileHover="hover" layout>
+      <Link href={`/projects/${project.slug}`} className={styles.thumbnail}>
         <motion.div
           className={styles.image}
           variants={imageVariants}
@@ -46,8 +46,8 @@ export const ProjectThumbnail = memo<ProjectThumbnailProps>(({ project, blurData
               ))}
           </motion.div>
         </div>
-      </motion.a>
-    </Link>
+      </Link>
+    </motion.div>
   );
 });
 

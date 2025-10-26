@@ -6,7 +6,7 @@ export const allAuthors = [
       youtube: "",
       github: "https://github.com/lyella",
       facebook: "https://www.facebook.com/",
-      twitter: "https://twitter.com/shaicodes",
+      x: "https://x.com/shaicodes",
       linkedin: "https://www.linkedin.com/in/lyella/",
       last_name: "Shaira",
       first_name: "Ambrosio",

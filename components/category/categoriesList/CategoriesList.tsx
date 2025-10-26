@@ -15,8 +15,8 @@ export const CategoriesList = memo<CategoriesListProps>(({ categories }) => {
     <section className={styles.wrapper}>
       <h2 className={styles.title}>categories</h2>
       <div className={styles.categories}>
-        <Link href="/blog">
-          <a className={styles.category}>All</a>
+        <Link href="/blog" className={styles.category}>
+          All
         </Link>
         {categories.map((category) => (
           <CategoryCard category={category} key={category} />

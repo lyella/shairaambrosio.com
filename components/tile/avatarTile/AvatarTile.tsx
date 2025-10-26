@@ -10,7 +10,7 @@ export const AvatarTile = () => {
       </div>
       <h1 className={styles.name}> SHAIRA AMBROSIO</h1>
       <div className={styles.title}>
-        <p>Front-end Developer</p>
+        <p>Frontend Developer</p>
         <p>Based in the PH</p>
       </div>
     </a>

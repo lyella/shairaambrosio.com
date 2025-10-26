@@ -9,21 +9,21 @@ type Position = {
 export const allPositions: readonly Position[] = [
   {
     id: 5,
-    position: "Front-end Developer",
-    company: "ZZ",
+    position: "Frontend Developer",
+    company: "MONEYME",
     date: "04.2023 - present",
-    link: "https://zigzagoffshoring.com/",
+    link: "https://moneyme.com.au/",
   },
   {
     id: 4,
-    position: "Front-end Developer",
+    position: "Frontend Developer",
     company: "Playgroundzero",
     date: "09.2022 - 01.2023",
     link: "https://www.playgroundzero.com/",
   },
   {
     id: 3,
-    position: "Front-end Engineer",
+    position: "Frontend Developer",
     company: "Upward Next Inc.",
     date: "10.2020 - 05.2022",
     link: "https://www.upwardnext.com/",

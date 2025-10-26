@@ -25,8 +25,8 @@ export const FeaturedPost = memo<FeaturedPostProps>(({ post }) => {
   };
 
   return (
-    <Link href={"/blog/" + post.slug} passHref>
-      <motion.a className={styles.post} whileHover="hover">
+    <motion.div whileHover="hover">
+      <Link href={"/blog/" + post.slug} className={styles.post}>
         <motion.div className={styles.image} variants={imageVariants}>
           <Image src={post.image} alt={post.title} width={1200} height={880} />
         </motion.div>
@@ -35,8 +35,8 @@ export const FeaturedPost = memo<FeaturedPostProps>(({ post }) => {
           <span className={styles.timeToRead}>{Math.round(post.timeToRead)} minutes read</span>
         </div>
         <h3 className={styles.title}>{post.title}</h3>
-      </motion.a>
-    </Link>
+      </Link>
+    </motion.div>
   );
 });
 

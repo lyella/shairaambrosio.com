@@ -22,29 +22,27 @@ export const ProjectTile = memo<ProjectTileProps>(({ project, mockupPosition }) 
   };
 
   return (
-    // <Link href={`/projects/${project.slug}`} passHref>
-    <Link passHref href={""}>
-      <motion.a
-        className={styles.project}
-        // style={{ backgroundImage: `url(/img/projects/${project.slug}/back.png)` }}
-        whileHover="hover"
+    <motion.a
+      href=""
+      className={styles.project}
+      // style={{ backgroundImage: `url(/img/projects/${project.slug}/back.png)` }}
+      whileHover="hover"
+    >
+      {/* <span className="sr-only">check my project - {project.title}</span> */}
+      <motion.div
+        className={clsx(styles.mockup, styles[mockupPosition])}
+        variants={imageVariants}
+        initial={{
+          rotate: mockupPosition === "right" ? "-20deg" : "20deg",
+          y: "-45%",
+        }}
       >
-        {/* <span className="sr-only">check my project - {project.title}</span> */}
-        <motion.div
-          className={clsx(styles.mockup, styles[mockupPosition])}
-          variants={imageVariants}
-          initial={{
-            rotate: mockupPosition === "right" ? "-20deg" : "20deg",
-            y: "-45%",
-          }}
-        >
-          {/* <Image src={`/img/projects/${project.slug}/mockup.png`} alt="" height="592" width="330" /> */}
-        </motion.div>
-        <div className={styles.arrow}>
-          <Arrow />
-        </div>
-      </motion.a>
-    </Link>
+        {/* <Image src={`/img/projects/${project.slug}/mockup.png`} alt="" height="592" width="330" /> */}
+      </motion.div>
+      <div className={styles.arrow}>
+        <Arrow />
+      </div>
+    </motion.a>
   );
 });
 

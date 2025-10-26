@@ -43,7 +43,7 @@ export const AboutView = ({ views }: { views: number }) => {
             You can contact me directly from my <Link href="/contact">website</Link>, via{" "}
             <Link href="mailto:hello@shairaambrosio.com">email</Link>,{" "}
             <Link href="https://facebook.com/shaicodes">Facebook</Link>,{" "}
-            <Link href="https://twitter.com/shaicodes">Twitter</Link> or other social media. I reply to all messages!
+            <Link href="https://x.com/shaicodes">x</Link> or other social media. I reply to all messages!
             Ask me anything, I'm not afraid of any topics.
           </p>
         </div> */}
