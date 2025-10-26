@@ -41,10 +41,16 @@ interface CustomHitsProps extends HitsProvided<Post> {
 
 export const CustomHits = connectHits<CustomHitsProps, Post>(({ hits, currentObjectID }) => {
   const [isMounted, setIsMounted] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+  const HITS_PER_PAGE = 10;
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  const handlePageChange = ({ selected }: { selected: number }) => {
+    setCurrentPage(selected);
+  };
 
   if (!hits.length) {
     return (
@@ -55,13 +61,6 @@ export const CustomHits = connectHits<CustomHitsProps, Post>(({ hits, currentObj
       </div>
     );
   }
-
-  const [currentPage, setCurrentPage] = useState(0);
-  const HITS_PER_PAGE = 10;
-
-  const handlePageChange = ({ selected }: { selected: number }) => {
-    setCurrentPage(selected);
-  };
 
   const startIndex = currentPage * HITS_PER_PAGE;
   const endIndex = startIndex + HITS_PER_PAGE;
