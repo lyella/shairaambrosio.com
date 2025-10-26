@@ -3,7 +3,7 @@ import path from "path";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 
-import { getAllResources, getResourcesPaths, getResourceBySlug, getResourceParsedContent } from "lib/resource";
+import { getAllResources, getResourcesPaths, getResourceBySlug, getResourceParsedContent } from "./resource";
 import type { Project } from "types";
 
 dayjs.extend(customParseFormat);
