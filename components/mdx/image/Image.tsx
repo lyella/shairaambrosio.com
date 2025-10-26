@@ -11,14 +11,17 @@ type ImageProps = {
 };
 
 export const Image = memo<ImageProps>(({ src, alt = "", width = "100%", height }) => {
+  const numericWidth = typeof width === "string" ? parseInt(width, 10) : width;
+  const numericHeight = typeof height === "string" ? parseInt(height, 10) : height;
+
   return (
     <figure className={styles.wrapper}>
       <NextImage
         className={styles.image}
         src={src}
         alt={alt}
-        width={width}
-        height={height}
+        width={numericWidth}
+        height={numericHeight}
         loading="lazy"
         decoding="async"
       />
