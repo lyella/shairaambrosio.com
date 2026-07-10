@@ -22,6 +22,6 @@ fi
 
 if [[ ${ARGS[*]} =~ 'next' ]]; then
   echo "Building Next.js..."
-  yarn next build
+  yarn next build --webpack
   echo "Done building Next.js..."
 fi
