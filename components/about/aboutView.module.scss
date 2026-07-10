@@ -19,7 +19,7 @@
     @include mixins.flex(space-between, flex-start);
     flex-flow: column wrap;
     gap: 8rem;
-    box-shadow: 0.7rem 0.7rem 0 0 var(--black-100);
+    box-shadow: 0.3rem 0.3rem 0 0 var(--black-100);
     border: var(--border);
     border-radius: 2rem;
 

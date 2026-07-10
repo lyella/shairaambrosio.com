@@ -1,127 +1,131 @@
 @media (prefers-color-scheme: light) {
   :root {
     --bg-100: rgb(255, 255, 255);
-    --red-100: rgb(255, 71, 87);
-    --yellow-100: rgb(255, 223, 0);
-    --pink-100: rgb(255, 105, 180);
+    --red-100: rgb(214, 95, 100);
+    --yellow-100: rgb(230, 178, 64);
+    --pink-100: rgb(219, 112, 158);
     --gray-100: rgb(240, 240, 240);
     --gray-200: rgb(230, 230, 230);
     --gray-300: rgb(140, 140, 140);
     --gray-400: rgb(250, 250, 250);
     --gray-500: rgb(220, 220, 220);
-    --green-100: rgb(0, 255, 159);
-    --green-200: rgb(50, 255, 50);
-    --blue-100: rgb(0, 200, 255);
-    --blue-200: rgb(88, 101, 242);
-    --blue-300: rgb(200, 230, 255);
-    --blue-400: rgb(0, 255, 255);
+    --green-100: rgb(92, 176, 132);
+    --green-200: rgb(138, 172, 105);
+    --blue-100: rgb(82, 165, 205);
+    --blue-200: rgb(58, 122, 138);
+    --blue-300: rgb(205, 228, 235);
+    --blue-400: rgb(70, 180, 180);
     --white-100: rgb(255, 255, 255);
     --white-200: rgb(255, 255, 255);
-    --peach-100: rgb(255, 179, 71);
+    --peach-100: rgb(232, 190, 145);
     --black-100: rgb(0, 0, 0);
     --black-200: rgb(30, 30, 30);
     --black-300: rgba(0, 0, 0, 0.9);
-    --violet-100: rgb(138, 43, 226);
-    --orange-100: rgb(255, 140, 0);
-    --pink-100: rgb(255, 20, 147);
+    --violet-100: rgb(154, 115, 205);
+    --orange-100: rgb(224, 132, 76);
 
     --scrollbar-thumb: rgb(0, 0, 0);
-    --scrollbar-thumb-hover: rgb(88, 101, 242);
+    --scrollbar-thumb-hover: rgb(58, 122, 138);
     --mdx-heading-color: var(--black-100);
     --tile-shadow: 6px 6px 0px rgba(0, 0, 0, 1);
-    --border: 4px solid var(--black-100);
+    --border: 2px solid var(--black-100);
     --selection-color: rgb(255, 255, 255);
-    --selection-background: rgb(88, 101, 242);
+    --selection-background: rgb(58, 122, 138);
   }
 }
 
 [data-theme="light"] {
   --bg-100: rgb(255, 255, 255);
-  --red-100: rgb(255, 71, 87);
-  --yellow-100: rgb(255, 223, 0);
-  --pink-100: rgb(255, 105, 180);
+  --red-100: rgb(214, 95, 100);
+  --yellow-100: rgb(230, 178, 64);
+  --pink-100: rgb(219, 112, 158);
   --gray-100: rgb(240, 240, 240);
   --gray-200: rgb(230, 230, 230);
   --gray-300: rgb(140, 140, 140);
   --gray-400: rgb(250, 250, 250);
   --gray-500: rgb(220, 220, 220);
-  --green-100: rgb(0, 255, 159);
-  --blue-100: rgb(0, 200, 255);
-  --blue-200: rgb(88, 101, 242);
-  --blue-300: rgb(200, 230, 255);
+  --green-100: rgb(92, 176, 132);
+  --green-200: rgb(138, 172, 105);
+  --blue-100: rgb(82, 165, 205);
+  --blue-200: rgb(58, 122, 138);
+  --blue-300: rgb(205, 228, 235);
+  --blue-400: rgb(70, 180, 180);
   --white-100: rgb(255, 255, 255);
   --white-200: rgb(255, 255, 255);
-  --peach-100: rgb(255, 179, 71);
+  --peach-100: rgb(232, 190, 145);
   --black-100: rgb(0, 0, 0);
   --black-200: rgb(30, 30, 30);
   --black-300: rgba(0, 0, 0, 0.9);
-  --violet-100: rgb(138, 43, 226);
-  --orange-100: rgb(255, 140, 0);
-  --pink-100: rgb(255, 20, 147);
+  --violet-100: rgb(154, 115, 205);
+  --orange-100: rgb(224, 132, 76);
 
   --scrollbar-thumb: rgb(0, 0, 0);
-  --scrollbar-thumb-hover: rgb(88, 101, 242);
+  --scrollbar-thumb-hover: rgb(58, 122, 138);
   --mdx-heading-color: var(--black-100);
   --tile-shadow: 6px 6px 0px rgba(0, 0, 0, 1);
+  --border: 2px solid var(--black-100);
   --selection-color: rgb(255, 255, 255);
-  --selection-background: rgb(88, 101, 242);
+  --selection-background: rgb(58, 122, 138);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --red-100: rgb(255, 71, 87);
-    --yellow-100: rgb(255, 223, 0);
-    --pink-100: rgb(255, 105, 180);
+    --red-100: rgb(214, 95, 100);
+    --yellow-100: rgb(230, 178, 64);
+    --pink-100: rgb(219, 112, 158);
     --gray-200: rgb(40, 40, 40);
-    --green-100: rgb(0, 255, 159);
-    --blue-100: rgb(0, 200, 255);
-    --blue-200: rgb(138, 137, 255);
-    --blue-300: rgb(30, 40, 60);
+    --green-100: rgb(92, 176, 132);
+    --green-200: rgb(138, 172, 105);
+    --blue-100: rgb(82, 165, 205);
+    --blue-200: rgb(82, 165, 180);
+    --blue-300: rgb(20, 40, 48);
+    --blue-400: rgb(70, 180, 180);
     --white-200: rgb(255, 255, 255);
     --black-200: rgb(30, 30, 30);
     --black-300: rgba(255, 255, 255, 0.9);
-    --violet-100: rgb(186, 85, 211);
-    --orange-100: rgb(255, 140, 0);
-    --pink-100: rgb(255, 20, 147);
+    --violet-100: rgb(154, 115, 205);
+    --orange-100: rgb(224, 132, 76);
     --mdx-heading-color: var(--yellow-100);
     --selection-color: rgb(0, 0, 0);
-    --selection-background: rgb(0, 255, 159);
+    --selection-background: rgb(92, 176, 132);
 
     --bg-100: rgb(18, 18, 18);
     --gray-100: rgb(30, 30, 30);
     --black-100: rgb(255, 255, 255);
     --white-100: rgb(18, 18, 18);
-    --peach-100: rgb(255, 179, 71);
+    --peach-100: rgb(232, 190, 145);
     --gray-400: rgb(25, 25, 25);
     --gray-300: rgb(60, 60, 60);
     --gray-500: rgb(40, 40, 40);
     --scrollbar-thumb: rgb(255, 255, 255);
-    --scrollbar-thumb-hover: rgb(0, 255, 159);
+    --scrollbar-thumb-hover: rgb(92, 176, 132);
 
     --tile-shadow: 6px 6px 0px rgba(255, 255, 255, 0.3);
+    --border: 2px solid var(--black-100);
   }
 }
 
 [data-theme="dark"] {
-  --red-100: rgb(255, 71, 87);
-  --yellow-100: rgb(255, 223, 0);
-  --pink-100: rgb(255, 105, 180);
+  --red-100: rgb(214, 95, 100);
+  --yellow-100: rgb(230, 178, 64);
+  --pink-100: rgb(219, 112, 158);
   --gray-200: rgb(40, 40, 40);
-  --green-100: rgb(0, 255, 159);
-  --blue-100: rgb(0, 200, 255);
-  --blue-200: rgb(138, 137, 255);
-  --blue-300: rgb(30, 40, 60);
+  --green-100: rgb(92, 176, 132);
+  --green-200: rgb(138, 172, 105);
+  --blue-100: rgb(82, 165, 205);
+  --blue-200: rgb(82, 165, 180);
+  --blue-300: rgb(20, 40, 48);
+  --blue-400: rgb(70, 180, 180);
   --white-200: rgb(255, 255, 255);
-  --peach-100: rgb(255, 179, 71);
+  --peach-100: rgb(232, 190, 145);
   --black-200: rgb(30, 30, 30);
   --black-300: rgba(255, 255, 255, 0.9);
-  --violet-100: rgb(186, 85, 211);
-  --orange-100: rgb(255, 140, 0);
-  --pink-100: rgb(255, 20, 147);
+  --violet-100: rgb(154, 115, 205);
+  --orange-100: rgb(224, 132, 76);
 
   --mdx-heading-color: var(--yellow-100);
   --selection-color: rgb(0, 0, 0);
-  --selection-background: rgb(0, 255, 159);
+  --selection-background: rgb(92, 176, 132);
   --bg-100: rgb(18, 18, 18);
   --gray-100: rgb(30, 30, 30);
   --black-100: rgb(255, 255, 255);
@@ -130,9 +134,10 @@
   --gray-300: rgb(60, 60, 60);
   --gray-500: rgb(40, 40, 40);
   --scrollbar-thumb: rgb(255, 255, 255);
-  --scrollbar-thumb-hover: rgb(0, 255, 159);
+  --scrollbar-thumb-hover: rgb(92, 176, 132);
 
   --tile-shadow: 6px 6px 0px rgba(255, 255, 255, 0.3);
+  --border: 2px solid var(--black-100);
 }
 
 /* Highlighting code */
