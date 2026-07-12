@@ -54,6 +54,10 @@ export const getResourceBySlug = async (slug: string, resourcePath: string) => {
   const transformedMdx = await serialize(content, {
     scope: data,
     mdxOptions: { rehypePlugins: commonRehypePlugins },
+    // Content here is authored in this repo, not user-submitted, so JS expressions (e.g. the
+    // array/object literal props on QuizDialog) are safe to allow. blockDangerousJS stays at
+    // its default of true, which still blocks eval/Function/process/require.
+    blockJS: false,
   });
 
   return { transformedMdx, frontmatter };

@@ -9,16 +9,16 @@ const __dirname = dirname(__filename);
 const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ['react-github-btn'],
-  eslint: {
-    // Allow building even if there are ESLint errors. We'll fix them later.
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     // Skip type checking during next build so we can iterate. Run `yarn tsc` locally to see errors.
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ['avatars.githubusercontent.com', 'github.com', 'i.scdn.co'],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'avatars.githubusercontent.com' },
+      { protocol: 'https', hostname: 'github.com' },
+      { protocol: 'https', hostname: 'i.scdn.co' },
+    ],
   },
   sassOptions: {
     includePaths: [join(__dirname, 'styles')],
