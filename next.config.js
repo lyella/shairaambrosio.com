@@ -57,7 +57,7 @@ const nextConfig = {
       },
       {
         source: '/x',
-        destination: `https://x.com/${process.env.NEXT_PUBLIC_x_USERNAME}`,
+        destination: `https://x.com/${process.env.NEXT_PUBLIC_x_USERNAME || "shaicodes"}`,
         permanent: true,
       },
       {

@@ -17,7 +17,7 @@ export const SOCIALS = [
   {
     name: "x",
     color: "#94ccff",
-    link: `https://x.com/${process.env.NEXT_PUBLIC_x_USERNAME}`,
+    link: `https://x.com/${process.env.NEXT_PUBLIC_x_USERNAME || "shaicodes"}`,
   },
   {
     name: "linkedin",
