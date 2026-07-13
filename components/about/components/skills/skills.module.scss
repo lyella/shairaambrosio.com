@@ -67,19 +67,25 @@
         .label {
           position: absolute;
           top: -15px;
-          left: -14px;
-          transform: rotate(-10deg) scale(0);
+          left: 50%;
+          transform: translateX(-50%) rotate(-10deg) scale(0);
           transition: transform 0.2s ease-in-out;
           border-radius: 0.5rem;
           background-color: var(--white-100);
           padding: 0.3rem 1.2rem;
           color: var(--black-100);
           font-size: 1.4rem;
+          white-space: nowrap;
+          z-index: 1;
           @include mixins.flex;
         }
 
-        &:hover .label {
-          transform: rotate(-10deg) scale(1);
+        &:hover {
+          z-index: 2;
+
+          .label {
+            transform: translateX(-50%) rotate(-10deg) scale(1);
+          }
         }
 
         svg {
