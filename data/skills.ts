@@ -9,7 +9,7 @@ export const allSkills = [
   { name: "SCSS", slug: "scss", color: "#ce679a", link: "https://sass-lang.com" },
   { name: "JavaScript", slug: "js", color: "#f0db4f", link: "https://www.javascript.com" },
   { name: "TypeScript", slug: "ts", color: "#007acc", link: "https://www.typescriptlang.org" },
-  // { name: "Vue", slug: "vue", color: "#3fb984", link: "https://vuejs.org" },
+  { name: "Vue", slug: "vue", color: "#3fb984", link: "https://vuejs.org" },
   { name: "React", slug: "react", color: "#61dbfb", link: "https://reactjs.org" },
   {
     name: "Next.js",
@@ -29,4 +29,6 @@ export const allSkills = [
   { name: "Shopify", slug: "shopify", color: "#90b944", link: "https://shopify.com/" },
   { name: "Jest", slug: "jest", color: "#C63D14", link: "https://jestjs.io" },
   { name: "Cypress", slug: "cypress", color: "#5C5C5E", link: "https://www.cypress.io" },
+  { name: "MJML", slug: "mjml", color: "#f45e43", link: "https://mjml.io" },
+  { name: "Email Templates", slug: "email", color: "#5b6ee1", link: "https://www.caniemail.com" },
 ] as const;
