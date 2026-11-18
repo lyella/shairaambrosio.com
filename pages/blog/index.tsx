@@ -21,18 +21,10 @@ const Blog: NextPage = ({ categories }: InferGetStaticPropsType<typeof getStatic
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    // const popularPosts = getPopularPosts();
     const categories = getPostsCategories();
-
-    // const postsWithViews = await Promise.all(
-    //   popularPosts.map(async (post) => ({ ...post, views: (await countapi.get(ORIGIN, post.slug)).value })),
-    // );
-
-    // const sortedPopularPostsByViews = postsWithViews.sort((a, b) => b.views - a.views);
 
     return {
       props: {
-        // popularPosts: sortedPopularPostsByViews,
         categories,
       },
     };

@@ -1,4 +1,6 @@
 import type { GetStaticProps, NextPage } from "next";
+import { readFile } from "fs/promises";
+import path from "path";
 import { getPlaiceholder } from "plaiceholder";
 
 import { Hero } from "components/common/hero/Hero";
@@ -27,7 +29,8 @@ export const getStaticProps: GetStaticProps = async () => {
     const blurImageData = await Promise.all(
       projects.map(async ({ image, slug }) => {
         try {
-          const { base64 } = await getPlaiceholder(image);
+          const buffer = await readFile(path.join(process.cwd(), "public", image));
+          const { base64 } = await getPlaiceholder(buffer);
 
           return {
             slug,

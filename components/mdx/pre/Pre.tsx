@@ -8,7 +8,7 @@ import CopyIcon from "public/svg/copy.svg";
 import styles from "./pre.module.scss";
 
 type PreProps = {
-  readonly children: React.ReactNode;
+  readonly children?: React.ReactNode;
 };
 
 export const Pre = memo<PreProps>(({ children, ...props }) => {

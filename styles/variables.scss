@@ -1,47 +1,14 @@
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg-100: rgb(255, 255, 255);
-    --red-100: rgb(214, 95, 100);
-    --yellow-100: rgb(230, 178, 64);
-    --pink-100: rgb(219, 112, 158);
-    --gray-100: rgb(240, 240, 240);
-    --gray-200: rgb(230, 230, 230);
-    --gray-300: rgb(140, 140, 140);
-    --gray-400: rgb(250, 250, 250);
-    --gray-500: rgb(220, 220, 220);
-    --green-100: rgb(92, 176, 132);
-    --green-200: rgb(138, 172, 105);
-    --blue-100: rgb(82, 165, 205);
-    --blue-200: rgb(58, 122, 138);
-    --blue-300: rgb(205, 228, 235);
-    --blue-400: rgb(70, 180, 180);
-    --white-100: rgb(255, 255, 255);
-    --white-200: rgb(255, 255, 255);
-    --peach-100: rgb(232, 190, 145);
-    --black-100: rgb(0, 0, 0);
-    --black-200: rgb(30, 30, 30);
-    --black-300: rgba(0, 0, 0, 0.9);
-    --violet-100: rgb(154, 115, 205);
-    --orange-100: rgb(224, 132, 76);
+// Theme tokens are defined once per theme in mixins, then applied to both the
+// media-query and the explicit [data-theme] selectors so the two can never drift.
 
-    --scrollbar-thumb: rgb(0, 0, 0);
-    --scrollbar-thumb-hover: rgb(58, 122, 138);
-    --mdx-heading-color: var(--black-100);
-    --tile-shadow: 6px 6px 0px rgba(0, 0, 0, 1);
-    --border: 2px solid var(--black-100);
-    --selection-color: rgb(255, 255, 255);
-    --selection-background: rgb(58, 122, 138);
-  }
-}
-
-[data-theme="light"] {
+@mixin theme-light {
   --bg-100: rgb(255, 255, 255);
   --red-100: rgb(214, 95, 100);
   --yellow-100: rgb(230, 178, 64);
   --pink-100: rgb(219, 112, 158);
   --gray-100: rgb(240, 240, 240);
   --gray-200: rgb(230, 230, 230);
-  --gray-300: rgb(140, 140, 140);
+  --gray-300: rgb(110, 110, 110);
   --gray-400: rgb(250, 250, 250);
   --gray-500: rgb(220, 220, 220);
   --green-100: rgb(92, 176, 132);
@@ -66,46 +33,17 @@
   --border: 2px solid var(--black-100);
   --selection-color: rgb(255, 255, 255);
   --selection-background: rgb(58, 122, 138);
+
+  // Semantic tokens (map to the hues above; prefer these in new styles)
+  --text-primary: var(--black-100);
+  --text-muted: var(--gray-300);
+  --surface: var(--bg-100);
+  --surface-muted: var(--gray-100);
+  --accent: var(--blue-100);
+  --accent-strong: var(--blue-200);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --red-100: rgb(214, 95, 100);
-    --yellow-100: rgb(230, 178, 64);
-    --pink-100: rgb(219, 112, 158);
-    --gray-200: rgb(40, 40, 40);
-    --green-100: rgb(92, 176, 132);
-    --green-200: rgb(138, 172, 105);
-    --blue-100: rgb(82, 165, 205);
-    --blue-200: rgb(82, 165, 180);
-    --blue-300: rgb(20, 40, 48);
-    --blue-400: rgb(70, 180, 180);
-    --white-200: rgb(255, 255, 255);
-    --black-200: rgb(30, 30, 30);
-    --black-300: rgba(255, 255, 255, 0.9);
-    --violet-100: rgb(154, 115, 205);
-    --orange-100: rgb(224, 132, 76);
-    --mdx-heading-color: var(--yellow-100);
-    --selection-color: rgb(0, 0, 0);
-    --selection-background: rgb(92, 176, 132);
-
-    --bg-100: rgb(18, 18, 18);
-    --gray-100: rgb(30, 30, 30);
-    --black-100: rgb(255, 255, 255);
-    --white-100: rgb(18, 18, 18);
-    --peach-100: rgb(232, 190, 145);
-    --gray-400: rgb(25, 25, 25);
-    --gray-300: rgb(60, 60, 60);
-    --gray-500: rgb(40, 40, 40);
-    --scrollbar-thumb: rgb(255, 255, 255);
-    --scrollbar-thumb-hover: rgb(92, 176, 132);
-
-    --tile-shadow: 6px 6px 0px rgba(255, 255, 255, 0.3);
-    --border: 2px solid var(--black-100);
-  }
-}
-
-[data-theme="dark"] {
+@mixin theme-dark {
   --red-100: rgb(214, 95, 100);
   --yellow-100: rgb(230, 178, 64);
   --pink-100: rgb(219, 112, 158);
@@ -138,48 +76,17 @@
 
   --tile-shadow: 6px 6px 0px rgba(255, 255, 255, 0.3);
   --border: 2px solid var(--black-100);
+
+  // Semantic tokens
+  --text-primary: var(--black-100);
+  --text-muted: rgb(160, 160, 160);
+  --surface: var(--bg-100);
+  --surface-muted: var(--gray-100);
+  --accent: var(--blue-100);
+  --accent-strong: var(--green-100);
 }
 
-/* Highlighting code */
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --syntax-comment: #a0a1a7;
-    --syntax-punctuation: #999;
-    --syntax-pink: #905;
-    --syntax-green: #690;
-    --syntax-orange: #9a6e3a;
-    --syntax-blue: #07a;
-    --syntax-red: #dd4a68;
-    --syntax-yellow: #e90;
-    --syntax-background: var(--gray-200);
-    --syntax-attr-value: #07a;
-    --syntax-tag: #905;
-    --syntax-prop: #905;
-    --base-syntax-color: #000;
-    --syntax-selector: #690;
-    --syntax-css-class: #690;
-    --syntax-css-id: #07a;
-    --syntax-important: #e90;
-    --syntax-css-unit: #905;
-    --syntax-css-number: #905;
-    --syntax-css-variable: #e90;
-    --syntax-maybe-class-name: #dd4a68;
-    --syntax-js-base-color: #000;
-    --syntax-constant: #905;
-    --syntax-builtin: #690;
-    --syntax-operator: #9a6e3a;
-    --syntax-function: #dd4a68;
-    --syntax-attr-name: #690;
-    --syntax-number: #905;
-    --syntax-boolean: #905;
-    --syntax-variable: #e90;
-    --syntax-scrollbar-color: var(--gray-300);
-    --syntax-selection: #d5d5d5;
-  }
-}
-
-[data-theme="light"] {
+@mixin syntax-light {
   --syntax-comment: #a0a1a7;
   --syntax-punctuation: #999;
   --syntax-pink: #905;
@@ -214,43 +121,7 @@
   --syntax-selection: #d5d5d5;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --syntax-comment: #5f6167;
-    --syntax-punctuation: rgb(199, 199, 199);
-    --syntax-background: #23262e;
-    --syntax-red: #ee5d43;
-    --syntax-green: #abe338;
-    --syntax-orange: #f39c12;
-    --syntax-blue: #c74ded;
-    --syntax-attr-value: #abe338;
-    --syntax-tag: #f92672;
-    --base-syntax-color: #fff;
-    --syntax-selector: #f92672;
-    --syntax-css-class: #ffe66d;
-    --syntax-css-id: #ee5d43;
-    --syntax-important: #c74ded;
-    --syntax-css-base-color: #ee5d43;
-    --syntax-prop: #fff;
-    --syntax-css-unit: #f39c12;
-    --syntax-css-number: #f39c12;
-    --syntax-css-variable: #00e8c6;
-    --syntax-maybe-class-name: #ffe66d;
-    --syntax-js-base-color: #00e8c6;
-    --syntax-constant: #00e8c6;
-    --syntax-builtin: #fff;
-    --syntax-operator: #ee5d43;
-    --syntax-function: #ffe66d;
-    --syntax-attr-name: #ffe66d;
-    --syntax-number: #f39c12;
-    --syntax-boolean: #ee5d43;
-    --syntax-variable: #00e8c6;
-    --syntax-scrollbar-color: var(--bg-100);
-    --syntax-selection: #23262e;
-  }
-}
-
-[data-theme="dark"] {
+@mixin syntax-dark {
   --syntax-comment: #5f6167;
   --syntax-punctuation: rgb(199, 199, 199);
   --syntax-background: #23262e;
@@ -282,4 +153,28 @@
   --syntax-variable: #00e8c6;
   --syntax-scrollbar-color: var(--bg-100);
   --syntax-selection: #303541;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    @include theme-light;
+    @include syntax-light;
+  }
+}
+
+[data-theme="light"] {
+  @include theme-light;
+  @include syntax-light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include theme-dark;
+    @include syntax-dark;
+  }
+}
+
+[data-theme="dark"] {
+  @include theme-dark;
+  @include syntax-dark;
 }

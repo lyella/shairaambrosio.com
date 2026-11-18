@@ -18,12 +18,12 @@ type Position = {
   link: string;
 };
 
-export const AboutView = ({ views }: { views: number }) => {
+export const AboutView = () => {
   const { theme } = useTheme();
 
   return (
     <div className={styles.about}>
-      <Hero views={views} />
+      <Hero />
       <div className={styles.container}>
         <Skills skills={allSkills} />
         <Experience positions={allPositions} />

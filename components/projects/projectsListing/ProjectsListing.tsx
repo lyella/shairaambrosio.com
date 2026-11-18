@@ -1,15 +1,23 @@
 import algoliasearch from "algoliasearch";
+
 import dynamic from "next/dynamic";
+
 import { memo, useCallback, useEffect, useState } from "react";
-import type { HitsProvided } from "react-instantsearch-core";
-import { connectHits, connectStateResults, InstantSearch } from "react-instantsearch-dom";
+
+import { InstantSearch, useHits, useInstantSearch } from "react-instantsearch";
+
+type AlgoliaHit = { objectID: string };
+
 import ReactPaginate from "react-paginate";
 
 const Lottie = dynamic(() => import("react-lottie"), { ssr: false });
 
 import { LoaderRing } from "components/common/loader/LoaderRing";
+
 import { SearchBox } from "components/common/searchBox/SearchBox";
+
 import { ProjectThumbnail } from "components/projects/projectsListing/projectThumbnail/ProjectThumbnail";
+
 import type { Project } from "types";
 
 import thinking from "../../../public/lottie/thinking.json";
@@ -30,16 +38,17 @@ const searchThinking = {
   },
 };
 
-interface CustomHitsProps extends HitsProvided<Project> {
+interface CustomHitsProps {
   readonly currentObjectID: string | null;
-  readonly setObjectId: (objectId: string) => void;
   readonly blurImageData: {
     readonly slug: string;
     readonly base64: string;
   }[];
 }
 
-export const CustomHits = connectHits<CustomHitsProps, Project>(({ hits, currentObjectID, blurImageData }) => {
+export const CustomHits = ({ currentObjectID, blurImageData }: CustomHitsProps) => {
+  const { hits } = useHits<AlgoliaHit & Project>();
+
   const [isMounted, setIsMounted] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const HITS_PER_PAGE = 10;
@@ -92,15 +101,17 @@ export const CustomHits = connectHits<CustomHitsProps, Project>(({ hits, current
       />
     </>
   );
-});
+};
 
-const LoadingIndicator = connectStateResults(({ isSearchStalled }) =>
-  isSearchStalled ? (
+const LoadingIndicator = () => {
+  const { status } = useInstantSearch();
+
+  return status === "stalled" ? (
     <div className={styles.loading}>
       <LoaderRing />
     </div>
-  ) : null,
-);
+  ) : null;
+};
 
 interface ProjectsListingProps {
   readonly blurImageData: {
@@ -121,7 +132,7 @@ export const ProjectsListing = memo<ProjectsListingProps>(({ blurImageData }) =>
       <InstantSearch indexName="projects" searchClient={searchClient}>
         <SearchBox currentObjectID={currentObjectID} onChange={handleInputChange} />
         <LoadingIndicator />
-        <CustomHits currentObjectID={currentObjectID} setObjectId={setObjectId} blurImageData={blurImageData} />
+        <CustomHits currentObjectID={currentObjectID} blurImageData={blurImageData} />
       </InstantSearch>
     </div>
   );

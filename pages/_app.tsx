@@ -2,8 +2,8 @@ import "../styles/globals.scss";
 import { Analytics } from "@vercel/analytics/react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
@@ -40,12 +40,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <Seo />
       <QueryClientProvider client={queryClient}>
-        <Hydrate state={pageProps.dehydratedState}>
-          <ThemeProvider>
-            <Component {...pageProps} />
-            <Analytics />
-          </ThemeProvider>
-        </Hydrate>
+        <ThemeProvider>
+          <Component {...pageProps} />
+          <Analytics />
+        </ThemeProvider>
         <ReactQueryDevtools />
       </QueryClientProvider>
     </>

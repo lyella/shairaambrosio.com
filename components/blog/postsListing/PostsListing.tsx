@@ -1,19 +1,31 @@
 import algoliasearch from "algoliasearch";
+
 import dynamic from "next/dynamic";
+
 import { useRouter } from "next/router";
+
 import { memo, useCallback, useEffect, useState } from "react";
-import type { HitsProvided } from "react-instantsearch-core";
-import { Configure, connectHits, connectStateResults, InstantSearch } from "react-instantsearch-dom";
+
+import { Configure, InstantSearch, useHits, useInstantSearch } from "react-instantsearch";
+
+type AlgoliaHit = { objectID: string };
+
 import ReactPaginate from "react-paginate";
 
 const Lottie = dynamic(() => import("react-lottie"), { ssr: false });
 
 import { PopularPosts } from "components/blog/popularPosts/PopularPosts";
+
 import { PostThumbnail } from "components/blog/postsListing/postThumbnail/PostThumbnail";
+
 import { CategoriesList } from "components/category/categoriesList/CategoriesList";
+
 import { LoaderRing } from "components/common/loader/LoaderRing";
+
 import { SearchBox } from "components/common/searchBox/SearchBox";
+
 import { allCategories } from "data/categories";
+
 import type { Category, Post } from "types";
 
 import thinking from "../../../public/lottie/thinking.json";
@@ -34,12 +46,13 @@ const searchThinking = {
   },
 };
 
-interface CustomHitsProps extends HitsProvided<Post> {
+interface CustomHitsProps {
   readonly currentObjectID: string | null;
-  readonly setObjectId: (objectId: string) => void;
 }
 
-export const CustomHits = connectHits<CustomHitsProps, Post>(({ hits, currentObjectID }) => {
+export const CustomHits = ({ currentObjectID }: CustomHitsProps) => {
+  const { hits } = useHits<AlgoliaHit & Post>();
+
   const [isMounted, setIsMounted] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const HITS_PER_PAGE = 10;
@@ -92,23 +105,26 @@ export const CustomHits = connectHits<CustomHitsProps, Post>(({ hits, currentObj
       />
     </>
   );
-});
+};
 
 interface PostsListingProps {
   readonly popularPosts: Post[];
   readonly categories: Category[];
 }
 
-const LoadingIndicator = connectStateResults(({ isSearchStalled }) =>
-  isSearchStalled ? (
+const LoadingIndicator = () => {
+  const { status } = useInstantSearch();
+
+  return status === "stalled" ? (
     <div className={styles.loading}>
       <LoaderRing />
     </div>
-  ) : null,
-);
+  ) : null;
+};
 
 export const PostsListing = memo<PostsListingProps>(({ popularPosts, categories }) => {
   const [currentObjectID, setObjectId] = useState<string | null>(null);
+
   const router = useRouter();
 
   const handleInputChange = useCallback(() => {
@@ -133,7 +149,7 @@ export const PostsListing = memo<PostsListingProps>(({ popularPosts, categories 
               <SearchBox currentObjectID={currentObjectID} onChange={handleInputChange} />
             )}
             <LoadingIndicator />
-            <CustomHits currentObjectID={currentObjectID} setObjectId={setObjectId} />
+            <CustomHits currentObjectID={currentObjectID} />
           </div>
         </div>
       </InstantSearch>

@@ -1,7 +1,7 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import { getTrack } from "../api/getTrack";
 
 export const useGetTrack = () => {
-  return useQuery("currentTrack", getTrack);
+  return useQuery({ queryKey: ["currentTrack"], queryFn: getTrack });
 };

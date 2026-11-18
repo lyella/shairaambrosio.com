@@ -9,10 +9,6 @@ const __dirname = dirname(__filename);
 const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ['react-github-btn'],
-  typescript: {
-    // Skip type checking during next build so we can iterate. Run `yarn tsc` locally to see errors.
-    ignoreBuildErrors: true,
-  },
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'avatars.githubusercontent.com' },

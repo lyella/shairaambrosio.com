@@ -3,6 +3,7 @@ import * as yup from "yup";
 
 import { EMAIL_REGEX } from "utils/consts";
 import { fetcher } from "utils/fetcher";
+import { rateLimit } from "lib/rateLimit";
 
 const emailSchema = yup.string().required().matches(EMAIL_REGEX);
 
@@ -19,6 +20,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.setHeader("Allow", "POST");
 
     return res.status(405).json({ message: "Method not allowed" });
+  }
+
+  if (!rateLimit(req, res, 3, 60 * 60 * 1000, "newsletter")) {
+    return res.status(429).json({ message: "Too many requests. Please try again later." });
   }
 
   try {

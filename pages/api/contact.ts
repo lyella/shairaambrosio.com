@@ -3,6 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import * as yup from "yup";
 
 import { EMAIL_REGEX } from "utils/consts";
+import { rateLimit } from "lib/rateLimit";
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
 
@@ -36,6 +37,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.setHeader("Allow", "POST");
 
     return res.status(405).json({ message: "Method not allowed" });
+  }
+
+  if (!rateLimit(req, res, 5, 10 * 60 * 1000, "contact")) {
+    return res.status(429).json({ message: "Too many requests. Please try again later." });
   }
 
   try {

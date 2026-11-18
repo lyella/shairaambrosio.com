@@ -16,7 +16,7 @@ const defaultOptions = {
   },
 };
 
-export const Hero = ({ views }: { views: number }) => {
+export const Hero = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
