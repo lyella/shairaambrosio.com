@@ -22,9 +22,9 @@ export const Layout = memo<LayoutProps>(({ children }) => {
     <>
       <div className={styles.wrapper}>
         <header className={styles.header}>
-          {/* <a href="#main" className={styles.skip}>
+          <a href="#main" className={`${styles.skip} sr-only-focusable`}>
             skip to content
-          </a> */}
+          </a>
           <Link href="/" className={styles.logo}>
             <span className="sr-only">home</span>
             <Logo />

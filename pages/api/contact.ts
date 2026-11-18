@@ -55,7 +55,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Log the full error server-side only; never leak internals to the client.
     console.error("[contact] failed to send email:", e);
 
-    const message = e instanceof yup.ValidationError ? e.message : "Something went wrong. Please try again later.";
+    const message = e instanceof yup.ValidationError
+      ? e.path === "email"
+        ? "Please provide a valid email address"
+        : e.message
+      : "Something went wrong. Please try again later.";
 
     return res.status(400).json({ message });
   }

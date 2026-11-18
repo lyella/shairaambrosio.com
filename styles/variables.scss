@@ -36,7 +36,7 @@
 
   // Semantic tokens (map to the hues above; prefer these in new styles)
   --text-primary: var(--black-100);
-  --text-muted: var(--gray-300);
+  --text-muted: rgb(100, 100, 100);
   --surface: var(--bg-100);
   --surface-muted: var(--gray-100);
   --accent: var(--blue-100);

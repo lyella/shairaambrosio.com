@@ -18,6 +18,17 @@ Updated 2026-11-18 after ADR-0001 and ADR-0002. Items are ordered by impact.
 - [x] Removed unused `lib` npm dependency
 - [x] Decision: stay on webpack (`next-pwa` is webpack-only) — documented in ADR-0002
 
+## QA pass 2026-11-18 (agent: Abadiel) — all 13 checks PASS; fixes applied below
+
+- [x] `lang="en-EN"` -> `lang="en"` (invalid BCP 47)
+- [x] skip-to-content link re-enabled in Layout
+- [x] `:focus-visible` outlines on form inputs (WCAG 2.4.11)
+- [x] contact 400 no longer leaks the email regex
+- [x] light `--text-muted` darkened to rgb(100,100,100) (AA on surface-muted too)
+- [x] `/api/music` degrades to 200 `{track:null,status:"offline"}` + edge cache header
+- [ ] OWNER: `SPOTIFY_REFRESH_TOKEN` is failing on Vercel — re-auth the Spotify app to restore the now-playing tile
+- [ ] OWNER: rotate the Upstash token pasted in chat earlier
+
 ## Remaining
 
 - [x] Security headers (CSP, X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy) — ADR-0003

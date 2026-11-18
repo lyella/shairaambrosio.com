@@ -61,6 +61,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ message: "Method not allowed" });
   }
 
+  // Cache at the edge so each client poll doesn't hit the Spotify API twice.
+  res.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate=300");
+
   try {
     await getNewAccessTokenFromRefreshToken(process.env.SPOTIFY_REFRESH_TOKEN as string);
 
@@ -68,8 +71,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     return res.status(200).json({ track, status });
   } catch (e) {
-    console.log(e);
+    // Degrade gracefully: a failing Spotify token should render "offline", not an error.
+    console.error("[music] spotify fetch failed:", e);
 
-    return res.status(400).json({ message: "Bad request!" });
+    return res.status(200).json({ track: null, status: "offline" });
   }
 }
