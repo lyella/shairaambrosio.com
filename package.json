@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev --webpack",
-    "build": "bash ./build.sh redirect algolia feed next",
+    "build": "bash ./build.sh redirect feed next",
     "start": "next start",
     "tsc": "tsc --noEmit",
     "ts-node-esm": "node --loader ts-node/esm --experimental-specifier-resolution=node",

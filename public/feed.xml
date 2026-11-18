@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Shaira Ambrosio</title>
+        <link>https://undefined</link>
+        <description>Hello, I'm Shaira - a Frontend Developer, freelancer, blogger, and passionate about new technologies. I hope you enjoy my website!</description>
+        <lastBuildDate>Wed, 18 Nov 2026 11:28:45 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>Shaira Ambrosio</generator>
+        <language>en</language>
+        <image>
+            <title>Shaira Ambrosio</title>
+            <url>https://undefined/regular-android-icon-192x192.png</url>
+            <link>https://undefined</link>
+        </image>
+        <copyright>2026 Shaira Ambrosio</copyright>
+        <atom:link href="https://undefined/feed" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[Understanding the Dunning-Kruger Effect in Programming: Overcoming the Illusion of Competence]]></title>
+            <link>https://undefined/blog/dunning-kruger-effect-in-programming</link>
+            <guid>dunning-kruger-effect-in-programming</guid>
+            <pubDate>Sun, 26 Feb 2023 16:00:00 GMT</pubDate>
+            <description><![CDATA[The Dunning-Kruger Effect is a cognitive bias that affects people across all industries and fields, including programming.]]></description>
+            <enclosure url="https://undefined//img/posts/dunning-kruger-effect-in-programming/thumbnail.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Web 3 Technology: Exploring the Future of the Internet]]></title>
+            <link>https://undefined/blog/exploring-the-web-3-technology</link>
+            <guid>exploring-the-web-3-technology</guid>
+            <pubDate>Mon, 20 Feb 2023 16:00:00 GMT</pubDate>
+            <description><![CDATA[Web 3 technology is poised to revolutionize the way we interact with the internet. With a focus on decentralization, privacy, and user control, Web 3 has the potential to transform everything from social networking to online commerce. In this blog post, we'll explore what Web 3 technology is, why it's important, and how it's already changing the online landscape.]]></description>
+            <enclosure url="https://undefined//img/posts/exploring-the-web-3-technology/thumbnail.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Flexbox Grid in CSS Simplifying Responsive Layouts]]></title>
+            <link>https://undefined/blog/flexbox-grid-simplifying-layouts</link>
+            <guid>flexbox-grid-simplifying-layouts</guid>
+            <pubDate>Mon, 20 Feb 2023 16:00:00 GMT</pubDate>
+            <description><![CDATA[Creating responsive layouts can be a daunting task for web developers, especially when there are so many devices and screen sizes to consider. Fortunately, Flex Grid in CSS offers a simpler way to create responsive layouts by leveraging the power of Flexbox. In this blog post, we'll explore what Flex Grid in CSS is, how it works, and why it's become a popular choice for frontend developers looking to create flexible and responsive web layouts.]]></description>
+            <enclosure url="https://undefined//img/posts/flexbox-grid-simplifying-layouts/thumbnail.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[Do you know all input types?]]></title>
+            <link>https://undefined/blog/testing-your-knowledge-in-input-types</link>
+            <guid>testing-your-knowledge-in-input-types</guid>
+            <pubDate>Thu, 19 Jan 2023 16:00:00 GMT</pubDate>
+            <description><![CDATA[Although it's not a confidential information, it can greatly benefit your end users. Verify it yourself!]]></description>
+            <enclosure url="https://undefined//img/posts/testing-your-knowledge-in-input-types/thumbnail.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[The Importance of UI/UX for Frontend Developers]]></title>
+            <link>https://undefined/blog/the-importance-of-ui-ux-for-frontend-developers</link>
+            <guid>the-importance-of-ui-ux-for-frontend-developers</guid>
+            <pubDate>Sun, 19 Feb 2023 16:00:00 GMT</pubDate>
+            <description><![CDATA[As the internet continues to grow and evolve, the role of frontend developers has become increasingly important.  Frontend developers are responsible for creating the user interface and experience of websites and applications, which is  why having a strong understanding of UI/UX design principles is crucial. In this blog post, we will explore why UI/UX is  so important for frontend developers, and how it can help to improve the overall quality and success of a product.]]></description>
+            <enclosure url="https://undefined//img/posts/the-importance-of-ui-ux-for-frontend-developers/thumbnail.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[The Power of Asynchronous JavaScript: Improving Web Performance]]></title>
+            <link>https://undefined/blog/the-power-of-asynchronous-javascript</link>
+            <guid>the-power-of-asynchronous-javascript</guid>
+            <pubDate>Sun, 12 Feb 2023 16:00:00 GMT</pubDate>
+            <description><![CDATA[Asynchronous programming has become increasingly important in web development, as it allows for non-blocking operations that can greatly improve web performance.]]></description>
+            <enclosure url="https://undefined//img/posts/the-power-of-asynchronous-javascript/thumbnail.webp" length="0" type="image/webp"/>
+        </item>
+    </channel>
+</rss>
