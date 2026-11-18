@@ -26,12 +26,22 @@ export const getStaticProps: GetStaticProps = async () => {
 
     const blurImageData = await Promise.all(
       projects.map(async ({ image, slug }) => {
-        const { base64 } = await getPlaiceholder(image);
+        try {
+          const { base64 } = await getPlaiceholder(image);
 
-        return {
-          slug,
-          base64,
-        };
+          return {
+            slug,
+            base64,
+          };
+        } catch (e) {
+          // A missing or unreadable thumbnail should not take the whole page down.
+          console.error(`Failed to generate blur for project image: ${image}`, e);
+
+          return {
+            slug,
+            base64: "",
+          };
+        }
       }),
     );
 
@@ -41,7 +51,7 @@ export const getStaticProps: GetStaticProps = async () => {
       },
     };
   } catch (e) {
-    console.log(e);
+    console.error(e);
 
     return {
       notFound: true as const,

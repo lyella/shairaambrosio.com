@@ -55,6 +55,12 @@ export const fetchLastPlayedTrack = async () => {
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method !== "GET") {
+    res.setHeader("Allow", "GET");
+
+    return res.status(405).json({ message: "Method not allowed" });
+  }
+
   try {
     await getNewAccessTokenFromRefreshToken(process.env.SPOTIFY_REFRESH_TOKEN as string);
 

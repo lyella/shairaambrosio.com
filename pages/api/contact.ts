@@ -32,6 +32,12 @@ export const sendEmail = async ({ email, name, message }: Email) => {
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method !== "POST") {
+    res.setHeader("Allow", "POST");
+
+    return res.status(405).json({ message: "Method not allowed" });
+  }
+
   try {
     const { name, message, email } = req.body;
 
@@ -41,8 +47,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     return res.status(200).json({ message: "Email has been sent!" });
   } catch (e) {
-    console.log(e);
+    // Log the full error server-side only; never leak internals to the client.
+    console.error("[contact] failed to send email:", e);
 
-    return res.status(400).json({ message: e ?? "Bad request!" });
+    const message = e instanceof yup.ValidationError ? e.message : "Something went wrong. Please try again later.";
+
+    return res.status(400).json({ message });
   }
 }
