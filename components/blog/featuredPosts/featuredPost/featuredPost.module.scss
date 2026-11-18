@@ -19,7 +19,7 @@
   .title {
     padding: 1rem;
     padding-top: 0.3rem;
-    color: var(--black-100);
+    color: var(--text-primary);
     font-size: 1.8rem;
 
     @include mixins.mediaquery("lg") {

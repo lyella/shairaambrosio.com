@@ -8,7 +8,7 @@
   width: 100%;
   width: 100%;
   min-height: 230px;
-  color: var(--black-100);
+  color: var(--text-primary);
 
   &:hover {
     box-shadow: none;
@@ -47,7 +47,7 @@
 
     .excerpt {
       margin-bottom: 1.5rem;
-      color: var(--black-100);
+      color: var(--text-primary);
       font-size: 1.4rem;
 
       @include mixins.mediaquery("lg") {
@@ -59,7 +59,7 @@
       @include mixins.flex(flex-start);
       flex-wrap: wrap;
       gap: 0.8rem 1rem;
-      color: var(--black-100);
+      color: var(--text-primary);
 
       .tech {
         border: 0.5px solid var(--white-200);

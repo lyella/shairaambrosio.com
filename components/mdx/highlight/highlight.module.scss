@@ -54,14 +54,14 @@
 
   .title {
     padding-bottom: 1rem;
-    color: var(--black-100);
+    color: var(--text-primary);
   }
 
   .content {
     position: relative;
     z-index: 1;
     max-width: 100%;
-    color: var(--black-100);
+    color: var(--text-primary);
 
     pre {
       margin: 3.5rem -1rem 2rem;

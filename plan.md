@@ -21,12 +21,13 @@ Updated 2026-11-18 after ADR-0001 and ADR-0002. Items are ordered by impact.
 ## Remaining
 
 - [x] Security headers (CSP, X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy) — ADR-0003
+- [x] Semantic tokens adopted for all text/surface styles; dark `--text-muted` contrast fixed — ADR-0004
+- [x] Dev-dep audit cleanup: 6 critical/149 high -> 0 critical/11 high (all remaining highs are unpatchable picomatch, dev-only) — ADR-0004
 - [ ] Global rate limit via Vercel KV/Upstash (current limiter is per serverless instance)
 - [ ] Migrate PWA to `@ducanh2912/next-pwa` and then consider Turbopack
-- [ ] Adopt semantic tokens across component styles (hue variables still in use)
 - [ ] Reconsider red scrollbar hover (reads as error state; subjective)
-- [ ] Whittle down the 125 high-severity dev-tooling audit findings on the next dependency refresh
 - [ ] Replace the generated placeholder thumbnail with real project artwork
+- [ ] picomatch ReDoS findings remain until eslint tooling drops micromatch (no patched release exists)
 
 ## Verification checklist (run after each change)
 

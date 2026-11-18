@@ -41,7 +41,7 @@
     }
 
     &:focus {
-      border-color: var(--gray-300);
+      border-color: var(--text-muted);
     }
 
     @include mixins.mediaquery("xs") {

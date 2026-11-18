@@ -57,7 +57,7 @@
         z-index: 1;
         border: var(--border);
         border-radius: 50%;
-        background-color: var(--gray-300);
+        background-color: var(--text-muted);
         width: 1.6rem;
         height: 1.6rem;
         content: "";
@@ -69,7 +69,7 @@
         left: 0.8rem;
         transform: translateX(-50%);
         z-index: 0;
-        background-color: var(--gray-300);
+        background-color: var(--text-muted);
         width: 0.15rem;
         height: calc(100% + 3rem - 2.6rem);
         content: "";
