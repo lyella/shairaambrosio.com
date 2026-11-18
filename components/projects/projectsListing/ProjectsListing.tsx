@@ -2,11 +2,9 @@ import algoliasearch from "algoliasearch";
 
 import dynamic from "next/dynamic";
 
-import { memo, useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 
-import { InstantSearch, useHits, useInstantSearch } from "react-instantsearch";
-
-type AlgoliaHit = { objectID: string };
+import { InstantSearch, useInstantSearch, useSearchBox } from "react-instantsearch";
 
 import ReactPaginate from "react-paginate";
 
@@ -40,14 +38,15 @@ const searchThinking = {
 
 interface CustomHitsProps {
   readonly currentObjectID: string | null;
+  readonly projects: Project[];
   readonly blurImageData: {
     readonly slug: string;
     readonly base64: string;
   }[];
 }
 
-export const CustomHits = ({ currentObjectID, blurImageData }: CustomHitsProps) => {
-  const { hits } = useHits<AlgoliaHit & Project>();
+export const CustomHits = ({ currentObjectID, projects, blurImageData }: CustomHitsProps) => {
+  const { query } = useSearchBox();
 
   const [isMounted, setIsMounted] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
@@ -56,6 +55,19 @@ export const CustomHits = ({ currentObjectID, blurImageData }: CustomHitsProps) 
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  // Source of truth is the statically generated project list; the query from
+  // the search box filters it locally, so the listing never depends on a
+  // stale Algolia index.
+  const hits = useMemo(() => {
+    const q = query.trim().toLowerCase();
+
+    if (!q) return projects;
+
+    return projects.filter((project) =>
+      [project.title, project.excerpt, ...(project.stack ?? [])].join(" ").toLowerCase().includes(q),
+    );
+  }, [projects, query]);
 
   const handlePageChange = ({ selected }: { selected: number }) => {
     setCurrentPage(selected);
@@ -78,16 +90,16 @@ export const CustomHits = ({ currentObjectID, blurImageData }: CustomHitsProps) 
   return (
     <>
       <ol id="search-hits-list" className={styles.list}>
-        {currentHits.map((hit) => (
+        {currentHits.map((project) => (
           <li
-            key={hit.objectID}
+            key={project.slug}
             role="option"
             aria-describedby="search-details"
-            aria-selected={currentObjectID === hit.objectID ? "true" : "false"}
-            id={"id" + hit.objectID}
+            aria-selected={currentObjectID === project.slug ? "true" : "false"}
+            id={"id" + project.slug}
             className={styles.hit}
           >
-            <ProjectThumbnail project={hit} blurDataURL={blurImageData.find((d) => d.slug === hit.slug)?.base64} />
+            <ProjectThumbnail project={project} blurDataURL={blurImageData.find((d) => d.slug === project.slug)?.base64} />
           </li>
         ))}
       </ol>
@@ -114,13 +126,14 @@ const LoadingIndicator = () => {
 };
 
 interface ProjectsListingProps {
+  readonly projects: Project[];
   readonly blurImageData: {
     readonly slug: string;
     readonly base64: string;
   }[];
 }
 
-export const ProjectsListing = memo<ProjectsListingProps>(({ blurImageData }) => {
+export const ProjectsListing = memo<ProjectsListingProps>(({ projects, blurImageData }) => {
   const [currentObjectID, setObjectId] = useState<string | null>(null);
 
   const handleInputChange = useCallback(() => {
@@ -132,7 +145,7 @@ export const ProjectsListing = memo<ProjectsListingProps>(({ blurImageData }) =>
       <InstantSearch indexName="projects" searchClient={searchClient}>
         <SearchBox currentObjectID={currentObjectID} onChange={handleInputChange} />
         <LoadingIndicator />
-        <CustomHits currentObjectID={currentObjectID} blurImageData={blurImageData} />
+        <CustomHits currentObjectID={currentObjectID} projects={projects} blurImageData={blurImageData} />
       </InstantSearch>
     </div>
   );
