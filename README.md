@@ -22,7 +22,7 @@ Through this website, I aim to showcase my skills and experience as a developer,
 | [Algolia](https://www.algolia.com/)                       | Implementing search                                                 |
 | [Framer Motion](https://www.framer.com/motion/)           | Motion library for React                                            |
 | [Context API](https://reactjs.org/docs/context.html)      | React structure that enables to share data with multiple components |
-| [React Query](https://react-query.tanstack.com/)          | Performant and powerful data synchronization for React              |
+| [TanStack Query](https://tanstack.com/query)              | Performant and powerful data synchronization for React              |
 | [React Hook Form](https://react-hook-form.com)            | Forms with easy-to-use validation                                   |
 | [SCSS](https://sass-lang.com)                             | CSS with superpowers                                                |
 | [CSS Modules](https://github.com/css-modules/css-modules) | Styles convention in React                                          |
@@ -41,16 +41,29 @@ Through this website, I aim to showcase my skills and experience as a developer,
 ## Installation process
 
 ```bash
-
 git clone https://github.com/lyella/shairaambrosio.com.git
 
 yarn install
 
-# set up environment variables
+# set up environment variables (see .env-sample)
 
-yarn start
+yarn dev
 
 ```
+
+CI (`.github/workflows/ci.yml`) runs `yarn tsc`, `yarn audit --level critical`, and a
+production build on every push/PR to `main`.
+
+## Engineering docs
+
+- `plan.md` — living backlog and verification checklist
+- `docs/adr/` — architecture decision records (security hardening, dependency
+  migrations, security headers, design tokens, rate limiting)
+- `docs/qa-security-ux-audit-2026-11-18.md` — full audit artifact
+
+To enable global API rate limiting on Vercel, create a KV store and set
+`KV_REST_API_URL` / `KV_REST_API_TOKEN` (see `.env-sample`); otherwise the API
+falls back to a per-instance in-memory limiter.
 
 ## Live Site
 
