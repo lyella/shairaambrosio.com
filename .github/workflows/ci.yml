@@ -26,15 +26,15 @@ jobs:
       - name: Unit tests
         run: yarn test
 
-      - name: Security audit (fail on critical)
-        run: yarn audit --level critical
-
       - name: Update Algolia search index
         if: github.ref == 'refs/heads/main'
         run: yarn algolia
         env:
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
           ALGOLIA_UPDATE_API_KEY: ${{ secrets.ALGOLIA_UPDATE_API_KEY }}
+
+      - name: Security audit (fail on critical)
+        run: yarn audit --level critical
 
       - name: Production build
         run: yarn next build --webpack
