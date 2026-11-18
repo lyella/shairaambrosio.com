@@ -22,21 +22,22 @@
     display: none;
     position: absolute;
     top: -33%;
-    right: -10%;
+    right: 0;
     width: 160px;
 
     @include mixins.mediaquery("xs") {
       display: block;
     }
 
-    @include mixins.mediaquery("lg") {
-      right: -15%;
-    }
-
     @include mixins.mediaquery("xl") {
       top: -27%;
-      right: -13%;
       width: 170px;
+    }
+
+    // Only let the avatar poke out past the tile edge on wide screens, where the
+    // centered layout leaves enough margin that it cannot overflow the viewport.
+    @include mixins.mediaquery("xxl") {
+      right: -13%;
     }
   }
 
