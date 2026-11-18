@@ -23,12 +23,11 @@ export const ProjectTile = memo<ProjectTileProps>(({ project, mockupPosition }) 
 
   return (
     <motion.a
-      href=""
+      href={`/projects/${project.slug}`}
       className={styles.project}
-      // style={{ backgroundImage: `url(/img/projects/${project.slug}/back.png)` }}
       whileHover="hover"
     >
-      {/* <span className="sr-only">check my project - {project.title}</span> */}
+      <span className="sr-only">check my project - {project.title}</span>
       <motion.div
         className={clsx(styles.mockup, styles[mockupPosition])}
         variants={imageVariants}
@@ -37,7 +36,7 @@ export const ProjectTile = memo<ProjectTileProps>(({ project, mockupPosition }) 
           y: "-45%",
         }}
       >
-        {/* <Image src={`/img/projects/${project.slug}/mockup.png`} alt="" height="592" width="330" /> */}
+        <Image src={project.image} alt={project.title} height="880" width="1200" />
       </motion.div>
       <div className={styles.arrow}>
         <Arrow />
