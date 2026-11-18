@@ -29,6 +29,10 @@ Updated 2026-11-18 after ADR-0001 and ADR-0002. Items are ordered by impact.
 - [ ] OWNER: `SPOTIFY_REFRESH_TOKEN` is failing on Vercel — re-auth the Spotify app to restore the now-playing tile
 - [ ] OWNER: rotate the Upstash token pasted in chat earlier
 
+## Testing
+
+- [x] vitest suite (18 tests): API guards/validation/error-shapes, rate limiter, content smoke — `yarn test`, wired into CI (`.github/workflows/ci.yml`)
+
 ## Remaining
 
 - [x] Security headers (CSP, X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy) — ADR-0003
