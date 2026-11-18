@@ -4,13 +4,14 @@ import { useEffect, useState } from "react";
 import styles from "./clockTile.module.scss";
 
 const ClockTile: React.FC = () => {
-  const today = new Date();
-  const dayOfWeek = today.getDay();
+  // Render the date/clock only after mount: the server (UTC) and the
+  // browser (local timezone) disagree on "now", which breaks hydration.
+  const [time, setTime] = useState<Date | null>(null);
 
-  const formattedDate = format(today, "MMMM do, yyyy");
-  const day = format(today, "EEEE");
+  const today = time ?? new Date(0);
 
-  const [time, setTime] = useState<Date>(new Date());
+  const formattedDate = time ? format(today, "MMMM do, yyyy") : "";
+  const day = time ? format(today, "EEEE") : "";
 
   const getCurrentTime = () => {
     return new Date();
@@ -29,6 +30,7 @@ const ClockTile: React.FC = () => {
   };
 
   useEffect(() => {
+    setTime(getCurrentTime());
     const interval = setInterval(() => {
       setTime(getCurrentTime());
     }, 1000);
@@ -36,7 +38,7 @@ const ClockTile: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const { hour, minute, second } = getRotationDegrees(time);
+  const { hour, minute, second } = getRotationDegrees(today);
 
   return (
     <div className={styles.tile}>
