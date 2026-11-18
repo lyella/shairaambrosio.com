@@ -40,9 +40,12 @@ const nextConfig = {
             value: [
               "default-src 'self'",
               // 'unsafe-inline' is required: Next.js pages router injects inline __NEXT_DATA__
-              // and the gtag init snippet. frame-ancestors/object-src below still block
+              // and the gtag init snippet. 'unsafe-eval' is required: next-mdx-remote's
+              // MDXRemote evaluates the compiled MDX via new Function at runtime, which CSP
+              // blocks without it (client-side exception on every /blog/[slug] and
+              // /projects/[slug] page). frame-ancestors/object-src below still block
               // clickjacking and plugin abuse.
-              "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://va.vercel-scripts.com",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://va.vercel-scripts.com",
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: blob: https:",
               "font-src 'self' data:",
