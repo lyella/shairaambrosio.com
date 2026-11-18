@@ -20,8 +20,8 @@ Updated 2026-11-18 after ADR-0001 and ADR-0002. Items are ordered by impact.
 
 ## Remaining
 
+- [x] Security headers (CSP, X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy) — ADR-0003
 - [ ] Global rate limit via Vercel KV/Upstash (current limiter is per serverless instance)
-- [ ] Security headers (CSP, X-Frame-Options, Referrer-Policy) via `next.config.js` `headers()`
 - [ ] Migrate PWA to `@ducanh2912/next-pwa` and then consider Turbopack
 - [ ] Adopt semantic tokens across component styles (hue variables still in use)
 - [ ] Reconsider red scrollbar hover (reads as error state; subjective)

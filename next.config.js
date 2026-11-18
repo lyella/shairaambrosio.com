@@ -26,6 +26,38 @@ const nextConfig = {
     });
     return config;
   },
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+          {
+            key: "Content-Security-Policy",
+            value: [
+              "default-src 'self'",
+              // 'unsafe-inline' is required: Next.js pages router injects inline __NEXT_DATA__
+              // and the gtag init snippet. frame-ancestors/object-src below still block
+              // clickjacking and plugin abuse.
+              "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://va.vercel-scripts.com",
+              "style-src 'self' 'unsafe-inline'",
+              "img-src 'self' data: blob: https:",
+              "font-src 'self' data:",
+              "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://accounts.spotify.com https://api.spotify.com https://api.mailerlite.com https://*.algolia.net https://*.algolianet.com https://va.vercel-scripts.com https://*.ingest.vercel.com",
+              "frame-src https://github.com https://codesandbox.io",
+              "object-src 'none'",
+              "base-uri 'self'",
+              "form-action 'self'",
+              "frame-ancestors 'none'",
+            ].join("; "),
+          },
+        ],
+      },
+    ];
+  },
   async rewrites() {
     return [
       {
