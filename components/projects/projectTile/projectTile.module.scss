@@ -57,3 +57,27 @@
     }
   }
 }
+
+// On narrow screens the tile stretches over two rows, so the rotated
+// "peeking mockup" leaves a mostly empty tile — fill it with the image instead.
+@include mixins.mediaquery("lg-max") {
+  .project {
+    .mockup {
+      top: 0;
+      width: 100%;
+      height: 100%;
+
+      &.right,
+      &.left {
+        left: 0;
+        transform-origin: 50% 50%;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}
