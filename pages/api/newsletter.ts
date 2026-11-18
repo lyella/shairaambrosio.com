@@ -22,7 +22,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ message: "Method not allowed" });
   }
 
-  if (!rateLimit(req, res, 3, 60 * 60 * 1000, "newsletter")) {
+  if (!(await rateLimit(req, res, 3, 60 * 60 * 1000, "newsletter"))) {
     return res.status(429).json({ message: "Too many requests. Please try again later." });
   }
 

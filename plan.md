@@ -23,10 +23,11 @@ Updated 2026-11-18 after ADR-0001 and ADR-0002. Items are ordered by impact.
 - [x] Security headers (CSP, X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy) — ADR-0003
 - [x] Semantic tokens adopted for all text/surface styles; dark `--text-muted` contrast fixed — ADR-0004
 - [x] Dev-dep audit cleanup: 6 critical/149 high -> 0 critical/11 high (all remaining highs are unpatchable picomatch, dev-only) — ADR-0004
-- [ ] Global rate limit via Vercel KV/Upstash (current limiter is per serverless instance)
+- [x] Rate limiter is KV-ready: uses Vercel KV when KV_REST_API_URL/TOKEN are set, in-memory fallback otherwise — ADR-0005
+- [ ] Activate global rate limit: create a KV store in the Vercel dashboard, add KV_REST_API_URL + KV_REST_API_TOKEN to the project env, redeploy (owner action, no code change)
+- [ ] Replace the generated thumbnail with real project artwork (owner asset)
 - [ ] Migrate PWA to `@ducanh2912/next-pwa` and then consider Turbopack
 - [ ] Reconsider red scrollbar hover (reads as error state; subjective)
-- [ ] Replace the generated placeholder thumbnail with real project artwork
 - [ ] picomatch ReDoS findings remain until eslint tooling drops micromatch (no patched release exists)
 
 ## Verification checklist (run after each change)
