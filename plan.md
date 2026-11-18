@@ -24,7 +24,7 @@ Updated 2026-11-18 after ADR-0001 and ADR-0002. Items are ordered by impact.
 - [x] Semantic tokens adopted for all text/surface styles; dark `--text-muted` contrast fixed — ADR-0004
 - [x] Dev-dep audit cleanup: 6 critical/149 high -> 0 critical/11 high (all remaining highs are unpatchable picomatch, dev-only) — ADR-0004
 - [x] Rate limiter is KV-ready: uses Vercel KV when KV_REST_API_URL/TOKEN are set, in-memory fallback otherwise — ADR-0005
-- [ ] Activate global rate limit: run `VERCEL_TOKEN=vca_... ./scripts/setup-kv.sh` (creates KV store, sets env vars, redeploys) — owner supplies a token from vercel.com/account/tokens
+- [x] Global rate limit ACTIVE: Upstash KV connected, KV_REST_API_URL/TOKEN set on Vercel (all envs), production redeployed — verified 400x5 then 429 and `ratelimit:*` keys in KV (2026-11-18)
 - [ ] Replace the generated thumbnail with real project artwork (owner asset)
 - [ ] Migrate PWA to `@ducanh2912/next-pwa` and then consider Turbopack
 - [ ] Reconsider red scrollbar hover (reads as error state; subjective)
