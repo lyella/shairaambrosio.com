@@ -11,7 +11,7 @@ stack:
   - typescript
   - fastapi
   - python
-image: /img/projects/trackajob/logo.webp
+image: /img/projects/trackajob/thumbnail.png
 type: project
 author: Shaira Ambrosio
 category: hobby
@@ -22,33 +22,46 @@ category: hobby
   resume, and know exactly which version you sent where. Live at [trackajob.vercel.app](https://trackajob.vercel.app).
 </div>
 
-![TrackAJob landing page — sign in or create an account](/img/projects/trackajob/homepage.webp)
+<Image src="/img/projects/trackajob/homepage.webp" alt="TrackAJob landing page — sign in or create an account" />
 
 ## How to use it, from start to finish
 
 1. **Create an account.** Open [trackajob.vercel.app](https://trackajob.vercel.app), click "Create an account", and enter your email and a password (at least 8 characters). You are signed in immediately, and a verification link is emailed to you — click it to verify. On a new device or browser, sign-in is confirmed with a 6-digit code sent to your email, so a stolen password alone is not enough.
 
-   ![Create an account screen](/img/projects/trackajob/signup.webp)
+   <Image src="/img/projects/trackajob/signup.webp" alt="Create an account screen" />
 
 2. **Save a job post.** In the Applications tab, click "Add job post" and paste the job URL — the title, company, and description are scraped for you — or fill them in by hand. A bookmarklet does the same from any job board in one click. Each job gets a status: interested, applied, interview, offer, rejected, or closed, plus free-text notes for follow-ups.
 
-   ![Applications pipeline with status filters, search, and the resume version sent for each job](/img/projects/trackajob/applications.webp)
+   <Image
+     src="/img/projects/trackajob/applications.webp"
+     alt="Applications pipeline with status filters, search, and the resume version sent for each job"
+   />
 
    It looks just as clean on a phone:
 
-   ![Applications on mobile](/img/projects/trackajob/applications-mobile.webp)
+   <Image
+     src="/img/projects/trackajob/applications-mobile.webp"
+     alt="The applications pipeline on a phone, with the same statuses and filters"
+     variant="phone"
+   />
 
 3. **Build your base resume.** In the Resumes tab, click "New resume" and fill in the editor: basics, links, summary, skills, experience, education, and projects. It autosaves as you type (the "Saved" indicator), shows a live preview that matches the PDF export, and runs an ATS check that scores the resume out of 100 and tells you what to fix before sending.
 
-   ![Resume editor with autosave, ATS check score, and live preview](/img/projects/trackajob/editor.webp)
+   <Image
+     src="/img/projects/trackajob/editor.webp"
+     alt="Resume editor with autosave, ATS check score, and live preview"
+   />
 
 4. **Tailor per job, then diff before you send.** On any job card, click "Tailor resume" to rewrite your resume for that specific job ad. The tailoring rule is strict: the model may rearrange your words but never invent new facts — any line that does not come from your original resume is thrown out and you are told why. Every snapshot is kept as a new version, and the diff view lets you compare versions before sending. When you apply, attach the version you sent; the job card then shows exactly which version went where, e.g. "Frontend Developer Resume v2".
 
-   ![Resume library with version count per resume](/img/projects/trackajob/resumes.webp)
+   <Image src="/img/projects/trackajob/resumes.webp" alt="Resume library with version count per resume" />
 
 5. **Export and track the results.** Export any resume version as an ATS-safe PDF or DOCX. The Statistics tab shows your funnel (interested to offer), response rate, offers, applications per week, and lets you export a CSV or print a report.
 
-   ![Statistics dashboard with funnel, response rate, and weekly chart](/img/projects/trackajob/stats.webp)
+   <Image
+     src="/img/projects/trackajob/stats.webp"
+     alt="Statistics dashboard with funnel, response rate, and weekly chart"
+   />
 
 ## Tech stack
 

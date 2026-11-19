@@ -1,34 +1,84 @@
 @use "styles/_mixins";
 
+// Inline images in article/project bodies.
+//
+// Screenshots are the evidence that a project page is worth reading, so they get a
+// frame: a surface, a hairline border, a soft shadow and a tight caption. Before
+// this, images were bare and floated unanchored in the dark page.
 .wrapper {
-  position: relative;
-  flex-flow: column wrap;
-  gap: 1.4rem;
-  margin: 4rem -1.2rem;
-  width: auto;
-  height: auto;
-  @include mixins.flex;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 1.2rem;
+  margin: 4.5rem 0;
+  width: 100%;
 
   @include mixins.mediaquery("sm") {
-    margin: 4rem -2rem;
+    margin: 5.5rem 0;
   }
 
-  .nextImage {
+  .frame {
+    display: block;
     position: relative;
-    width: auto;
-    height: 100%;
+    border: 1px solid var(--surface-border, rgba(255, 255, 255, 0.12));
+    border-radius: 1.6rem;
+    background-color: var(--surface-muted);
+    width: 100%;
+    overflow: hidden;
+    // A zero-alpha shadow keeps the card from looking flat against the page while
+    // staying invisible in the light theme, where the border does the work.
+    box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.55);
   }
 
   .image {
-    border-radius: 2rem;
-    max-width: 100%;
+    display: block;
+    transition: transform 220ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    // Height auto keeps the file's true proportion even when the width/height props
+    // announce a different ratio, so a 1440x900 capture inside a 1200x880 box still
+    // renders edge to edge instead of being letterboxed.
+    width: 100%;
+    height: auto;
   }
 
   .caption {
-    opacity: 0.6;
-    padding: 0 1rem;
-    font-style: italic;
-    font-size: 1.4rem;
+    max-width: 52ch;
+    color: var(--text-muted);
+    font-size: 1.35rem;
+    line-height: 1.6;
     text-align: center;
+
+    @include mixins.mediaquery("lg") {
+      font-size: 1.45rem;
+    }
+  }
+}
+
+// Desktop screenshots can use the full measure of the article column.
+.wide {
+  .frame {
+    max-width: 100%;
+  }
+}
+
+// A 375x812 capture stretched to 666px would be ~1440px tall and unreadable, so it
+// is capped and centred as a phone.
+.phone {
+  .frame {
+    border-radius: 2.4rem;
+    max-width: 300px;
+    // Simulates the device bezel without needing a frame asset.
+    padding: 0.6rem;
+    background-color: var(--black-200);
+
+    @include mixins.mediaquery("sm") {
+      max-width: 320px;
+    }
+  }
+
+  .image {
+    border-radius: 1.9rem;
+    // A 375x812 capture is tall; without this it stretched the full column width and
+    // became a ~1440px-tall unreadable strip.
+    max-width: 100%;
   }
 }

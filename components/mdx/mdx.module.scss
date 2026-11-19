@@ -47,8 +47,16 @@
         margin: 4.5rem -2rem;
       }
 
+      // The hero must behave like a frame, not a stretched box. `height: auto` plus
+      // an explicit aspect-ratio lets the image keep its natural proportion no matter
+      // which asset a project supplies; without it next/image's 1200x880 intrinsic
+      // size reserved a 1.36 box and letterboxed a differently-shaped image inside.
       img {
+        display: block;
         border-radius: 2rem;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
       }
 
       .arrow {

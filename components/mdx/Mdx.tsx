@@ -117,14 +117,28 @@ export const Mdx = memo<MdxProps>(({ resource, content }) => {
               variants={imageVariants}
               target="_blank"
             >
-              <NextImage src={resource.image} alt={resource.title} width={1200} height={880} />
+              <NextImage
+                src={resource.image}
+                alt={resource.title}
+                width={1200}
+                height={880}
+                sizes="(max-width: 1100px) 92vw, 666px"
+                priority
+              />
               <div className={styles.arrow}>
                 <Arrow />
               </div>
             </motion.a>
           ) : (
             <div className={styles.thumbnail}>
-              <NextImage src={resource.image} alt={resource.title} width={1200} height={880} />
+              <NextImage
+                src={resource.image}
+                alt={resource.title}
+                width={1200}
+                height={880}
+                sizes="(max-width: 1100px) 92vw, 666px"
+                priority
+              />
             </div>
           )}
 
