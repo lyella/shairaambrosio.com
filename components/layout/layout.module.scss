@@ -16,6 +16,11 @@
     display: grid;
     position: relative;
     grid-template-columns: auto;
+    // Centre every header cell on the same optical line. Without this the grid
+    // defaults to `stretch`, and each child centres its own content differently —
+    // the logo (a 1px-tall box with an overflowing svg) rose 24.5px above the nav
+    // pill and the theme toggle.
+    align-items: center;
 
     @include mixins.mediaquery("sm") {
       grid-template-columns: 1fr auto 1fr;
@@ -43,18 +48,26 @@
       position: absolute;
       transform: scale(0);
       max-width: 4rem;
-      height: 1px;
+      // Hidden on mobile. It used to be `height: 1px`, which collapsed its grid
+      // cell to 1px tall so the svg overflowed upward out of alignment.
+      height: auto;
 
       @include mixins.mediaquery("sm") {
         position: static;
         transform: scale(1);
+        // An explicit display avoids the inline-svg baseline gap that pushed the
+        // mark a few pixels lower than the nav.
+        display: block;
+        line-height: 0;
       }
 
       svg {
+        display: block;
         transition: transform 2s;
         border: 2px solid var(--black-100);
         border-radius: 50%;
         width: 100%;
+        height: auto;
 
         &:hover {
           transform: rotate(360deg);

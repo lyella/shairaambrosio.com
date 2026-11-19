@@ -52,3 +52,9 @@ yarn-error.log*
 
 # local-only dev notes, not for github
 /notes/
+
+# scratch output from local verification (headless-browser profiles, screenshots).
+# A Chrome profile is thousands of files and must never be committed.
+.tmp-run/
+.tmp-*/
+.tmp-*
