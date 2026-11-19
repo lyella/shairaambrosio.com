@@ -69,6 +69,12 @@ export type Project = {
   repoUrl: string;
   stack: string[];
   image: string;
+  /**
+   * Optional portrait artwork for the homepage tile, which is a tall grid cell
+   * (about 0.46 ratio). A wide screenshot cannot fill it without being cropped to a
+   * slice, so projects can supply a stacked alternative. Falls back to `image`.
+   */
+  imageTall?: string;
   author: Author;
   category: Category;
 };

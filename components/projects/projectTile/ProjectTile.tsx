@@ -21,6 +21,16 @@ export const ProjectTile = memo<ProjectTileProps>(({ project }) => {
     },
   };
 
+  // The tile is a tall, narrow grid cell; prefer portrait artwork when a project
+  // supplies it, because cropping a wide screenshot to this shape leaves a slice.
+  const artwork = project.imageTall ?? project.image;
+
+  // Intrinsic size must describe the ACTUAL file. Hardcoding 1200x880 made the
+  // browser reserve a 1.36 box for a 0.349 portrait image, so the tile painted a
+  // zoomed-in corner of it.
+  const isPortrait = Boolean(project.imageTall);
+  const intrinsic = isPortrait ? { width: 700, height: 2006 } : { width: 1200, height: 880 };
+
   return (
     // next/link instead of a raw <a>: this is an internal route, so it should be
     // prefetched and use client navigation instead of a full document load.
@@ -28,10 +38,10 @@ export const ProjectTile = memo<ProjectTileProps>(({ project }) => {
       <span className="sr-only">check my project - {project.title}</span>
       <motion.div className={styles.mockup} variants={imageVariants} whileHover="hover">
         <Image
-          src={project.image}
+          src={artwork}
           alt={project.title}
-          height="880"
-          width="1200"
+          width={intrinsic.width}
+          height={intrinsic.height}
           sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 420px"
         />
       </motion.div>

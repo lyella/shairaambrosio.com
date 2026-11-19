@@ -27,7 +27,10 @@
     img {
       width: 100%;
       height: 100%;
+      // `cover` is correct now that a project can supply portrait artwork for this
+      // tall cell (`imageTall`). Projects without one still get a centre crop.
       object-fit: cover;
+      object-position: center;
     }
   }
 
