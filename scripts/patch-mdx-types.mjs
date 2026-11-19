@@ -6,8 +6,12 @@
 // `(props) => Element | null`, which no normal React 19 component satisfies.
 //
 // This rewrites the namespace references in place. It runs from `postinstall` so a
-// fresh `yarn install` (locally or on Vercel) gets the same fixed types without
-// needing patch-package's per-line bookkeeping for a file we replace wholesale.
+// fresh `yarn install` (locally or on Vercel) gets the same fixed types.
+//
+// It is also wired into `tsc`, because `yarn add` / `yarn remove` re-extract
+// packages WITHOUT triggering postinstall, and that silently reverts this patch.
+// The script is idempotent, so running it before every type-check is cheap and
+// turns a confusing type error into a non-event.
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -19,6 +23,7 @@ const targets = [
 ];
 
 const IMPORT_LINE = "import * as React from 'react';";
+const quiet = process.argv.includes("--quiet");
 
 for (const file of targets) {
   if (!fs.existsSync(file)) {
@@ -41,5 +46,7 @@ for (const file of targets) {
   patched = `${IMPORT_LINE}\n\n${patched}`;
 
   fs.writeFileSync(file, patched);
-  console.log(`[patch-mdx-types] patched ${path.relative(root, file)} for React 19`);
+  if (!quiet) {
+    console.log(`[patch-mdx-types] patched ${path.relative(root, file)} for React 19`);
+  }
 }
