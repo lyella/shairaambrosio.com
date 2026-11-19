@@ -21,7 +21,8 @@
     "audit:gate": "bash ./scripts/audit-gate.sh",
     "postinstall": "node scripts/patch-mdx-types.mjs",
     "prepare": "husky",
-    "test": "vitest run"
+    "test": "vitest run",
+    "sitemap:submit": "node scripts/submit-sitemap.mjs"
   },
   "repository": {
     "type": "git",
