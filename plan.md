@@ -90,8 +90,7 @@ Updated 2026-11-19 after the React 19 + tooling overhaul (ADR-0006).
 - [ ] OPTIONAL: Spotify backend gutting — the owner chose to leave it as-is
 - [ ] Replace the generated thumbnail with real project artwork
 - [ ] Migrate PWA to `@ducanh2912/next-pwa`, then evaluate Turbopack
-- [ ] Prettier baseline: ~80 pre-existing files are unformatted; `format:check`
-      is a script but not a CI gate until that baseline lands
+- [x] Prettier baseline: `.gitattributes` + full reformat; `format:check` is a CI gate
 - [ ] picomatch/minimatch/ajv/uuid/esbuild/vitest moderates: dev-tooling only,
       no patched release or no runtime exposure (see `yarn audit:gate`)
 - [ ] Blog/project MDX bodies render client-side (`Mdx.tsx` calls
