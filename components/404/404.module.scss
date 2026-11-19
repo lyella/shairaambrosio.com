@@ -4,6 +4,16 @@
   @include mixins.flex;
   flex-flow: column wrap;
 
+  .title {
+    padding: 1rem;
+    font-size: 2.4rem;
+    text-align: center;
+
+    @include mixins.mediaquery("lg") {
+      font-size: 3.2rem;
+    }
+  }
+
   .description {
     padding: 1rem;
     font-size: 1.7rem;

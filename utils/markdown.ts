@@ -1,5 +1,4 @@
-//@ts-ignore
-import rehypePrism from "@mapbox/rehype-prism";
+import rehypePrismPlus from "rehype-prism-plus";
 import { visit } from "unist-util-visit";
 import type { Node } from "unist";
 
@@ -39,6 +38,10 @@ function isCodeNode(node: Node): node is CodeNode {
   return node && node.type === "element" && (node as CodeNode).tagName === "code";
 }
 
+// The stylesheet hangs the language badge off `pre[data-lang]`, but neither prism
+// plugin emits that attribute: prism-js classes the `code` element with
+// `language-*`. This transformer copies the language onto the `pre` so the badge
+// and the `code.language-css` / `code.language-ts` theme selectors keep working.
 export function addDataToCodeBlocks(): import("unified").Transformer {
   return (tree) => {
     visit(tree, "element", (node: Node) => {
@@ -58,4 +61,7 @@ export function addDataToCodeBlocks(): import("unified").Transformer {
   };
 }
 
-export const commonRehypePlugins = [rehypePrism, addDataToCodeBlocks];
+// rehype-prism-plus replaces @mapbox/rehype-prism, which has not shipped since 0.9.0
+// and pinned prismjs 1.27 (DOM-clobbering advisory). `showLineNumbers` is off: the
+// design pre-dates line numbers and adding them would shift every code block.
+export const commonRehypePlugins = [rehypePrismPlus, addDataToCodeBlocks];

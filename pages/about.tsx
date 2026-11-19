@@ -10,7 +10,15 @@ const About: NextPage = () => {
 
   return (
     <Layout>
-      <Seo title="About" description={description} imageUrl={"/img/about.png"} />
+      <Seo
+        title="About"
+        description={description}
+        imageUrl={"/img/about.png"}
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "About", path: "/about" },
+        ]}
+      />
       <Hero title="About" description={description} />
       <AboutView />
     </Layout>

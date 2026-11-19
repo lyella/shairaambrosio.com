@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# API routes carry no content worth crawling.
+Disallow: /api/
+
+Sitemap: https://shairaambrosio.com/sitemap.xml
+Host: https://shairaambrosio.com

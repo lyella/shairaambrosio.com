@@ -31,7 +31,7 @@ export const ContactForm = ({ handleIsSent }: { handleIsSent: (val: boolean) => 
 
   useEffect(() => {
     handleIsSent(promiseStatus === "fullfilled");
-  }, [promiseStatus]);
+  }, [promiseStatus, handleIsSent]);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(handleFormSubmit)} noValidate>

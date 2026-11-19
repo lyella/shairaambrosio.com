@@ -60,6 +60,11 @@
   .mail {
     font-size: 2rem !important;
 
+    a {
+      color: black;
+      text-decoration: underline;
+    }
+
     @include mixins.mediaquery("lg-max") {
       font-size: 1rem !important;
     }

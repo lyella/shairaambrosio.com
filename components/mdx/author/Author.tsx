@@ -7,7 +7,7 @@ import { Link } from "../link/Link";
 import styles from "./author.module.scss";
 
 type AuthorProps = {
-  readonly name: typeof allAuthors[number]["name"];
+  readonly name: (typeof allAuthors)[number]["name"];
 };
 
 export const Author = memo<AuthorProps>(({ name }) => {

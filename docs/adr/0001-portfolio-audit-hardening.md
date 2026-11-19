@@ -14,25 +14,25 @@ as a result.
 
 ### Security
 
-| # | Finding | Severity | Resolution |
-|---|---------|----------|------------|
-| S1 | `next@16.2.10` had 5 critical CVEs (patched in >=16.4.1) | Critical | Upgraded to `next@^16.4.1` (installed 16.4.6) |
-| S2 | Transitive `tar` critical (patched in >=7.5.19), build-time only | Critical | Pinned via `resolutions` in package.json; 0 criticals remain |
-| S3 | `/api/contact` serialized raw server errors (yup internals, SendGrid errors) to clients | High | Sanitized responses; full errors logged server-side only |
-| S4 | `/api/newsletter` accepted any string as `email` and forwarded it to MailerLite | High | Added yup `EMAIL_REGEX` validation |
-| S5 | API routes accepted any HTTP method | Medium | 405 + `Allow` header guards on all three routes |
-| S6 | No secrets in source or git history; `.env*` properly gitignored | Info | No change needed |
+| #   | Finding                                                                                 | Severity | Resolution                                                   |
+| --- | --------------------------------------------------------------------------------------- | -------- | ------------------------------------------------------------ |
+| S1  | `next@16.2.10` had 5 critical CVEs (patched in >=16.4.1)                                | Critical | Upgraded to `next@^16.4.1` (installed 16.4.6)                |
+| S2  | Transitive `tar` critical (patched in >=7.5.19), build-time only                        | Critical | Pinned via `resolutions` in package.json; 0 criticals remain |
+| S3  | `/api/contact` serialized raw server errors (yup internals, SendGrid errors) to clients | High     | Sanitized responses; full errors logged server-side only     |
+| S4  | `/api/newsletter` accepted any string as `email` and forwarded it to MailerLite         | High     | Added yup `EMAIL_REGEX` validation                           |
+| S5  | API routes accepted any HTTP method                                                     | Medium   | 405 + `Allow` header guards on all three routes              |
+| S6  | No secrets in source or git history; `.env*` properly gitignored                        | Info     | No change needed                                             |
 
 ### QA / functional
 
-| # | Finding | Severity | Resolution |
-|---|---------|----------|------------|
-| Q1 | `/projects` returned 404 in production: `getStaticProps` threw because project thumbnails referenced in `content/projects/*.mdx` do not exist in `public/img/projects/`, and one bad image failed the whole page | Critical (broken page) | Per-image try/catch; missing blur degrades gracefully. Verified 200 after fix |
-| Q2 | `build.sh` had CRLF line endings and silently did nothing under Git Bash on Windows | Medium | Normalized to LF |
-| Q3 | `yarn next build` fails without `--webpack` (Next 16 defaults to Turbopack; config has a webpack block) | Medium | Documented; `build.sh` already passes `--webpack` |
-| Q4 | 6 pre-existing `tsc --noEmit` errors (Mdx.tsx, generateAlgoliaItems.ts, projects/index.tsx) hidden by `ignoreBuildErrors: true` | Medium | Not fixed in this pass; tracked in plan.md |
-| Q5 | `countapi-js` view counters are dead (countapi.xyz shut down); every blog page load fires a failing request | Low | Deferred; tracked in plan.md |
-| Q6 | `/about` SSG takes ~37s due to serial external fetches (Spotify/Algolia/CountAPI) at build time | Low | Deferred; tracked in plan.md |
+| #   | Finding                                                                                                                                                                                                          | Severity               | Resolution                                                                    |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | ----------------------------------------------------------------------------- |
+| Q1  | `/projects` returned 404 in production: `getStaticProps` threw because project thumbnails referenced in `content/projects/*.mdx` do not exist in `public/img/projects/`, and one bad image failed the whole page | Critical (broken page) | Per-image try/catch; missing blur degrades gracefully. Verified 200 after fix |
+| Q2  | `build.sh` had CRLF line endings and silently did nothing under Git Bash on Windows                                                                                                                              | Medium                 | Normalized to LF                                                              |
+| Q3  | `yarn next build` fails without `--webpack` (Next 16 defaults to Turbopack; config has a webpack block)                                                                                                          | Medium                 | Documented; `build.sh` already passes `--webpack`                             |
+| Q4  | 6 pre-existing `tsc --noEmit` errors (Mdx.tsx, generateAlgoliaItems.ts, projects/index.tsx) hidden by `ignoreBuildErrors: true`                                                                                  | Medium                 | Not fixed in this pass; tracked in plan.md                                    |
+| Q5  | `countapi-js` view counters are dead (countapi.xyz shut down); every blog page load fires a failing request                                                                                                      | Low                    | Deferred; tracked in plan.md                                                  |
+| Q6  | `/about` SSG takes ~37s due to serial external fetches (Spotify/Algolia/CountAPI) at build time                                                                                                                  | Low                    | Deferred; tracked in plan.md                                                  |
 
 ### UX / design
 

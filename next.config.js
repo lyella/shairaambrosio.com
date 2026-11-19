@@ -1,28 +1,28 @@
 /** @type {import('next').NextConfig} */
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-import withPWA from 'next-pwa';
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
+import withPWA from "next-pwa";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ['react-github-btn'],
+  transpilePackages: ["react-github-btn"],
   images: {
     remotePatterns: [
-      { protocol: 'https', hostname: 'avatars.githubusercontent.com' },
-      { protocol: 'https', hostname: 'github.com' },
-      { protocol: 'https', hostname: 'i.scdn.co' },
+      { protocol: "https", hostname: "avatars.githubusercontent.com" },
+      { protocol: "https", hostname: "github.com" },
+      { protocol: "https", hostname: "i.scdn.co" },
     ],
   },
   sassOptions: {
-    includePaths: [join(__dirname, 'styles')],
+    includePaths: [join(__dirname, "styles")],
   },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
-      use: ['@svgr/webpack'],
+      use: ["@svgr/webpack"],
     });
     return config;
   },
@@ -64,46 +64,50 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/feed',
-        destination: '/feed.xml',
+        source: "/feed",
+        destination: "/feed.xml",
       },
     ];
   },
   async redirects() {
+    // Resolved at request time from the content directory instead of being baked
+    // into this file by generateNewPostRedirect.ts.
+    //
+    // That script rewrote only the FIRST occurrence of the placeholder, so
+    // `/new` and `/newest-post` kept redirecting to
+    // /blog/dunning-kruger-effect-in-programming — a permanently broken 404 — and in a
+    // development run it also overwrote the `/new-post` source itself.
+    const { readdirSync } = await import("fs");
+    const postsDir = join(__dirname, "content", "posts");
+    const newestSlug = readdirSync(postsDir)
+      .filter((file) => file.endsWith(".mdx"))
+      .map((file) => file.replace(/\.mdx$/, ""))
+      .sort()
+      .pop();
+
+    const newestPostRedirects = newestSlug
+      ? ["/new-post", "/new", "/newest-post"].map((source) => ({
+          source,
+          destination: `/blog/${newestSlug}`,
+          permanent: false,
+        }))
+      : [];
+
     return [
+      ...newestPostRedirects,
       {
-        source: '/new-post',
-        destination: '/blog/THE_NEWEST_POST_SLUG_HERE',
-        permanent: false,
-      },
-      {
-        source: '/new',
-        destination: '/blog/THE_NEWEST_POST_SLUG_HERE',
-        permanent: false,
-      },
-      {
-        source: '/newest-post',
-        destination: '/blog/THE_NEWEST_POST_SLUG_HERE',
-        permanent: false,
-      },
-      {
-        source: '/x',
+        source: "/x",
         destination: `https://x.com/${process.env.NEXT_PUBLIC_x_USERNAME || "shaicodes"}`,
         permanent: true,
       },
       {
-        source: '/linkedin',
+        source: "/linkedin",
         destination: `https://www.linkedin.com/in/${process.env.NEXT_PUBLIC_LINKEDIN_USERNAME}`,
         permanent: true,
       },
       {
-        source: '/github',
+        source: "/github",
         destination: `https://github.com/${process.env.NEXT_PUBLIC_GITHUB_USERNAME}`,
-        permanent: true,
-      },
-      {
-        source: '/gumroad',
-        destination: `https://xxxxxxxx.gumroad.com/`,
         permanent: true,
       },
     ];
@@ -111,6 +115,6 @@ const nextConfig = {
 };
 
 export default withPWA({
-  dest: 'public',
-  disable: process.env.NODE_ENV === 'development',
+  dest: "public",
+  disable: process.env.NODE_ENV === "development",
 })(nextConfig);

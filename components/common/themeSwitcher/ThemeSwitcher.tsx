@@ -1,10 +1,14 @@
 import { motion } from "framer-motion";
+import type { Transition } from "framer-motion";
+import { useId } from "react";
 
 import { useTheme } from "context/ThemeContext";
 
 import styles from "./themeSwitcher.module.scss";
 
-const transition = {
+// Typed as Transition: framer-motion 12 narrowed `type` from `string` to its
+// animation-generator union, so an inferred object no longer satisfies Variants.
+const transition: Transition = {
   type: "spring",
   stiffness: 200,
   damping: 10,
@@ -22,7 +26,7 @@ const MoonIcon = () => {
   };
 
   return (
-    <motion.svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" key="moon">
+    <motion.svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" key="moon" aria-hidden="true" focusable="false">
       <motion.path
         d="M 43.81 29.354 C 43.688 28.958 43.413 28.626 43.046 28.432 C 42.679 28.238 42.251 28.198 41.854 28.321 C 36.161 29.886 30.067 28.272 25.894 24.096 C 21.722 19.92 20.113 13.824 21.683 8.133 C 21.848 7.582 21.697 6.985 21.29 6.578 C 20.884 6.172 20.287 6.022 19.736 6.187 C 10.659 8.728 4.691 17.389 5.55 26.776 C 6.408 36.163 13.847 43.598 23.235 44.451 C 32.622 45.304 41.28 39.332 43.816 30.253 C 43.902 29.96 43.9 29.647 43.81 29.354 Z"
         fill="#F4DC9F"
@@ -49,7 +53,15 @@ const SunIcon = () => {
   };
 
   return (
-    <motion.svg key="sun" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" whileTap={whileTap}>
+    <motion.svg
+      key="sun"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      whileTap={whileTap}
+      aria-hidden="true"
+      focusable="false"
+    >
       <motion.circle
         cx="11.9998"
         cy="11.9998"
@@ -73,14 +85,31 @@ const SunIcon = () => {
 
 export const ThemeSwitcher = () => {
   const { theme, toggleTheme } = useTheme();
+  const id = useId();
 
   return (
     <>
-      <span className="sr-only">change theme to {theme === "dark" ? "light" : "dark"}</span>
-      <input type="checkbox" className={styles.checkbox} onChange={toggleTheme} checked={theme === "light"} />
-      <div className={styles.toggle}>
-        <div className={styles.icon}>{theme === "light" ? <SunIcon /> : <MoonIcon />}</div>
-      </div>
+      {/* A visually hidden but real checkbox, labelled through htmlFor, exposed as a
+          switch. It was previously an unnamed checkbox sitting next to a <label>
+          with no `for`, so assistive tech announced "checkbox, unchecked" with no
+          purpose. `id` is instance-unique because the switcher renders twice per
+          page (header and footer). */}
+      <input
+        type="checkbox"
+        id={id}
+        role="switch"
+        aria-checked={theme === "light"}
+        aria-label="Dark mode"
+        className={styles.checkbox}
+        onChange={toggleTheme}
+        checked={theme === "light"}
+      />
+      <label htmlFor={id} className={styles.toggle}>
+        <span className="sr-only">{theme === "light" ? "Switch to dark mode" : "Switch to light mode"}</span>
+        <span className={styles.icon} aria-hidden="true">
+          {theme === "light" ? <SunIcon /> : <MoonIcon />}
+        </span>
+      </label>
     </>
   );
 };

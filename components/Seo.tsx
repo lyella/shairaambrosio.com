@@ -4,7 +4,18 @@ import { memo } from "react";
 import { NextSeo, ArticleJsonLd } from "next-seo";
 
 import type { Author } from "types";
-import { HOST, SITE_TITLE_TEMPLATE, SITE_TITLE, DEFAULT_DESCRIPTION, DEFAULT_IMAGE_URL } from "utils/consts";
+import {
+  absoluteUrl,
+  DEFAULT_DESCRIPTION,
+  DEFAULT_IMAGE_URL,
+  HOST,
+  OG_LOCALE,
+  PERSON_JOB_TITLE,
+  PERSON_NAME,
+  SITE_TITLE,
+  SITE_TITLE_TEMPLATE,
+  SOCIAL_PROFILES,
+} from "utils/consts";
 
 type SeoProps = {
   readonly title?: string;
@@ -13,7 +24,52 @@ type SeoProps = {
   readonly type?: "website" | "article";
   readonly imageUrl?: string;
   readonly publishedAt?: string;
+  /** Trail of ancestors (excluding this page) used for BreadcrumbList JSON-LD. */
+  readonly breadcrumbs?: { name: string; path: string }[];
+  /** Omit the site-level Person/WebSite graph, e.g. on the 404 page. */
+  readonly withoutSiteGraph?: boolean;
 };
+
+// Site-level structured data. A portfolio is a person, so Person + WebSite + the
+// social profiles in sameAs is what lets search engines and AI answer engines
+// attribute the site to Shaira rather than to a generic blog.
+const buildSiteGraph = () => ({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": absoluteUrl("/#person"),
+      name: PERSON_NAME,
+      alternateName: "shaicodes",
+      url: HOST,
+      image: absoluteUrl(DEFAULT_IMAGE_URL),
+      jobTitle: PERSON_JOB_TITLE,
+      description: DEFAULT_DESCRIPTION,
+      sameAs: SOCIAL_PROFILES.filter(Boolean),
+    },
+    {
+      "@type": "WebSite",
+      "@id": absoluteUrl("/#website"),
+      url: HOST,
+      name: SITE_TITLE,
+      description: DEFAULT_DESCRIPTION,
+      inLanguage: "en",
+      author: { "@id": absoluteUrl("/#person") },
+      publisher: { "@id": absoluteUrl("/#person") },
+    },
+  ],
+});
+
+const buildBreadcrumbList = (trail: { name: string; path: string }[], currentName: string, currentPath: string) => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [...trail, { name: currentName, path: currentPath }].map((crumb, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: crumb.name,
+    item: absoluteUrl(crumb.path),
+  })),
+});
 
 export const Seo = memo<SeoProps>(
   ({
@@ -23,30 +79,35 @@ export const Seo = memo<SeoProps>(
     author,
     type = "website",
     publishedAt,
+    breadcrumbs,
+    withoutSiteGraph = false,
   }) => {
     const { asPath } = useRouter();
-    const canonical = `${HOST}${asPath}`.trim().replace(/\/$/, "");
+    // Strip the query string and trailing slash so /blog?category=css and /blog
+    // never compete as two different canonicals.
+    const cleanPath = asPath.split("?")[0].replace(/\/$/, "") || "/";
+    const canonical = absoluteUrl(cleanPath);
+    const pageTitle = title ? SITE_TITLE_TEMPLATE.replace("%s", title) : SITE_TITLE;
+    const socialImage = absoluteUrl(imageUrl);
 
     return (
       <>
         <NextSeo
-          title={title ? SITE_TITLE_TEMPLATE.replace("%s", title) : SITE_TITLE}
+          title={pageTitle}
           description={description}
           canonical={canonical}
-          robotsProps={{
-            maxSnippet: -1,
-            maxImagePreview: "large",
-            maxVideoPreview: -1,
-          }}
           openGraph={{
             type,
             url: canonical,
-            locale: "en_EN",
-            title,
+            locale: OG_LOCALE,
+            title: pageTitle,
             description,
             site_name: SITE_TITLE,
-            images: [{ width: 1200, height: 880, alt: title, url: `${HOST}${imageUrl}` }],
+            images: [{ width: 1200, height: 880, alt: title || SITE_TITLE, url: socialImage }],
             ...(type === "article" ? { article: { publishedTime: publishedAt, authors: [author as Author] } } : {}),
+          }}
+          twitter={{
+            cardType: "summary_large_image",
           }}
         />
         {type === "article" ? (
@@ -56,10 +117,21 @@ export const Seo = memo<SeoProps>(
             description={description}
             datePublished={publishedAt as string}
             dateModified={publishedAt as string}
-            authorName={author as Author}
-            publisherName="Shaira Ambrosio"
-            publisherLogo="/regular-android-icon-192x192.png"
-            images={[`${HOST}${imageUrl}`]}
+            authorName={author || PERSON_NAME}
+            publisherName={PERSON_NAME}
+            publisherLogo={absoluteUrl("/regular-android-icon-192x192.png")}
+            images={[socialImage]}
+          />
+        ) : null}
+        {withoutSiteGraph ? null : (
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildSiteGraph()) }} />
+        )}
+        {breadcrumbs?.length ? (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(buildBreadcrumbList(breadcrumbs, title || SITE_TITLE, cleanPath)),
+            }}
           />
         ) : null}
         <Head>
@@ -67,13 +139,13 @@ export const Seo = memo<SeoProps>(
             rel="alternate"
             type="application/rss+xml"
             title="Shaira Ambrosio &raquo; Posts feed"
-            href={`${HOST}/feed.xml`}
+            href={absoluteUrl("/feed.xml")}
           />
           <link
             rel="alternate"
             type="application/json"
             title="Shaira Ambrosio &raquo; Posts feed"
-            href={`${HOST}/feed.json`}
+            href={absoluteUrl("/feed.json")}
           />
           <link rel="apple-touch-icon" sizes="57x57" href="/regular-apple-icon-57x57.png" />
           <link rel="apple-touch-icon" sizes="60x60" href="/regular-apple-icon-60x60.png" />

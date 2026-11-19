@@ -1,13 +1,14 @@
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
+
+import { useMounted } from "hooks/useMounted";
 
 const Lottie = dynamic(() => import("react-lottie"), { ssr: false });
 
 import { ContactForm } from "components/contact/contactForm/ContactForm";
 
-import messageSending from '../../public/lottie/message_sending.json';
-import messageSent from '../../public/lottie/message_sent.json';
-
+import messageSending from "../../public/lottie/message_sending.json";
+import messageSent from "../../public/lottie/message_sent.json";
 
 import styles from "./contact.module.scss";
 const sending = {
@@ -28,21 +29,17 @@ const sent = {
 };
 export const Contact = () => {
   const [isSent, setIsSent] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
+  const isMounted = useMounted();
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  // Stable identity: ContactForm depends on this callback inside an effect, so an
+  // inline arrow would re-run that effect on every parent render.
+  const handleIsSent = useCallback((val: boolean) => setIsSent(val), []);
 
   return (
     <section className={styles.wrapper}>
-      <ContactForm handleIsSent={(val: boolean) => setIsSent(val)} />
+      <ContactForm handleIsSent={handleIsSent} />
       <div className={styles.avatar}>
-        {isMounted && (isSent ? (
-          <Lottie options={sent} height={400} />
-        ) : (
-          <Lottie options={sending} height={500} />
-        ))}
+        {isMounted && (isSent ? <Lottie options={sent} height={400} /> : <Lottie options={sending} height={500} />)}
       </div>
     </section>
   );

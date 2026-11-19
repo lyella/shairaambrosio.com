@@ -4,13 +4,15 @@ import dynamic from "next/dynamic";
 
 import { useRouter } from "next/router";
 
-import { memo, useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useState } from "react";
 
 import { Configure, InstantSearch, useHits, useInstantSearch } from "react-instantsearch";
 
 type AlgoliaHit = { objectID: string };
 
 import ReactPaginate from "react-paginate";
+
+import { useMounted } from "hooks/useMounted";
 
 const Lottie = dynamic(() => import("react-lottie"), { ssr: false });
 
@@ -53,13 +55,9 @@ interface CustomHitsProps {
 export const CustomHits = ({ currentObjectID }: CustomHitsProps) => {
   const { hits } = useHits<AlgoliaHit & Post>();
 
-  const [isMounted, setIsMounted] = useState(false);
+  const isMounted = useMounted();
   const [currentPage, setCurrentPage] = useState(0);
   const HITS_PER_PAGE = 10;
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   const handlePageChange = ({ selected }: { selected: number }) => {
     setCurrentPage(selected);
@@ -68,9 +66,7 @@ export const CustomHits = ({ currentObjectID }: CustomHitsProps) => {
   if (!hits.length) {
     return (
       <div className={styles.empty}>
-        <div className={styles.avatar}>
-          {isMounted && <Lottie options={searchThinking} height={300} />}
-        </div>
+        <div className={styles.avatar}>{isMounted && <Lottie options={searchThinking} height={300} />}</div>
       </div>
     );
   }

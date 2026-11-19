@@ -12,22 +12,11 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en" dir="ltr">
         <Head>
-          <link
-            rel="preload"
-            as="font"
-            type="font/woff2"
-            crossOrigin="anonymous"
-            href="/fonts/LeagueMono-Medium.woff2"
-          />
-          <link
-            rel="preload"
-            as="font"
-            type="font/woff2"
-            crossOrigin="anonymous"
-            href="/fonts/LeagueMono-Regular.woff2"
-          />
-          <link rel="preload" as="font" type="font/woff2" crossOrigin="anonymous" href="/fonts/MabryPro-Black.woff2" />
-          <link rel="preload" as="font" type="font/woff2" crossOrigin="anonymous" href="/fonts/MabryPro-Medium.woff2" />
+          {/* Preload only the two faces that paint above the fold. Mabry Pro is the
+              body face; Montserrat Regular is every heading. Black/Medium/LeagueMono
+              are either unused or below the fold, and preloading them competed for
+              bandwidth with the fonts that actually render. LeagueMono-Medium had no
+              @font-face rule at all, so it was downloaded and never used. */}
           <link
             rel="preload"
             as="font"
@@ -35,9 +24,13 @@ export default class MyDocument extends Document {
             crossOrigin="anonymous"
             href="/fonts/MabryPro-Regular.woff2"
           />
-          <link rel="preload" as="font" type="font/ttf" crossOrigin="anonymous" href="/fonts/Montserrat-Regular.ttf" />
-          <link rel="preload" as="font" type="font/ttf" crossOrigin="anonymous" href="/fonts/Montserrat-Medium.ttf" />
-          <link rel="preload" as="font" type="font/ttf" crossOrigin="anonymous" href="/fonts/Montserrat-Bold.ttf" />
+          <link
+            rel="preload"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+            href="/fonts/Montserrat-Regular.woff2"
+          />
 
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           <script defer src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_TRACKING_ID}`} />

@@ -20,6 +20,12 @@ if [[ ${ARGS[*]} =~ 'feed' ]]; then
   echo "Done generating feeds..."
 fi
 
+if [[ ${ARGS[*]} =~ 'sitemap' ]]; then
+  echo "Generating sitemap.xml and robots.txt..."
+  yarn sitemap || echo "Warning: sitemap generation failed"
+  echo "Done generating sitemap..."
+fi
+
 if [[ ${ARGS[*]} =~ 'next' ]]; then
   echo "Building Next.js..."
   yarn next build --webpack

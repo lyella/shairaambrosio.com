@@ -13,7 +13,11 @@ const memoryBuckets = new Map<string, { hits: number[] }>();
 const getClientKey = (req: NextApiRequest) => {
   const forwarded = req.headers["x-forwarded-for"];
 
-  return (Array.isArray(forwarded) ? forwarded[0] : forwarded?.split(",")[0])?.trim() || req.socket.remoteAddress || "unknown";
+  return (
+    (Array.isArray(forwarded) ? forwarded[0] : forwarded?.split(",")[0])?.trim() ||
+    req.socket.remoteAddress ||
+    "unknown"
+  );
 };
 
 const kvAvailable = () => Boolean(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN);
@@ -66,7 +70,13 @@ const memoryAllow = (key: string, max: number, windowMs: number) => {
   return true;
 };
 
-export const rateLimit = async (req: NextApiRequest, res: NextApiResponse, max: number, windowMs: number, scope: string) => {
+export const rateLimit = async (
+  req: NextApiRequest,
+  res: NextApiResponse,
+  max: number,
+  windowMs: number,
+  scope: string,
+) => {
   const key = `${scope}:${getClientKey(req)}`;
 
   try {

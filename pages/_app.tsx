@@ -16,21 +16,25 @@ const isBrowser = typeof window !== "undefined";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
-  const router = useRouter();
+  const { events } = useRouter();
   useEffect(() => {
-    if (isProduction && isBrowser) {
-      const handleRouteChange = (url: string) => {
-        gtag.reportPageView(url);
-      };
-      router.events.on("routeChangeComplete", handleRouteChange);
-
-      return () => {
-        router.events.off("routeChangeComplete", handleRouteChange);
-      };
+    if (!isProduction || !isBrowser) {
+      return;
     }
 
-    return () => false;
-  }, []);
+    const handleRouteChange = (url: string) => {
+      gtag.reportPageView(url);
+    };
+
+    // Read `events` from the router instance rather than closing over `router`:
+    // the old effect had an empty dependency array while touching router.events,
+    // so it kept a reference to a possibly-replaced events object.
+    events.on("routeChangeComplete", handleRouteChange);
+
+    return () => {
+      events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [events]);
 
   return (
     <>

@@ -7,7 +7,7 @@ import { getProjectBySlug, getProjectsPaths } from "lib/projects";
 import type { InferGetStaticPropsType } from "types";
 
 const Project: NextPage = ({ transformedMdx, frontmatter }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const { title, excerpt, publishedAt, image, author } = frontmatter;
+  const { title, excerpt, publishedAt, image, author, slug } = frontmatter;
 
   return (
     <Layout>
@@ -18,6 +18,11 @@ const Project: NextPage = ({ transformedMdx, frontmatter }: InferGetStaticPropsT
         publishedAt={publishedAt}
         type="article"
         author={author}
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Projects", path: "/projects" },
+          { name: title, path: `/projects/${slug}` },
+        ]}
       />
       <Mdx resource={frontmatter} content={transformedMdx} />
     </Layout>

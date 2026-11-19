@@ -1,5 +1,5 @@
 import { memo } from "react";
-import cn from "classnames";
+import clsx from "clsx";
 import slugify from "slugify";
 import Link from "next/link";
 
@@ -18,7 +18,7 @@ export const Heading = memo<HeadingProps>(({ level: Tag, slug, url }) => {
   const id = slugify(slug, { lower: true });
 
   return (
-    <Tag id={id} className={cn(styles.heading, styles[Tag])}>
+    <Tag id={id} className={clsx(styles.heading, styles[Tag])}>
       <Link href={`#${id}`} id={id} aria-hidden="true" tabIndex={-1} className={styles.link}>
         <span className={styles.clip}>
           <Clip />

@@ -87,16 +87,17 @@ export type Post = {
   author: Author;
 };
 
-export type Category = typeof allCategories[number]["slug"];
-export type Author = typeof allAuthors[number]["name"];
+export type Category = (typeof allCategories)[number]["slug"];
+export type Author = (typeof allAuthors)[number]["name"];
 
 export type PromiseValue<T> = T extends PromiseLike<infer R> ? R : T;
-export type InferGetStaticPropsType<T extends (...args: any) => any> = PromiseValue<ReturnType<T>> extends infer Temp
-  ? Temp extends {
-      readonly props: infer P;
-    }
-    ? P
-    : never
-  : never;
+export type InferGetStaticPropsType<T extends (...args: any) => any> =
+  PromiseValue<ReturnType<T>> extends infer Temp
+    ? Temp extends {
+        readonly props: infer P;
+      }
+      ? P
+      : never
+    : never;
 
 export type HeadingVariant = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";

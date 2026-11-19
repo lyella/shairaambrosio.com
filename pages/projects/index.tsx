@@ -15,7 +15,15 @@ const Projects: NextPage = ({ projects, blurImageData }: InferGetStaticPropsType
 
   return (
     <Layout>
-      <Seo title="Projects" description={description} imageUrl={"/img/projects.png"} />
+      <Seo
+        title="Projects"
+        description={description}
+        imageUrl={"/img/projects.png"}
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Projects", path: "/projects" },
+        ]}
+      />
       <Hero title="Projects" description={description} />
       <ProjectsListing projects={projects} blurImageData={blurImageData} />
     </Layout>

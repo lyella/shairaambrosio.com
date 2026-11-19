@@ -23,8 +23,8 @@ PWA service worker are all covered):
   `img-src 'self' data: blob: https:`; `font-src 'self' data:` (fonts are self-hosted);
   `frame-src https://github.com https://codesandbox.io` (GitHub button + Sandpack embeds);
   `connect-src` allowlists self, GA (google-analytics.com, analytics.google.com, googletagmanager),
-  Spotify (accounts/api.spotify.com), MailerLite, Algolia (*.algolia.net, *.algolianet.com),
-  Vercel Analytics (va.vercel-scripts.com, *.ingest.vercel.com);
+  Spotify (accounts/api.spotify.com), MailerLite, Algolia (_.algolia.net, _.algolianet.com),
+  Vercel Analytics (va.vercel-scripts.com, \*.ingest.vercel.com);
   `script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://va.vercel-scripts.com`.
 
 ### Accepted tradeoff

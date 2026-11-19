@@ -1,4 +1,4 @@
-import { memo, useEffect } from "react";
+import { memo } from "react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import clsx from "clsx";
@@ -70,21 +70,21 @@ export const QuizDialog = memo<QuizDialogProps>(({ correctAnswers, scoreMessages
   };
 
   const handleCheckAnswers = () => {
-    setAnswers((answers) =>
-      answers.map((answer) => ({
-        ...answer,
-        status: correctAnswers.includes(answer.text.toLowerCase().trim()) ? "correct" : "incorrect",
-      })),
-    );
+    // Score against the answers as they will be AFTER this update. The old code
+    // read `answers` from the closure, so checking a quiz with N answers scored
+    // N-1 of them and the first answer never counted.
+    const checkedAnswers = answers.map((answer) => ({
+      ...answer,
+      status: correctAnswers.includes(answer.text.toLowerCase().trim()) ? ("correct" as const) : ("incorrect" as const),
+    }));
+
+    setAnswers(checkedAnswers);
     setIsAnswersChecked(true);
     reset();
 
-    const totalCorrectAnswersCount = correctAnswers.length;
-    const correctProvidedAnswersCount = answers.filter((answer) =>
-      correctAnswers.includes(answer.text.toLowerCase()),
-    ).length;
+    const correctProvidedAnswersCount = checkedAnswers.filter((answer) => answer.status === "correct").length;
 
-    setScore((correctProvidedAnswersCount / totalCorrectAnswersCount) * 100);
+    setScore((correctProvidedAnswersCount / Math.max(correctAnswers.length, 1)) * 100);
 
     setTimeout(() => {
       setIsResultMessageShown(true);
@@ -92,18 +92,19 @@ export const QuizDialog = memo<QuizDialogProps>(({ correctAnswers, scoreMessages
   };
 
   const handleResetAnswers = () => {
+    // Derive the dependent flag at the same moment the answers are cleared instead
+    // of syncing it from an effect that watched `answers`.
     setAnswers([]);
+    setIsAnswersChecked(false);
     setIsResultMessageShown(false);
   };
 
-  useEffect(() => {
-    if (answers.length === 0) {
-      setIsAnswersChecked(false);
-    }
-  }, [answers]);
-
   return (
-    <>
+    // Wrapped in a single form element. The previous version returned a fragment,
+    // which makes MDX treat the component as possibly-empty (React 19 types this
+    // as `ReactNode`, not `Element`); more importantly, the <form> and the answer
+    // controls were siblings in the MDX document, so they were not one landmark.
+    <div className={styles.quiz}>
       <form className={styles.form} onSubmit={handleSubmit(handleFormSubmit)}>
         <Input
           type="text"
@@ -167,7 +168,7 @@ export const QuizDialog = memo<QuizDialogProps>(({ correctAnswers, scoreMessages
           {answers.length}/{correctAnswers.length}
         </div>
       </div>
-    </>
+    </div>
   );
 });
 

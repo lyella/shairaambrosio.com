@@ -1,6 +1,6 @@
-/* eslint-disable import/order */
 import { Layout } from "components/layout/Layout";
 import type { GetStaticProps, NextPage } from "next";
+import { Seo } from "components/Seo";
 // import { SpotifyTile } from "components/tile/spotifyTile/SpotifyTile";
 import { ProjectTile } from "components/projects/projectTile/ProjectTile";
 import { AboutTile } from "components/tile/aboutTile/AboutTile";
@@ -19,6 +19,7 @@ import type { InferGetStaticPropsType } from "types";
 const Home: NextPage = ({ projects, posts }: InferGetStaticPropsType<GetStaticProps>) => {
   return (
     <Layout>
+      <Seo title="Frontend Developer" />
       <Grid>
         {/* <SpotifyTile /> */}
         <AvatarTile />

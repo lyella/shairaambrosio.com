@@ -18,11 +18,17 @@ export const CopyBtn = memo<CopyBtnProps>(({ label, textToCopy }) => {
       await copyToClipboard(textToCopy);
       setIsCopied(true);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 
   useEffect(() => {
+    // Only run the "revert the label" timer after a copy actually happened;
+    // otherwise it re-armed on every render.
+    if (!isCopied) {
+      return;
+    }
+
     const timer = setTimeout(() => setIsCopied(false), 2000);
 
     return () => clearTimeout(timer);
@@ -34,10 +40,12 @@ export const CopyBtn = memo<CopyBtnProps>(({ label, textToCopy }) => {
   };
 
   return (
+    // A single wrapper element (not a fragment): MDX needs a component to render
+    // an element, and React 19 widened fragment return types to ReactNode.
     <div className={styles.wrapper}>
       <Confetti active={isCopied} config={confettiConfig} />
       <button onClick={handleCopyBtnClick} className={clsx(styles.btn, { [styles.copied]: isCopied })}>
-        {isCopied ? "Copied! 🎉" : label}
+        <span>{isCopied ? "Copied! 🎉" : label}</span>
       </button>
     </div>
   );

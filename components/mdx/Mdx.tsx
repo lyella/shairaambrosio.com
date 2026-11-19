@@ -13,6 +13,7 @@ import { useTheme } from "context/ThemeContext";
 import { Author } from "components/mdx/author/Author";
 import type { Project, Post } from "types";
 import { getHeadings } from "utils/getHeadings";
+import { absoluteUrl } from "utils/consts";
 import { useRunningHeader } from "hooks/useRunningHeader";
 import Arrow from "public/svg/right-top-arrow.svg";
 import { Image } from "components/mdx/image/Image";
@@ -25,8 +26,6 @@ import { Pre } from "components/mdx/pre/Pre";
 import { Info } from "components/mdx/info/Info";
 import { Highlight } from "components/mdx/highlight/Highlight";
 import { Sandbox } from "components/mdx/sandbox/Sandbox";
-
-
 
 import { TableOfContents } from "./tableOfContents/TableOfContents";
 import styles from "./mdx.module.scss";
@@ -43,20 +42,30 @@ type HeadingComponentProps = {
   readonly children?: React.ReactNode;
 };
 
+// MDXRemote types every component map value against MDX's `Component<any>` union.
+// With React 19 these are function components, so `Record<string, FunctionComponent>`
+// satisfies MDX's index signature without a cast. (The earlier `ComponentType`
+// version failed: `ComponentType` includes class components, and the literal's
+// specific prop types were then checked contra-variantly against `unknown`.)
+type MdxComponentMap = Record<string, React.FunctionComponent<any>>;
+
 export const Mdx = memo<MdxProps>(({ resource, content }) => {
   const contentElRef = useRef<HTMLDivElement | null>(null);
   const { id, setRunningHeader } = useRunningHeader(contentElRef.current);
-  const url = `${process.env.NEXT_PUBLIC_URL}/${resource.type === "project" ? "projects" : "blog"}/${resource.slug}`;
+  const url = absoluteUrl(`/${resource.type === "project" ? "projects" : "blog"}/${resource.slug}`);
   const { theme } = useTheme();
 
-  const getHeadingProps = useCallback(({ children }: HeadingComponentProps) => {
-    return {
-      slug: String(children ?? ""),
-      url,
-    };
-  }, []);
+  const getHeadingProps = useCallback(
+    ({ children }: HeadingComponentProps) => {
+      return {
+        slug: String(children ?? ""),
+        url,
+      };
+    },
+    [url],
+  );
 
-  const customMdxComponents = useMemo(
+  const customMdxComponents: MdxComponentMap = useMemo(
     () => ({
       h2: (props: HeadingComponentProps) => <Heading level="h2" {...getHeadingProps(props)}></Heading>,
       h3: (props: HeadingComponentProps) => <Heading level="h3" {...getHeadingProps(props)}></Heading>,
@@ -71,14 +80,18 @@ export const Mdx = memo<MdxProps>(({ resource, content }) => {
       pre: Pre,
       ...CustomPostsComponents,
     }),
-    [],
+    // The old empty dependency list froze `theme` at first render, so the embedded
+    // sandbox never switched themes with the rest of the page.
+    [getHeadingProps, theme],
   );
 
   const contentString = renderToString(<MDXRemote {...content} components={customMdxComponents} />);
 
   useEffect(() => {
+    // contentElRef.current is null on the first pass (the ref attaches after
+    // commit), so re-run once `content` has been mounted.
     setRunningHeader(contentElRef.current);
-  }, []);
+  }, [content, setRunningHeader]);
 
   const imageVariants = {
     hover: {
@@ -125,7 +138,10 @@ export const Mdx = memo<MdxProps>(({ resource, content }) => {
             </div>
           ) : null}
           <div className={styles.links}>
-            <Edit href={`/${resource.type === "project" ? "projects" : "posts"}/${resource.slug}`} />
+            {/* The content directory is content/posts, but the type is "post", and
+                the old template produced .../content/posts/<slug>.mdx — a path that
+                does not exist, so every "Edit on Github" link 404'd. */}
+            <Edit href={`/${resource.type === "project" ? "projects" : "blog"}/${resource.slug}`} />
             <Share href={url} title={resource.title} type={resource.type} />
           </div>
 

@@ -2,11 +2,13 @@ import algoliasearch from "algoliasearch";
 
 import dynamic from "next/dynamic";
 
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useMemo, useState } from "react";
 
 import { InstantSearch, useInstantSearch, useSearchBox } from "react-instantsearch";
 
 import ReactPaginate from "react-paginate";
+
+import { useMounted } from "hooks/useMounted";
 
 const Lottie = dynamic(() => import("react-lottie"), { ssr: false });
 
@@ -48,13 +50,9 @@ interface CustomHitsProps {
 export const CustomHits = ({ currentObjectID, projects, blurImageData }: CustomHitsProps) => {
   const { query } = useSearchBox();
 
-  const [isMounted, setIsMounted] = useState(false);
+  const isMounted = useMounted();
   const [currentPage, setCurrentPage] = useState(0);
   const HITS_PER_PAGE = 10;
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   // Source of truth is the statically generated project list; the query from
   // the search box filters it locally, so the listing never depends on a
@@ -76,9 +74,7 @@ export const CustomHits = ({ currentObjectID, projects, blurImageData }: CustomH
   if (!hits.length) {
     return (
       <div className={styles.empty}>
-        <div className={styles.avatar}>
-          {isMounted && <Lottie options={searchThinking} height={300} />}
-        </div>
+        <div className={styles.avatar}>{isMounted && <Lottie options={searchThinking} height={300} />}</div>
       </div>
     );
   }
@@ -99,7 +95,10 @@ export const CustomHits = ({ currentObjectID, projects, blurImageData }: CustomH
             id={"id" + project.slug}
             className={styles.hit}
           >
-            <ProjectThumbnail project={project} blurDataURL={blurImageData.find((d) => d.slug === project.slug)?.base64} />
+            <ProjectThumbnail
+              project={project}
+              blurDataURL={blurImageData.find((d) => d.slug === project.slug)?.base64}
+            />
           </li>
         ))}
       </ol>

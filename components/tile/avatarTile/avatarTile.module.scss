@@ -22,7 +22,7 @@
   position: relative;
   margin: 0 auto;
   width: 220px;
-  
+
   img {
     width: 100%;
     height: auto;
@@ -49,4 +49,10 @@
   @include mixins.mediaquery("lg-max") {
     margin-top: 10px;
   }
+}
+
+// The two role lines were sibling <p> elements; they are now spans inside one <p>
+// so the name plate reads as a single sentence rather than two paragraphs.
+.role {
+  display: block;
 }

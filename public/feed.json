@@ -1,75 +1,76 @@
 {
     "version": "https://jsonfeed.org/version/1",
     "title": "Shaira Ambrosio",
-    "home_page_url": "https://undefined",
+    "home_page_url": "https://shairaambrosio.com",
+    "feed_url": "https://shairaambrosio.com/feed.json",
     "description": "Hello, I'm Shaira - a Frontend Developer, freelancer, blogger, and passionate about new technologies. I hope you enjoy my website!",
-    "icon": "https://undefined/regular-android-icon-192x192.png",
+    "icon": "https://shairaambrosio.com/regular-android-icon-192x192.png",
     "author": {
         "name": "Shaira Ambrosio",
-        "url": "https://undefined"
+        "url": "https://shairaambrosio.com"
     },
     "items": [
         {
-            "id": "dunning-kruger-effect-in-programming",
-            "url": "https://undefined/blog/dunning-kruger-effect-in-programming",
+            "id": "https://shairaambrosio.com/blog/dunning-kruger-effect-in-programming",
+            "url": "https://shairaambrosio.com/blog/dunning-kruger-effect-in-programming",
             "title": "Understanding the Dunning-Kruger Effect in Programming: Overcoming the Illusion of Competence",
             "summary": "The Dunning-Kruger Effect is a cognitive bias that affects people across all industries and fields, including programming.",
-            "image": "https://undefined//img/posts/dunning-kruger-effect-in-programming/thumbnail.jpg",
+            "image": "https://shairaambrosio.com/img/posts/dunning-kruger-effect-in-programming/thumbnail.jpg",
             "date_modified": "2023-02-26T16:00:00.000Z",
             "author": {
                 "name": "Shaira Ambrosio"
             }
         },
         {
-            "id": "exploring-the-web-3-technology",
-            "url": "https://undefined/blog/exploring-the-web-3-technology",
+            "id": "https://shairaambrosio.com/blog/exploring-the-web-3-technology",
+            "url": "https://shairaambrosio.com/blog/exploring-the-web-3-technology",
             "title": "Web 3 Technology: Exploring the Future of the Internet",
             "summary": "Web 3 technology is poised to revolutionize the way we interact with the internet. With a focus on decentralization, privacy, and user control, Web 3 has the potential to transform everything from social networking to online commerce. In this blog post, we'll explore what Web 3 technology is, why it's important, and how it's already changing the online landscape.",
-            "image": "https://undefined//img/posts/exploring-the-web-3-technology/thumbnail.jpg",
+            "image": "https://shairaambrosio.com/img/posts/exploring-the-web-3-technology/thumbnail.jpg",
             "date_modified": "2023-02-20T16:00:00.000Z",
             "author": {
                 "name": "Shaira Ambrosio"
             }
         },
         {
-            "id": "flexbox-grid-simplifying-layouts",
-            "url": "https://undefined/blog/flexbox-grid-simplifying-layouts",
+            "id": "https://shairaambrosio.com/blog/flexbox-grid-simplifying-layouts",
+            "url": "https://shairaambrosio.com/blog/flexbox-grid-simplifying-layouts",
             "title": "Flexbox Grid in CSS Simplifying Responsive Layouts",
             "summary": "Creating responsive layouts can be a daunting task for web developers, especially when there are so many devices and screen sizes to consider. Fortunately, Flex Grid in CSS offers a simpler way to create responsive layouts by leveraging the power of Flexbox. In this blog post, we'll explore what Flex Grid in CSS is, how it works, and why it's become a popular choice for frontend developers looking to create flexible and responsive web layouts.",
-            "image": "https://undefined//img/posts/flexbox-grid-simplifying-layouts/thumbnail.png",
+            "image": "https://shairaambrosio.com/img/posts/flexbox-grid-simplifying-layouts/thumbnail.png",
             "date_modified": "2023-02-20T16:00:00.000Z",
             "author": {
                 "name": "Shaira Ambrosio"
             }
         },
         {
-            "id": "testing-your-knowledge-in-input-types",
-            "url": "https://undefined/blog/testing-your-knowledge-in-input-types",
+            "id": "https://shairaambrosio.com/blog/testing-your-knowledge-in-input-types",
+            "url": "https://shairaambrosio.com/blog/testing-your-knowledge-in-input-types",
             "title": "Do you know all input types?",
             "summary": "Although it's not a confidential information, it can greatly benefit your end users. Verify it yourself!",
-            "image": "https://undefined//img/posts/testing-your-knowledge-in-input-types/thumbnail.jpg",
+            "image": "https://shairaambrosio.com/img/posts/testing-your-knowledge-in-input-types/thumbnail.jpg",
             "date_modified": "2023-01-19T16:00:00.000Z",
             "author": {
                 "name": "Shaira Ambrosio"
             }
         },
         {
-            "id": "the-importance-of-ui-ux-for-frontend-developers",
-            "url": "https://undefined/blog/the-importance-of-ui-ux-for-frontend-developers",
+            "id": "https://shairaambrosio.com/blog/the-importance-of-ui-ux-for-frontend-developers",
+            "url": "https://shairaambrosio.com/blog/the-importance-of-ui-ux-for-frontend-developers",
             "title": "The Importance of UI/UX for Frontend Developers",
             "summary": "As the internet continues to grow and evolve, the role of frontend developers has become increasingly important.  Frontend developers are responsible for creating the user interface and experience of websites and applications, which is  why having a strong understanding of UI/UX design principles is crucial. In this blog post, we will explore why UI/UX is  so important for frontend developers, and how it can help to improve the overall quality and success of a product.",
-            "image": "https://undefined//img/posts/the-importance-of-ui-ux-for-frontend-developers/thumbnail.jpg",
+            "image": "https://shairaambrosio.com/img/posts/the-importance-of-ui-ux-for-frontend-developers/thumbnail.jpg",
             "date_modified": "2023-02-19T16:00:00.000Z",
             "author": {
                 "name": "Shaira Ambrosio"
             }
         },
         {
-            "id": "the-power-of-asynchronous-javascript",
-            "url": "https://undefined/blog/the-power-of-asynchronous-javascript",
+            "id": "https://shairaambrosio.com/blog/the-power-of-asynchronous-javascript",
+            "url": "https://shairaambrosio.com/blog/the-power-of-asynchronous-javascript",
             "title": "The Power of Asynchronous JavaScript: Improving Web Performance",
             "summary": "Asynchronous programming has become increasingly important in web development, as it allows for non-blocking operations that can greatly improve web performance.",
-            "image": "https://undefined//img/posts/the-power-of-asynchronous-javascript/thumbnail.webp",
+            "image": "https://shairaambrosio.com/img/posts/the-power-of-asynchronous-javascript/thumbnail.webp",
             "date_modified": "2023-02-12T16:00:00.000Z",
             "author": {
                 "name": "Shaira Ambrosio"

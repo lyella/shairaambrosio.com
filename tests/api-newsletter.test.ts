@@ -34,6 +34,9 @@ describe("/api/newsletter", () => {
     await handler(mockReq({ body: { email: "new@example.com" } }), res);
     expect(res.statusCode).toBe(200);
     expect(res.body).toEqual({ message: "Subscribed!" });
-    expect(fetcher).toHaveBeenCalledWith(expect.stringContaining("subscribers"), expect.objectContaining({ method: "POST" }));
+    expect(fetcher).toHaveBeenCalledWith(
+      expect.stringContaining("subscribers"),
+      expect.objectContaining({ method: "POST" }),
+    );
   });
 });

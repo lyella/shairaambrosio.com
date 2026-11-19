@@ -46,8 +46,17 @@ async function run() {
   const projectsIndex = client.initIndex("projects");
   const postsIndex = client.initIndex("posts");
 
-  const indexedProjects = await projectsIndex.saveObjects(await generateAlgoliaProjects());
-  const indexedPosts = await postsIndex.saveObjects(await generateAlgoliaPosts());
+  const [projects, posts] = await Promise.all([generateAlgoliaProjects(), generateAlgoliaPosts()]);
+
+  // Replace, don't merge. saveObjects() only upserts, so records added by hand in
+  // the Algolia dashboard (objectIDs like "..._dashboard_generated_id") survived
+  // every run and the posts index ended up with 12 objects for 6 posts, showing
+  // each article twice in search. clearObjects() first makes the local content
+  // files the single source of truth.
+  await Promise.all([projectsIndex.clearObjects(), postsIndex.clearObjects()]);
+
+  const indexedProjects = await projectsIndex.saveObjects(projects);
+  const indexedPosts = await postsIndex.saveObjects(posts);
 
   console.log(`${indexedProjects.objectIDs.length} projects indexed`);
   console.log(`${indexedPosts.objectIDs.length} posts indexed`);

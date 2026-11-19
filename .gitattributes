@@ -1,0 +1,29 @@
+# Normalise line endings in the repository.
+#
+# Without this file, core.autocrlf=true (the Windows default) checked files out as
+# CRLF, so Prettier — which emits LF — reported 71 files as "unformatted" while
+# containing no real style drift. That permanently kept `yarn format:check` red and
+# made every Windows edit look like a whole-file change.
+#
+# `text=auto` stores LF in git and checks out the platform-native ending locally.
+* text=auto eol=lf
+
+# Shell scripts must keep LF even on Windows, or bash fails with a shebang error.
+*.sh text eol=lf
+*.py text eol=lf
+
+# Binary assets: never attempt text conversion.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.avif binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+
+# Prettier and lockfiles: exact bytes matter for diffs.
+yarn.lock text eol=lf

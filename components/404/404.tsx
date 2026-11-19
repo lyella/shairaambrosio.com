@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
+import { useMounted } from "hooks/useMounted";
 import animationData from "../../public/lottie/error-404.json";
 
 import styles from "./404.module.scss";
@@ -17,15 +17,14 @@ const defaultOptions = {
 };
 
 export const Custom404 = () => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const isMounted = useMounted();
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.lottie}>
+      {/* The page had no heading at all: screen-reader users landed on an
+          unlabelled page. The Lottie animation is purely decorative. */}
+      <h1 className={styles.title}>Page not found</h1>
+      <div className={styles.lottie} aria-hidden="true">
         {isMounted && <Lottie options={defaultOptions} />}
       </div>
       <p className={styles.description}>

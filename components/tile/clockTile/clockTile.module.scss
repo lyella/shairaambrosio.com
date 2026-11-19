@@ -133,3 +133,15 @@
 .dateTitle {
   font-size: 1.6rem;
 }
+
+// Keeps the tile height stable between first paint and the deferred first tick.
+.clockPlaceholder {
+  min-height: 22rem;
+}
+
+// The weekday label. This used to be a bare <h2>, which put a second heading
+// level above the page <h1> in the document outline.
+.day {
+  font-size: 2rem;
+  font-family: "Montserrat", sans-serif;
+}

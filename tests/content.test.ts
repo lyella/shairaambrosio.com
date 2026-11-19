@@ -32,7 +32,13 @@ describe("content smoke", () => {
 
   it("next.config.js declares the security headers", () => {
     const cfg = require("fs").readFileSync(path.join(process.cwd(), "next.config.js"), "utf8");
-    for (const h of ["X-Frame-Options", "X-Content-Type-Options", "Referrer-Policy", "Permissions-Policy", "Content-Security-Policy"]) {
+    for (const h of [
+      "X-Frame-Options",
+      "X-Content-Type-Options",
+      "Referrer-Policy",
+      "Permissions-Policy",
+      "Content-Security-Policy",
+    ]) {
       expect(cfg).toContain(h);
     }
     expect(cfg).toContain("frame-ancestors 'none'");

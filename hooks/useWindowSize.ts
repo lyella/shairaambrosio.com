@@ -15,7 +15,7 @@ export const useWindowSize = () => {
         height: window.innerHeight,
       });
     };
-    
+
     handleResize();
     window.addEventListener("resize", handleResize);
 

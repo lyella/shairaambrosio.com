@@ -30,4 +30,3 @@ export const Experience = memo<ExperienceProps>(({ positions }) => {
 });
 
 Experience.displayName = "Experience";
-

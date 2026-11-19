@@ -6,13 +6,14 @@ import { Mdx } from "components/mdx/Mdx";
 import type { InferGetStaticPropsType } from "types";
 import { Seo } from "components/Seo";
 import { FeaturedPosts } from "components/blog/featuredPosts/FeaturedPosts";
+import { allCategories } from "data/categories";
 
 const Post: NextPage = ({
   transformedMdx,
   frontmatter,
   newestPosts,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const { title, excerpt, publishedAt, image, author } = frontmatter;
+  const { title, excerpt, publishedAt, image, author, category, slug } = frontmatter;
 
   return (
     <Layout>
@@ -23,6 +24,14 @@ const Post: NextPage = ({
         type="article"
         author={author}
         imageUrl={image}
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          ...(allCategories.find((c) => c.slug === category)
+            ? [{ name: allCategories.find((c) => c.slug === category)!.name, path: `/blog?category=${category}` }]
+            : []),
+          { name: title, path: `/blog/${slug}` },
+        ]}
       />
       <Mdx content={transformedMdx} resource={frontmatter} />
       <FeaturedPosts posts={newestPosts} actualPostSlug={frontmatter.slug} />

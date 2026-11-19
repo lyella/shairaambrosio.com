@@ -48,10 +48,12 @@
   font-display: swap;
 }
 
+// Montserrat ships as woff2: the .ttf versions were 193 KB each (580 KB total) and
+// sat on the critical path. Same glyphs, ~60 KB per weight.
 @font-face {
   font-style: normal;
   font-weight: bold;
-  src: url("/fonts/Montserrat-Bold.ttf") format("truetype");
+  src: url("/fonts/Montserrat-Bold.woff2") format("woff2");
   font-family: "Montserrat";
   font-display: swap;
 }
@@ -59,7 +61,7 @@
 @font-face {
   font-style: normal;
   font-weight: 600;
-  src: url("/fonts/Montserrat-Medium.ttf") format("truetype");
+  src: url("/fonts/Montserrat-Medium.woff2") format("woff2");
   font-family: "Montserrat";
   font-display: swap;
 }
@@ -67,7 +69,7 @@
 @font-face {
   font-style: normal;
   font-weight: normal;
-  src: url("/fonts/Montserrat-Regular.ttf") format("truetype");
+  src: url("/fonts/Montserrat-Regular.woff2") format("woff2");
   font-family: "Montserrat";
   font-display: swap;
 }

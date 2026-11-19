@@ -12,7 +12,15 @@ const Blog: NextPage = ({ categories }: InferGetStaticPropsType<typeof getStatic
 
   return (
     <Layout>
-      <Seo title="Blog" description={description} imageUrl={"/img/blog.png"} />
+      <Seo
+        title="Blog"
+        description={description}
+        imageUrl={"/img/blog.png"}
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+        ]}
+      />
       <Hero title="Blog" description={description} />
       <PostsListing categories={categories} popularPosts={[]} />
     </Layout>

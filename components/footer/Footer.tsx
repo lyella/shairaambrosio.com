@@ -10,9 +10,18 @@ import { ThemeSwitcher } from "components/common/themeSwitcher/ThemeSwitcher";
 
 import styles from "./footer.module.scss";
 
-const Social = ({ social }: { social: typeof SOCIALS[number] }) => {
-  const selectedSocial = SOCIALS.find(({ name }) => name === social.name) as typeof SOCIALS[number];
-  const Icon = dynamic(() => import(`public/svg/${selectedSocial?.name}.svg`));
+// Resolved once at module scope. Declaring the dynamic component inside the
+// render body created a brand-new component type on every render, so React
+// unmounted and remounted the icon instead of updating it.
+const socialIcons = {
+  x: dynamic(() => import("public/svg/x.svg")),
+  linkedin: dynamic(() => import("public/svg/linkedin.svg")),
+  github: dynamic(() => import("public/svg/github.svg")),
+} as const;
+
+const Social = ({ social }: { social: (typeof SOCIALS)[number] }) => {
+  const selectedSocial = SOCIALS.find(({ name }) => name === social.name) as (typeof SOCIALS)[number];
+  const Icon = socialIcons[selectedSocial.name];
   const { width } = useWindowSize();
   const { theme } = useTheme();
 

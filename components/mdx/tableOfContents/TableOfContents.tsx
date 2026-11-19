@@ -1,5 +1,5 @@
 import { memo } from "react";
-import cn from "classnames";
+import clsx from "clsx";
 import Link from "next/link";
 
 import styles from "./tableOfContents.module.scss";
@@ -20,7 +20,7 @@ export const TableOfContents = memo<TableOfContentsProps>(({ contents, currentAc
       <nav className={styles.nav}>
         <Link
           href="#introduction"
-          className={cn(styles.link, styles.H2, { [styles.active]: currentActiveHeaderId === "introduction" })}
+          className={clsx(styles.link, styles.H2, { [styles.active]: currentActiveHeaderId === "introduction" })}
         >
           Introduction
         </Link>
@@ -29,7 +29,7 @@ export const TableOfContents = memo<TableOfContentsProps>(({ contents, currentAc
               <Link
                 href={`#${content.id}`}
                 key={content.id}
-                className={cn(styles.link, styles[content.level], {
+                className={clsx(styles.link, styles[content.level], {
                   [styles.active]: currentActiveHeaderId === content.id,
                 })}
               >

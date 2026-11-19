@@ -28,7 +28,16 @@ export const ProjectThumbnail = memo<ProjectThumbnailProps>(({ project, blurData
           layoutId={`image-container-${project.slug}`}
           key="thumbnail"
         >
-          {project && project.image && <Image src={project.image} alt={project.title} width={1200} height={880} />}
+          {project && project.image && (
+            <Image
+              src={project.image}
+              alt={project.title}
+              width={1200}
+              height={880}
+              sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 560px"
+              {...(blurDataURL ? { placeholder: "blur" as const, blurDataURL } : {})}
+            />
+          )}
         </motion.div>
         <div className={styles.content}>
           <motion.h2 className={styles.title} layoutId={`title-container-${project.slug}`}>

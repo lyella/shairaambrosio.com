@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
+import { useMounted } from "hooks/useMounted";
 import animationData from "../../../../public/lottie/shai-waving.json";
 
 import styles from "./hero.module.scss";
@@ -17,22 +17,20 @@ const defaultOptions = {
 };
 
 export const Hero = () => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const isMounted = useMounted();
 
   return (
     <section className={styles.hero}>
       <div className={styles.text}>
-        <h2 className={styles.title}>Hi, I'm <span className={styles.glow}>Shaira Ambrosio</span></h2>
+        <h2 className={styles.title}>
+          Hi, I'm <span className={styles.glow}>Shaira Ambrosio</span>
+        </h2>
         <p className={styles.description}>
           <span className={styles.paragraph}>
-            I'm a passionate Frontend Developer based in the Philippines. With a unique perspective, I deliver innovative
-            and high-quality solutions to make people's lives easier, more enjoyable, and productive. From user-friendly
-            interfaces to optimized websites, I strive to exceed my clients' expectations and inspire others to see the
-            potential of technology.
+            I'm a passionate Frontend Developer based in the Philippines. With a unique perspective, I deliver
+            innovative and high-quality solutions to make people's lives easier, more enjoyable, and productive. From
+            user-friendly interfaces to optimized websites, I strive to exceed my clients' expectations and inspire
+            others to see the potential of technology.
           </span>
           <span className={styles.paragraph}>
             As a freelancer, I'm open to innovative ideas and solutions and enjoy conversing with interesting people.
@@ -44,9 +42,7 @@ export const Hero = () => {
         </p>
       </div>
 
-      <div className={styles.image}>
-        {isMounted && <Lottie options={defaultOptions} height={400} />}
-      </div>
+      <div className={styles.image}>{isMounted && <Lottie options={defaultOptions} height={400} />}</div>
     </section>
   );
 };

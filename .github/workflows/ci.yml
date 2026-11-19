@@ -14,7 +14,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: yarn
 
       - name: Install dependencies
@@ -23,8 +23,23 @@ jobs:
       - name: Type-check
         run: yarn tsc
 
+      - name: Lint
+        # `yarn lint` used to be `next lint`, which Next 16 removed. It now runs
+        # flat-config ESLint, so this step can actually fail the build again.
+        run: yarn lint
+
+      - name: Check formatting
+        # Baseline is clean and .gitattributes normalises line endings, so this
+        # gate is meaningful rather than permanently red.
+        run: yarn format:check
+
       - name: Unit tests
         run: yarn test
+
+      - name: Security audit gate
+        # yarn audit --level never filters or fails deterministically, so the gate
+        # parses the JSON and decides on severity itself.
+        run: yarn audit:gate
 
       - name: Update Algolia search index
         if: github.ref == 'refs/heads/main'
@@ -33,11 +48,24 @@ jobs:
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
           ALGOLIA_UPDATE_API_KEY: ${{ secrets.ALGOLIA_UPDATE_API_KEY }}
 
-      - name: Security audit (fail on critical)
-        run: yarn audit --level critical
+      - name: Generate feed, sitemap and newest-post redirect
+        run: |
+          yarn new-post-redirect
+          yarn feed
+          yarn sitemap
+
+      - name: Guard against a placeholder redirect in next.config.js
+        # generateNewPostRedirect only rewrites the first match, so a config that
+        # was committed mid-generation can keep a placeholder destination.
+        run: |
+          if grep -q "THE_NEWEST_POST_SLUG_HERE" next.config.js; then
+            echo "::error::next.config.js still contains THE_NEWEST_POST_SLUG_HERE"
+            exit 1
+          fi
 
       - name: Production build
         run: yarn next build --webpack
         env:
+          NEXT_PUBLIC_HOST: shairaambrosio.com
           NEXT_PUBLIC_ALGOLIA_APP_ID: ${{ secrets.NEXT_PUBLIC_ALGOLIA_APP_ID }}
           NEXT_PUBLIC_ALGOLIA_SEARCH_KEY: ${{ secrets.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY }}

@@ -51,14 +51,47 @@ yarn dev
 
 ```
 
-CI (`.github/workflows/ci.yml`) runs `yarn tsc`, `yarn audit --level critical`, and a
-production build on every push/PR to `main`.
+`yarn install` runs a `postinstall` step that patches `@types/mdx` for React 19
+(upstream types still reference the removed global `JSX` namespace).
+
+## Scripts
+
+| Script            | What it does                                                   |
+| ----------------- | -------------------------------------------------------------- |
+| `yarn dev`        | Next dev server (webpack)                                      |
+| `yarn build`      | Newest-post redirect + feed + sitemap + production build       |
+| `yarn tsc`        | Type-check                                                     |
+| `yarn lint`       | ESLint (flat config)                                           |
+| `yarn test`       | vitest                                                         |
+| `yarn audit:gate` | Security gate: 0 critical/high in production dependencies      |
+| `yarn feed`       | Regenerate `public/feed.xml` + `feed.json`                     |
+| `yarn sitemap`    | Regenerate `public/sitemap.xml` + `robots.txt`                 |
+| `yarn algolia`    | Replace the Algolia `posts`/`projects` indexes from `content/` |
+| `yarn format`     | Prettier write                                                 |
+
+## Verification
+
+`node scripts/verify-build.mjs` (after a build) asserts that:
+
+- canonical URLs use `https://shairaambrosio.com` and never a `*.vercel.app` host
+- `og:locale` is a valid `language_COUNTRY` code
+- every page has a non-empty, branded `<title>`
+- every JSON-LD block parses and each page has exactly one `<h1>`
+- `sitemap.xml`, `robots.txt` and `feed.xml` contain no preview URLs
+- no `.ttf` fonts are shipped and no removed font is preloaded
+
+`node scripts/format-baseline.mjs` reports which files Prettier would change and
+classifies each as a line-ending, trailing-newline, or substantive difference.
+
+CI (`.github/workflows/ci.yml`) runs `yarn tsc`, `yarn lint`, `yarn format:check`,
+`yarn test`, `yarn audit:gate`, the generators (with a guard against placeholder
+redirects) and a production build on every push/PR to `main`.
 
 ## Engineering docs
 
 - `plan.md` — living backlog and verification checklist
 - `docs/adr/` — architecture decision records (security hardening, dependency
-  migrations, security headers, design tokens, rate limiting)
+  migrations, security headers, design tokens, rate limiting, React 19 + tooling)
 - `docs/qa-security-ux-audit-2026-11-18.md` — full audit artifact
 
 To enable global API rate limiting on Vercel, create a KV store and set
