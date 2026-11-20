@@ -77,6 +77,11 @@ jobs:
       # build afterwards had still rewritten production search.
       - name: Update Algolia search index
         if: github.ref == 'refs/heads/main'
+        # A search-index sync must not block production deploys: the deploy gate
+        # keys off this job's conclusion, so a missing/invalid ALGOLIA secret
+        # would otherwise red the whole verify job and freeze all deploys.
+        # Keep the step last so a broken build still never reaches the index.
+        continue-on-error: true
         run: yarn algolia
         env:
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
