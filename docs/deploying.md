@@ -26,21 +26,29 @@ absorb the race where Vercel evaluates before GitHub has registered the check.
 
 Preview deployments are **not** gated — a PR must build so it can be reviewed.
 
-## One-time setup (Vercel dashboard)
+## Configuration
 
-1. Vercel → this project → **Settings → Git → Ignored Build Step**.
-2. Choose **Custom** and enter:
+`vercel.json` sets it, so it lives in the repo and cannot drift out of the dashboard:
 
-   ```sh
-   bash ./scripts/deploy-gate.sh
-   ```
+```json
+{ "ignoreCommand": "bash ./scripts/deploy-gate.sh" }
+```
 
-3. Save. No redeploy is needed; it applies to the next push.
+Vercel reads `ignoreCommand` from `vercel.json` automatically. There is **nothing to
+click**. Pushing this file is the whole setup.
 
-Optional but recommended: add a `GITHUB_TOKEN` environment variable (a fine-grained
-PAT with **Checks: read** on this repo). Without it the GitHub API is queried
-unauthenticated, which has a low hourly rate limit shared per IP; with it the gate is
-reliable under heavy activity.
+> If you previously set an Ignored Build Step in the dashboard, the dashboard value
+> wins over `vercel.json`. In that case go to Project → Settings → Build and
+> Deployment and clear the override, leaving the file as the single source of truth.
+
+Preview deployments are **not** gated — a PR must build so it can be reviewed.
+
+## Optional: raise the GitHub API rate limit
+
+Add a `GITHUB_TOKEN` environment variable in Vercel (a fine-grained PAT with
+**Checks: read** on this repo). Without it the GitHub API is queried unauthenticated,
+which has a low hourly limit shared per IP; with it the gate is reliable under heavy
+activity. Not required to get started.
 
 ## Verifying it
 

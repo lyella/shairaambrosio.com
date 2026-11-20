@@ -24,6 +24,7 @@ run_case() {
   out=$(
     STUB_PAYLOAD="$payload" \
     VERCEL_ENV="$env_json" \
+    VERCEL=1 \
     VERCEL_GIT_COMMIT_SHA=abc1234 \
     GATE_ATTEMPTS="$attempts" \
     GATE_SLEEP=1 \

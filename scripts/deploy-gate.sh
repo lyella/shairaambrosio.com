@@ -21,6 +21,17 @@ say() { echo "[deploy-gate] $*"; }
 
 REQUIRED_CHECK="${REQUIRED_CHECK:-verify}"
 
+# Guard against being wired up the wrong way round. If this script runs somewhere
+# `curl` cannot reach GitHub (for example a local shell behind a restrictive network),
+# retrying forever would just stall a build. Say what is wrong instead.
+if [ -z "${VERCEL:-}" ] && [ -z "${VERCEL_GIT_COMMIT_SHA:-}" ] && [ "${ALLOW_LOCAL:-}" != "1" ]; then
+  say "This script is Vercel's Ignored Build Step; it is not meant to be run locally."
+  say "Vercel contract: exit 1 = skip build, exit 0 = deploy."
+  say "Configured in vercel.json as: ignoreCommand = bash ./scripts/deploy-gate.sh"
+  say "Run with ALLOW_LOCAL=1 to exercise it outside Vercel anyway."
+  exit 0
+fi
+
 if [ -z "${VERCEL_GIT_COMMIT_SHA:-}" ]; then
   say "No VERCEL_GIT_COMMIT_SHA (not a git-triggered deploy); allowing build."
   exit 0
