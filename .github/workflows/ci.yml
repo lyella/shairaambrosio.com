@@ -8,6 +8,10 @@ on:
 
 jobs:
   verify:
+    # This job name is what scripts/deploy-gate.sh looks for in the commit's check
+    # runs before Vercel is allowed to deploy production. Renaming it means updating
+    # REQUIRED_CHECK in that script too.
+    name: verify
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -36,17 +40,15 @@ jobs:
       - name: Unit tests
         run: yarn test
 
+      - name: Deploy gate tests
+        # The gate decides whether production deploys; if its logic breaks it would
+        # either block every deploy or let a red build through.
+        run: bash ./scripts/test-deploy-gate.sh
+
       - name: Security audit gate
         # yarn audit --level never filters or fails deterministically, so the gate
         # parses the JSON and decides on severity itself.
         run: yarn audit:gate
-
-      - name: Update Algolia search index
-        if: github.ref == 'refs/heads/main'
-        run: yarn algolia
-        env:
-          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
-          ALGOLIA_UPDATE_API_KEY: ${{ secrets.ALGOLIA_UPDATE_API_KEY }}
 
       - name: Generate feed, sitemap and newest-post redirect
         run: |
@@ -69,3 +71,13 @@ jobs:
           NEXT_PUBLIC_HOST: shairaambrosio.com
           NEXT_PUBLIC_ALGOLIA_APP_ID: ${{ secrets.NEXT_PUBLIC_ALGOLIA_APP_ID }}
           NEXT_PUBLIC_ALGOLIA_SEARCH_KEY: ${{ secrets.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY }}
+
+      # Last, so every check above must already have passed. This step mutates the
+      # live search index, and it used to run mid-job: a commit that failed the
+      # build afterwards had still rewritten production search.
+      - name: Update Algolia search index
+        if: github.ref == 'refs/heads/main'
+        run: yarn algolia
+        env:
+          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+          ALGOLIA_UPDATE_API_KEY: ${{ secrets.ALGOLIA_UPDATE_API_KEY }}

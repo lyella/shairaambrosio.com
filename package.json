@@ -22,7 +22,8 @@
     "postinstall": "node scripts/patch-mdx-types.mjs",
     "prepare": "husky",
     "test": "vitest run",
-    "sitemap:submit": "node scripts/submit-sitemap.mjs"
+    "sitemap:submit": "node scripts/submit-sitemap.mjs",
+    "test:deploy-gate": "bash ./scripts/test-deploy-gate.sh"
   },
   "repository": {
     "type": "git",
