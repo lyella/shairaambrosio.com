@@ -27,7 +27,7 @@ export const Hero = () => {
         </h2>
         <p className={styles.description}>
           <span className={styles.paragraph}>
-            I'm a passionate Frontend Developer based in the Philippines. With a unique perspective, I deliver
+            I'm a passionate Full-Stack Developer based in the Philippines. With a unique perspective, I deliver
             innovative and high-quality solutions to make people's lives easier, more enjoyable, and productive. From
             user-friendly interfaces to optimized websites, I strive to exceed my clients' expectations and inspire
             others to see the potential of technology.

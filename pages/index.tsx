@@ -19,7 +19,7 @@ import type { InferGetStaticPropsType } from "types";
 const Home: NextPage = ({ projects, posts }: InferGetStaticPropsType<GetStaticProps>) => {
   return (
     <Layout>
-      <Seo title="Frontend Developer" />
+      <Seo title="Full-Stack Developer" />
       <Grid>
         {/* <SpotifyTile /> */}
         <AvatarTile />

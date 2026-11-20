@@ -22,7 +22,7 @@ export const AvatarTile = () => {
       </div>
       <h1 className={styles.name}>SHAIRA AMBROSIO</h1>
       <p className={styles.title}>
-        <span className={styles.role}>Frontend Developer</span>
+        <span className={styles.role}>Full-Stack Developer</span>
         <span className={styles.role}>Based in the PH</span>
       </p>
     </div>

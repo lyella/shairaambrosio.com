@@ -27,7 +27,7 @@ export const SITE_TITLE = "Shaira Ambrosio";
 export const SITE_TITLE_TEMPLATE = `%s ${SEPARATOR} ${SITE_TITLE}`;
 export const SHORT_DESCRIPTION = "My personal website";
 export const DEFAULT_DESCRIPTION =
-  "Hello, I'm Shaira - a Frontend Developer, freelancer, blogger, and passionate about new technologies. I hope you enjoy my website!";
+  "Hello, I'm Shaira - a Full-Stack Developer, freelancer, blogger, and passionate about new technologies. I hope you enjoy my website!";
 
 export const DEFAULT_IMAGE_URL = `/img/banner.png`;
 
@@ -35,7 +35,7 @@ export const DEFAULT_IMAGE_URL = `/img/banner.png`;
 export const OG_LOCALE = "en_US";
 
 export const PERSON_NAME = "Shaira Ambrosio";
-export const PERSON_JOB_TITLE = "Frontend Developer";
+export const PERSON_JOB_TITLE = "Full-Stack Developer";
 
 export const SOCIAL_PROFILES = [
   `https://x.com/${process.env.NEXT_PUBLIC_x_USERNAME || "shaicodes"}`,
