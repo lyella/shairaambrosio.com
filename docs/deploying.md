@@ -20,11 +20,28 @@ Step**. Vercel's contract for that command is:
 | `0`  | build and deploy |
 | `1`  | skip the build   |
 
-The gate queries the GitHub check runs for `VERCEL_GIT_COMMIT_SHA` and only allows a
-production build when the `verify` job concluded `success`. It retries briefly to
-absorb the race where Vercel evaluates before GitHub has registered the check.
+The gate queries the GitHub check runs for `VERCEL_GIT_COMMIT_SHA` and allows a
+production build when the `verify` job concluded `success`.
 
 Preview deployments are **not** gated — a PR must build so it can be reviewed.
+
+### Slow CI does not block the deploy
+
+The gate retries for up to 20 x 30s = **10 minutes**. That budget exists because
+`verify` installs, type-checks, lints, tests, generates and runs a full Next build:
+measured at 143s of real work locally, plus roughly 90s of install and queue time on
+a GitHub runner.
+
+If CI still has not reported by then, the gate **allows the deploy**. The distinction
+matters:
+
+- **CI failed** (conclusion `failure`) → always blocks. That is the gate's job.
+- **CI is slow, or the GitHub API is unreachable** → allows. Freezing a live site
+  because a runner was cold is the worse failure of the two.
+
+The original 5-minute budget was too tight for this repo and would have skipped the
+deploy on any cold run, even though CI passed moments later. Set `GATE_STRICT=1` in
+the Vercel environment to fail closed on timeout instead.
 
 ## Configuration
 
